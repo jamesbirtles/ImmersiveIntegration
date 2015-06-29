@@ -1,0 +1,18 @@
+[
+  {
+    "modid" : "immersiveintegration",
+    "name" : "Immersive Integration",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "authorList": [
+      "UnwrittenFun"
+    ],
+    "description": "Adds ME wire connectors to use IE style wires with AE",
+    "url" : "https://github.com/UnwrittenFun/ImmersiveIntegration",
+    "updateUrl" : "",
+    "logoFile" : "",
+    "parent" : "",
+    "screenshots": [
+    ]
+  }
+]
