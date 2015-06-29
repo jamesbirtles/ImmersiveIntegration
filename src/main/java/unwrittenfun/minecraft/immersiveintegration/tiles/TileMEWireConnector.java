@@ -143,7 +143,6 @@ public class TileMEWireConnector extends TileEntity implements IImmersiveConnect
 
   @Override
   public void connectCable(WireType cableType, TargetingInfo target) {
-    ImmersiveIntegration.log.info(target.hitX + ", " + target.hitY + ", " + target.hitZ);
   }
 
   @Override
@@ -163,7 +162,6 @@ public class TileMEWireConnector extends TileEntity implements IImmersiveConnect
         DimensionalCoord locA = gridConnection.a().getGridBlock().getLocation();
         DimensionalCoord locB = gridConnection.b().getGridBlock().getLocation();
         if ((opposite.posX == locA.x && opposite.posZ == locA.z && opposite.posY == locA.y) || (opposite.posX == locB.x && opposite.posZ == locB.z && opposite.posY == locB.y)) {
-          ImmersiveIntegration.log.info("Destroyed AE Connection");
           gridConnection.destroy();
           gridConnections.remove(gridConnection);
           break;
@@ -224,14 +222,12 @@ public class TileMEWireConnector extends TileEntity implements IImmersiveConnect
 
   @Override
   public void onGridNotification(GridNotification notification) {
-    ImmersiveIntegration.log.info("onGridNotification");
+
   }
 
   @Override
   public void setNetworkStatus(IGrid grid, int channelsInUse) {
     theGrid = grid;
-    ImmersiveIntegration.log.info("setNetworkStatus");
-    //    theChannelsInUse = channelsInUse;
   }
 
   @Override
@@ -246,7 +242,7 @@ public class TileMEWireConnector extends TileEntity implements IImmersiveConnect
 
   @Override
   public void gridChanged() {
-    ImmersiveIntegration.log.info("gridChanged");
+
   }
 
   @Override
@@ -270,7 +266,7 @@ public class TileMEWireConnector extends TileEntity implements IImmersiveConnect
 
   @Override
   public void securityBreak() {
-    ImmersiveIntegration.log.info("securityBreak");
+
   }
 
   public void connectTo(int x, int y, int z) {
