@@ -2,4 +2,5 @@ item.immersiveintegration:wireCoilFluix.name=Flux Wire Coil
 item.immersiveintegration:wireCoilDense.name=Dense Wire Coil
 tile.immersiveintegration:meWireConnector.name=ME Wire Connector
 tile.immersiveintegration:meDenseWireConnector.name=ME Dense Wire Connector
+tile.immersiveintegration:extendedPost.name=Wooden Post Extension
 itemGroup.immersiveintegration=Immersive Integration

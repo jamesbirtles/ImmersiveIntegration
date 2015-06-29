@@ -35,7 +35,7 @@ tasks.withType(JavaCompile) {
     targetCompatibility = "1.7"
 }
 
-version = "0.1.1"
+version = "0.2.0"
 group= "unwrittenfun.minecraft.immersiveintegration"
 archivesBaseName = "immersiveintegration"
 

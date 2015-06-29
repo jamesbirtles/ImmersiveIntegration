@@ -1,8 +1,10 @@
 package unwrittenfun.minecraft.immersiveintegration.items;
 
 import blusunrize.immersiveengineering.api.*;
+import blusunrize.immersiveengineering.common.IEContent;
 import blusunrize.immersiveengineering.common.IESaveData;
 import blusunrize.immersiveengineering.common.blocks.metal.TileEntityConnectorLV;
+import blusunrize.immersiveengineering.common.blocks.wooden.TileEntityWoodenPost;
 import blusunrize.immersiveengineering.common.util.ItemNBTHelper;
 import blusunrize.immersiveengineering.common.util.Lib;
 import blusunrize.immersiveengineering.common.util.Utils;
