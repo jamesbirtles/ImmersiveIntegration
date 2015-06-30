@@ -1,5 +1,6 @@
 package unwrittenfun.minecraft.immersiveintegration.blocks;
 
+import blusunrize.immersiveengineering.common.IEContent;
 import blusunrize.immersiveengineering.common.util.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -123,5 +124,14 @@ public class BlockExtendedPost extends BlockContainer {
     }
 
     return true;
+  }
+
+  @Override
+  public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
+    if (world.getBlockMetadata(x, y, z) == 0) {
+      if (!(world.getBlock(x, y - 1, z) == IEContent.blockWoodenDevice && world.getBlockMetadata(x, y-1, z) == 0) && world.getBlock(x, y - 1, z) != IIBlocks.extendedPost){
+        world.setBlockToAir(x, y, z);
+      }
+    }
   }
 }
