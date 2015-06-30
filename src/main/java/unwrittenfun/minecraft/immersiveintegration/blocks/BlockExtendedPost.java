@@ -9,6 +9,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -68,6 +69,18 @@ public class BlockExtendedPost extends BlockContainer {
       case 5:
         this.setBlockBounds(meta == 5 ? 0 : .3125f, .5f, meta == 3 ? 0 : .3125f, meta == 4 ? 1 : .6875f, 1f, meta == 2 ? 1 : .6875f);
     }
+  }
+
+  @Override
+  public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
+    setBlockBoundsBasedOnState(world, x, y, z);
+    return super.getCollisionBoundingBoxFromPool(world, x, y, z);
+  }
+
+  @Override
+  public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int x, int y, int z) {
+    setBlockBoundsBasedOnState(world, x, y, z);
+    return super.getSelectedBoundingBoxFromPool(world, x, y, z);
   }
 
   @Override

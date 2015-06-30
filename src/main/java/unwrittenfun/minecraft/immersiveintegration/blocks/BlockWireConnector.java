@@ -1,5 +1,6 @@
 package unwrittenfun.minecraft.immersiveintegration.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
@@ -75,5 +76,14 @@ public abstract class BlockWireConnector extends BlockContainer {
   public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int x, int y, int z) {
     setBlockBoundsBasedOnState(world, x, y, z);
     return super.getSelectedBoundingBoxFromPool(world, x, y, z);
+  }
+
+  @Override
+  public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
+    ForgeDirection fd = ForgeDirection.getOrientation(world.getBlockMetadata(x, y, z));
+    if (world.isAirBlock(x + fd.offsetX, y + fd.offsetY, z + fd.offsetZ)) {
+      dropBlockAsItem(world, x, y, z, 0, 0);
+      world.setBlockToAir(x, y, z);
+    }
   }
 }
