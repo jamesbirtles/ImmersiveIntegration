@@ -1,6 +1,7 @@
 package unwrittenfun.minecraft.immersiveintegration.wires;
 
 import net.minecraft.item.ItemStack;
+import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.items.IIItems;
 import unwrittenfun.minecraft.immersiveintegration.items.ItemCoil;
 
@@ -12,7 +13,7 @@ public class DenseWire extends FluixWire {
 
   @Override
   public int getMaxLength() {
-    return 8;
+	  return ImmersiveIntegration.cfg.denseWireRange;
   }
 
   @Override

@@ -2,6 +2,7 @@ package unwrittenfun.minecraft.immersiveintegration.wires;
 
 import blusunrize.immersiveengineering.api.WireType;
 import net.minecraft.item.ItemStack;
+import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.items.IIItems;
 import unwrittenfun.minecraft.immersiveintegration.items.ItemCoil;
 
@@ -28,7 +29,7 @@ public class FluixWire extends WireType {
 
   @Override
   public int getMaxLength() {
-    return 16;
+    return ImmersiveIntegration.cfg.fluixWireRange;
   }
 
   @Override
