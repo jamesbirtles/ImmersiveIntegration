@@ -1,22 +1,14 @@
 package unwrittenfun.minecraft.immersiveintegration.client.renderers;
 
-import blusunrize.immersiveengineering.client.models.ModelIEObj;
 import blusunrize.immersiveengineering.client.render.TileRenderIE;
 import blusunrize.immersiveengineering.common.IEContent;
-import blusunrize.immersiveengineering.common.blocks.wooden.TileEntityWoodenPost;
 import blusunrize.immersiveengineering.common.util.chickenbones.Matrix4;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileExtendedPost;
 
 public class TileRenderExtendedPost extends TileRenderIE {
-  ModelIEObj model = new ModelIEObj("immersiveintegration:models/extendedPost.obj") {
-    @Override
-    public IIcon getBlockIcon() {
-      return IEContent.blockWoodenDevice.getIcon(0, 0);
-    }
-  };
+  ModelIIObj model = new ModelIIObj("immersiveintegration:models/extendedPost.obj", IEContent.blockWoodenDevice);
 
   @Override
   public void renderDynamic(TileEntity tile, double x, double y, double z, float f) {
@@ -49,7 +41,7 @@ public class TileRenderExtendedPost extends TileRenderIE {
     }
 
     translationMatrix.translate(.5, 0, .5);
-    if(rotate) rotationMatrix.rotate(Math.toRadians(-90), 0.0, 1.0, 0.0);
+    if (rotate) rotationMatrix.rotate(Math.toRadians(-90), 0.0, 1.0, 0.0);
 
     String[] parts = armRight && armLeft ? new String[] { "Base", "Arm_right", "Arm_left" } : armRight ? new String[] { "Base", "Arm_right" } : armLeft ? new String[] { "Base", "Arm_left" } : new String[] { "Base" };
     model.render(tile, tes, translationMatrix, rotationMatrix, true, false, parts);
