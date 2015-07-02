@@ -1,22 +1,33 @@
 package unwrittenfun.minecraft.immersiveintegration;
 
+import cpw.mods.fml.client.event.ConfigChangedEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.common.config.Configuration;
 
-/**
- * @author Caitlyn.Mainer@pc-logix.com
- *
- */
-
 public class Config {
-	public final int fluixWireRange;
-	public final int denseWireRange;
+	public int fluixWireRange;
+	public int denseWireRange;
+
+	public Configuration config;
 
 	public Config(Configuration config) {
+    this.config = config;
 		config.load();
-		fluixWireRange = config.getInt("fluixWireRange", "options", 16, 16, 64, "The maximum range of Fluix Wires before needing a support");
-		denseWireRange = config.getInt("denseWireRange", "options", 8, 8, 64, "The maximum range of Dense Wires before needing a support");
+		readConfig();
+	}
+
+	private void readConfig() {
+		fluixWireRange = config.getInt("fluixWireRange", Configuration.CATEGORY_GENERAL, 16, 1, 64, "The maximum range of Fluix Wires before needing a support");
+		denseWireRange = config.getInt("denseWireRange", Configuration.CATEGORY_GENERAL, 8, 1, 64, "The maximum range of Dense Wires before needing a support");
 		if (config.hasChanged()) {
 			config.save();
 		}
 	}
+
+  @SubscribeEvent
+  public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
+    if (event.modID.equalsIgnoreCase(ModInfo.MOD_ID)) {
+      readConfig();
+    }
+  }
 }
