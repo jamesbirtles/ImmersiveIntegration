@@ -18,19 +18,23 @@ public class IIBlocks {
   public static final String ME_WIRE_CONNECTOR_KEY = "meWireConnector";
   public static final String ME_DENSE_CONNECTOR_KEY = "meDenseWireConnector";
   public static final String EXTENDED_POST_KEY = "extendedPost";
+  public static final String STEEL_TRAPDOOR = "steelTrapdoor";
 
   public static Block meWireConnector;
   public static Block meDenseWireConnector;
   public static Block extendedPost;
+  public static Block steelTrapdoor;
 
   public static void registerBlocks() {
     meWireConnector = new BlockMEWireConnector(ModInfo.MOD_ID + ":" + ME_WIRE_CONNECTOR_KEY);
     meDenseWireConnector = new BlockMEDenseWireConnector(ModInfo.MOD_ID + ":" + ME_DENSE_CONNECTOR_KEY);
     extendedPost = new BlockExtendedPost(ModInfo.MOD_ID + ":" + EXTENDED_POST_KEY);
+    steelTrapdoor = new BlockSteelTrapdoor(ModInfo.MOD_ID + ":" + STEEL_TRAPDOOR);
 
     GameRegistry.registerBlock(meWireConnector, ME_WIRE_CONNECTOR_KEY);
     GameRegistry.registerBlock(meDenseWireConnector, ME_DENSE_CONNECTOR_KEY);
     GameRegistry.registerBlock(extendedPost, ItemBlockExtendedPost.class, EXTENDED_POST_KEY);
+    GameRegistry.registerBlock(steelTrapdoor, STEEL_TRAPDOOR);
 
     GameRegistry.registerTileEntity(TileMEWireConnector.class, ME_WIRE_CONNECTOR_KEY + "Tile");
     GameRegistry.registerTileEntity(TileMEDenseWireConnector.class, ME_DENSE_CONNECTOR_KEY + "Tile");
