@@ -4,6 +4,7 @@ import appeng.api.AEApi;
 import appeng.api.definitions.IDefinitions;
 import appeng.api.util.AEColor;
 import blusunrize.immersiveengineering.common.IEContent;
+import blusunrize.immersiveengineering.common.blocks.metal.BlockMetalDecoration;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -45,6 +46,7 @@ public class IIBlocks {
     IDefinitions ae = AEApi.instance().definitions();
     GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(meWireConnector, 4), " c ", "fsf", "sfs", 'c', ae.parts().cableGlass().stack(AEColor.Transparent, 1), 'f', "dustFluix", 's', ae.blocks().skyStone().maybeBlock().get()));
     GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(meDenseWireConnector, 2), " d ", "rcr", "cgc", 'd', ae.parts().cableDense().stack(AEColor.Transparent, 1), 'r', "dustRedstone", 'c', meWireConnector, 'g', "dustGlowstone"));
-    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(extendedPost, 2), "p", "p", 'p', new ItemStack(IEContent.blockWoodenDecoration, 1, 1)));
+    GameRegistry.addRecipe(new ShapedOreRecipe(extendedPost, "p", "p", 'p', new ItemStack(IEContent.blockWoodenDecoration, 1, 1)));
+    GameRegistry.addRecipe(new ItemStack(steelTrapdoor, 2), "sss", "sss", 's', new ItemStack(IEContent.blockMetalDecoration, 1, BlockMetalDecoration.META_scaffolding));
   }
 }

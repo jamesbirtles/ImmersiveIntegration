@@ -3,4 +3,5 @@ item.immersiveintegration:wireCoilDense.name=Dense Wire Coil
 tile.immersiveintegration:meWireConnector.name=ME Wire Connector
 tile.immersiveintegration:meDenseWireConnector.name=ME Dense Wire Connector
 tile.immersiveintegration:extendedPost.name=Wooden Post Extension
+tile.immersiveintegration:steelTrapdoor.name=Steel Trapdoor
 itemGroup.immersiveintegration=Immersive Integration
