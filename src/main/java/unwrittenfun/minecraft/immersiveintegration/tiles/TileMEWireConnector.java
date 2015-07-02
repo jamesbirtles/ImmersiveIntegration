@@ -185,6 +185,11 @@ public class TileMEWireConnector extends TileEntity implements IImmersiveConnect
   }
 
   @Override
+  public boolean allowEnergyToPass(ImmersiveNetHandler.Connection con) {
+    return false;
+  }
+
+  @Override
   public void invalidate() {
     super.invalidate();
     if (worldObj != null && !worldObj.isRemote) {

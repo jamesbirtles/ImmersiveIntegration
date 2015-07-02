@@ -2,19 +2,15 @@ package unwrittenfun.minecraft.immersiveintegration.client.renderers;
 
 import blusunrize.immersiveengineering.client.models.ModelIEObj;
 import blusunrize.immersiveengineering.client.render.TileRenderImmersiveConnectable;
-import blusunrize.immersiveengineering.common.IEContent;
-import blusunrize.immersiveengineering.common.blocks.metal.BlockMetalDevices;
 import blusunrize.immersiveengineering.common.util.chickenbones.Matrix4;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
-import unwrittenfun.minecraft.immersiveintegration.ModInfo;
 import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
-import unwrittenfun.minecraft.immersiveintegration.tiles.TileMEWireConnector;
 
 public class TileRenderMEConnector extends TileRenderImmersiveConnectable {
   ModelIEObj model = new ModelIEObj("immersiveengineering:models/connectorMV.obj") {
-  @Override
+    @Override
     public IIcon getBlockIcon() {
       return IIBlocks.meWireConnector.getIcon(0, 0);
     }
