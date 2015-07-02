@@ -14,9 +14,4 @@ public class BlockMEWireConnector extends BlockWireConnector {
   public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
     return new TileMEWireConnector();
   }
-
-  @Override
-  public int getRenderType() {
-    return BlockRenderMEConnector.RENDER_ID;
-  }
 }

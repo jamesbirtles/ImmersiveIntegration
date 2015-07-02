@@ -8,9 +8,8 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
 import org.lwjgl.opengl.GL11;
-import unwrittenfun.minecraft.immersiveintegration.tiles.TileMEDenseWireConnector;
 
-public class BlockRenderMEDenseConnector implements ISimpleBlockRenderingHandler {
+public class BlockRenderIIBlocks implements ISimpleBlockRenderingHandler {
   public static int RENDER_ID = RenderingRegistry.getNextAvailableRenderId();
 
   @Override
@@ -18,7 +17,7 @@ public class BlockRenderMEDenseConnector implements ISimpleBlockRenderingHandler
     GL11.glPushMatrix();
     GL11.glScalef(1.25F, 1.25F, 1.25F);
     Tessellator.instance.startDrawingQuads();
-    ClientUtils.handleStaticTileRenderer(new TileMEDenseWireConnector());
+    ClientUtils.handleStaticTileRenderer(block.createTileEntity(null, metadata));
     Tessellator.instance.draw();
     GL11.glPopMatrix();
   }

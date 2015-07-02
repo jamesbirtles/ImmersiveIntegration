@@ -9,6 +9,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
+import unwrittenfun.minecraft.immersiveintegration.client.renderers.BlockRenderIIBlocks;
 
 public abstract class BlockWireConnector extends BlockContainer {
   protected BlockWireConnector(String key) {
@@ -85,5 +86,10 @@ public abstract class BlockWireConnector extends BlockContainer {
       dropBlockAsItem(world, x, y, z, 0, 0);
       world.setBlockToAir(x, y, z);
     }
+  }
+
+  @Override
+  public int getRenderType() {
+    return BlockRenderIIBlocks.RENDER_ID;
   }
 }

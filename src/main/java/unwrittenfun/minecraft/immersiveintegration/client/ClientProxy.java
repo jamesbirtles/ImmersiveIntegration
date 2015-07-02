@@ -11,8 +11,7 @@ import unwrittenfun.minecraft.immersiveintegration.tiles.TileMEWireConnector;
 public class ClientProxy extends CommonProxy {
   @Override
   public void registerRenderers() {
-    RenderingRegistry.registerBlockHandler(new BlockRenderMEConnector());
-    RenderingRegistry.registerBlockHandler(new BlockRenderMEDenseConnector());
+    RenderingRegistry.registerBlockHandler(new BlockRenderIIBlocks());
     RenderingRegistry.registerBlockHandler(new BlockRenderExtendedPost());
     ClientRegistry.bindTileEntitySpecialRenderer(TileMEWireConnector.class, new TileRenderMEConnector());
     ClientRegistry.bindTileEntitySpecialRenderer(TileMEDenseWireConnector.class, new TileRenderMEDenseConnector());
