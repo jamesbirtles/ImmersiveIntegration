@@ -15,26 +15,32 @@ import unwrittenfun.minecraft.immersiveintegration.items.ItemBlockExtendedPost;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileExtendedPost;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileMEDenseWireConnector;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileMEWireConnector;
+import unwrittenfun.minecraft.immersiveintegration.tiles.TileRedstoneWireConnector;
 
 public class IIBlocks {
   public static final String ME_WIRE_CONNECTOR_KEY = "meWireConnector";
   public static final String ME_DENSE_CONNECTOR_KEY = "meDenseWireConnector";
   public static final String EXTENDED_POST_KEY = "extendedPost";
   public static final String STEEL_TRAPDOOR = "steelTrapdoor";
+  public static final String REDSTONE_WIRE_CONNECTOR_KEY = "redstoneWireConnector";
 
   public static Block meWireConnector;
   public static Block meDenseWireConnector;
   public static Block extendedPost;
   public static Block steelTrapdoor;
+  public static Block redstoneWireConnector;
 
   public static void registerBlocks() {
     extendedPost = new BlockExtendedPost(ModInfo.MOD_ID + ":" + EXTENDED_POST_KEY);
     steelTrapdoor = new BlockSteelTrapdoor(ModInfo.MOD_ID + ":" + STEEL_TRAPDOOR);
+    redstoneWireConnector = new BlockRedstoneWireConnector(ModInfo.MOD_ID + ":" + REDSTONE_WIRE_CONNECTOR_KEY);
 
     GameRegistry.registerBlock(extendedPost, ItemBlockExtendedPost.class, EXTENDED_POST_KEY);
     GameRegistry.registerBlock(steelTrapdoor, STEEL_TRAPDOOR);
+    GameRegistry.registerBlock(redstoneWireConnector, REDSTONE_WIRE_CONNECTOR_KEY);
 
     GameRegistry.registerTileEntity(TileExtendedPost.class, EXTENDED_POST_KEY + "Tile");
+    GameRegistry.registerTileEntity(TileRedstoneWireConnector.class, REDSTONE_WIRE_CONNECTOR_KEY + "Tile");
 
     if (ImmersiveIntegration.cfg.enableAE) registerAE2(false);
   }
@@ -42,6 +48,7 @@ public class IIBlocks {
   public static void registerRecipes() {
     GameRegistry.addRecipe(new ShapedOreRecipe(extendedPost, "p", "p", 'p', new ItemStack(IEContent.blockWoodenDecoration, 1, 1)));
     GameRegistry.addRecipe(new ItemStack(steelTrapdoor, 2), "sss", "sss", 's', new ItemStack(IEContent.blockMetalDecoration, 1, BlockMetalDecoration.META_scaffolding));
+    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(redstoneWireConnector, 8), "beb", " r ", "beb", 'b', "blockRedstone", 'e', "ingotElectrum", 'r', "dustRedstone"));
 
     if (ImmersiveIntegration.cfg.enableAE) registerAE2(true);
   }

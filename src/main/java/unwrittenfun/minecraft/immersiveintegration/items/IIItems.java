@@ -13,17 +13,25 @@ import unwrittenfun.minecraft.immersiveintegration.wires.IIWires;
 
 public class IIItems {
   public static String AE_COIL_KEY = "wireCoil"; // Should be aeWireCoil but backwards compatibility.
+  public static String II_COIL_KEY = "iiWireCoil";
 
   public static final int FLUIX_COIL_META = 0;
   public static final int DENSE_COIL_META = 1;
+  public static final int REDSTONE_COIL_META = 0;
 
   public static Item aeWireCoil;
+  public static Item iiWireCoil;
 
   public static void registerItems() {
+    iiWireCoil = new ItemCoil(ModInfo.MOD_ID + ":" + II_COIL_KEY, new String[] { "Redstone" }, IIWires.redstoneWire);
+
+    GameRegistry.registerItem(iiWireCoil, II_COIL_KEY);
+
     if (ImmersiveIntegration.cfg.enableAE) registerAE(false);
   }
 
   public static void registerRecipes() {
+    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(iiWireCoil, 4, REDSTONE_COIL_META), " e ", "rsr", " e ", 'r', "dustRedstone", 'e', "ingotElectrum", 's', "stickWood"));
     if (ImmersiveIntegration.cfg.enableAE) registerAE(true);
   }
 

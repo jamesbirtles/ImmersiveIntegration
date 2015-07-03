@@ -6,8 +6,10 @@ import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 public class IIWires {
   public static WireType fluixWire;
   public static WireType denseWire;
+  public static WireType redstoneWire;
 
   public static void registerWires() {
+    redstoneWire = new RedstoneWire();
     if (ImmersiveIntegration.cfg.enableAE) registerAE();
   }
 

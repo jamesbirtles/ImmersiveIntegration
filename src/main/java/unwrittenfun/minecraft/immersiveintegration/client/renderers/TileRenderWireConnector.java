@@ -4,6 +4,9 @@ import blusunrize.immersiveengineering.client.render.TileRenderImmersiveConnecta
 import blusunrize.immersiveengineering.common.util.chickenbones.Matrix4;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.tileentity.TileEntity;
+import unwrittenfun.minecraft.immersiveintegration.blocks.BlockRedstoneWireConnector;
+import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
+import unwrittenfun.minecraft.immersiveintegration.tiles.TileRedstoneWireConnector;
 
 public class TileRenderWireConnector extends TileRenderImmersiveConnectable {
   private final ModelIIObj model;

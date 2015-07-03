@@ -2,13 +2,13 @@ package unwrittenfun.minecraft.immersiveintegration.wires;
 
 import blusunrize.immersiveengineering.api.WireType;
 import net.minecraft.item.ItemStack;
-import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.items.IIItems;
+import unwrittenfun.minecraft.immersiveintegration.items.ItemCoil;
 
-public class FluixWire extends WireType {
+public class RedstoneWire extends WireType {
   @Override
   public String getUniqueName() {
-    return "FLUIX";
+    return "REDSTONE";
   }
 
   @Override
@@ -23,22 +23,22 @@ public class FluixWire extends WireType {
 
   @Override
   public int getColour() {
-    return 6171760;
+    return 12981011;
   }
 
   @Override
   public int getMaxLength() {
-    return ImmersiveIntegration.cfg.fluixWireRange;
+    return 32;
   }
 
   @Override
   public ItemStack getWireCoil() {
-    return new ItemStack(IIItems.aeWireCoil, 1, IIItems.FLUIX_COIL_META);
+    return new ItemStack(IIItems.iiWireCoil, 1, IIItems.REDSTONE_COIL_META);
   }
 
   @Override
   public double getRenderDiameter() {
-    return 0.06f;
+    return 0.03125;
   }
 
   @Override
