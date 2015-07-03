@@ -184,7 +184,7 @@ public class TileMEWireConnector extends TileEntity implements IImmersiveConnect
     return Vec3.createVectorHelper(0.5, 0.5, 0.5);
   }
 
-  @Override
+//  @Override
   public boolean allowEnergyToPass(ImmersiveNetHandler.Connection con) {
     return false;
   }

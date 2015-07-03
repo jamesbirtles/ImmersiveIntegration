@@ -1,7 +1,25 @@
+# Misc
+itemGroup.immersiveintegration=Immersive Integration
+
+
+# AE2
 item.immersiveintegration:wireCoilFluix.name=Fluix Wire Coil
 item.immersiveintegration:wireCoilDense.name=Dense Wire Coil
 tile.immersiveintegration:meWireConnector.name=ME Wire Connector
 tile.immersiveintegration:meDenseWireConnector.name=ME Dense Wire Connector
+
+
+## IE/II
 tile.immersiveintegration:extendedPost.name=Wooden Post Extension
 tile.immersiveintegration:steelTrapdoor.name=Steel Trapdoor
-itemGroup.immersiveintegration=Immersive Integration
+
+
+# Config
+immersiveintegration.config.enableAE=Enable AE2 Integration
+immersiveintegration.config.desc.enableAE=Enable/disable the ae2 specific content if ae2 is installed
+
+immersiveintegration.config.fluixWireRange=Fluix Wire Range
+immersiveintegration.config.desc.fluixWireRange=The maximum range of Fluix Wires before needing a support
+
+immersiveintegration.config.denseWireRange=Dense Wire Range
+immersiveintegration.config.desc.denseWireRange=The maximum range of Dense Wires before needing a support

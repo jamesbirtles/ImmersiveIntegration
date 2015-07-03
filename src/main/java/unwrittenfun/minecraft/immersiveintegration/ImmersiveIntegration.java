@@ -13,7 +13,7 @@ import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
 import unwrittenfun.minecraft.immersiveintegration.items.IIItems;
 import unwrittenfun.minecraft.immersiveintegration.wires.IIWires;
 
-@Mod(modid = ModInfo.MOD_ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "required-after:Forge;required-after:ImmersiveEngineering;required-after:appliedenergistics2", guiFactory = ModInfo.GUI_FACTORY_CLASS)
+@Mod(modid = ModInfo.MOD_ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "required-after:Forge;required-after:ImmersiveEngineering;after:appliedenergistics2", guiFactory = ModInfo.GUI_FACTORY_CLASS)
 public class ImmersiveIntegration {
   @Mod.Instance
   public static ImmersiveIntegration instance;
@@ -23,12 +23,12 @@ public class ImmersiveIntegration {
 
   public static Logger log;
 
-  public static Config cfg = null;
+  public static Config cfg;
 
   public static CreativeTabs iiCreativeTab = new CreativeTabs(ModInfo.MOD_ID) {
     @Override
     public Item getTabIconItem() {
-      return IIItems.wireCoil;
+      return Item.getItemFromBlock(IIBlocks.extendedPost);
     }
   };
 

@@ -23,17 +23,15 @@ import unwrittenfun.minecraft.immersiveintegration.wires.IIWires;
 import java.util.List;
 
 public class ItemCoil extends Item implements IWireCoil {
-  public static final int FLUIX_COIL_META = 0;
-  public static final int DENSE_COIL_META = 1;
-
-  protected static final String[] COIL_KEYS = new String[] { "Fluix", "Dense" };
-  protected static final WireType[] WIRE_TYPES = new WireType[] { IIWires.fluixWire, IIWires.denseWire };
-
   protected IIcon[] icons;
   protected String key;
+  public String[] coilKeys;
+  public WireType[] wireTypes;
 
-  public ItemCoil(String key) {
+  public ItemCoil(String key, String[] coilKeys, WireType... wireTypes) {
     this.key = key;
+    this.coilKeys = coilKeys;
+    this.wireTypes = wireTypes;
     setTextureName(key);
     setUnlocalizedName(key);
     setHasSubtypes(true);
@@ -42,9 +40,9 @@ public class ItemCoil extends Item implements IWireCoil {
 
   @Override
   public void registerIcons(IIconRegister register) {
-    icons = new IIcon[COIL_KEYS.length];
-    for (int i = 0; i < COIL_KEYS.length; i++) {
-      icons[i] = register.registerIcon(key + COIL_KEYS[i]);
+    icons = new IIcon[coilKeys.length];
+    for (int i = 0; i < coilKeys.length; i++) {
+      icons[i] = register.registerIcon(key + coilKeys[i]);
     }
   }
 
@@ -56,22 +54,22 @@ public class ItemCoil extends Item implements IWireCoil {
 
   @Override
   public String getUnlocalizedName(ItemStack stack) {
-    int meta = Math.min(stack.getItemDamage(), COIL_KEYS.length - 1);
-    return getUnlocalizedName() + COIL_KEYS[meta];
+    int meta = Math.min(stack.getItemDamage(), coilKeys.length - 1);
+    return getUnlocalizedName() + coilKeys[meta];
   }
 
   @SuppressWarnings("unchecked")
   @Override
   public void getSubItems(Item item, CreativeTabs tab, List items) {
-    for (int i = 0; i < COIL_KEYS.length; i++) {
+    for (int i = 0; i < coilKeys.length; i++) {
       items.add(new ItemStack(item, 1, i));
     }
   }
 
   @Override
   public WireType getWireType(ItemStack stack) {
-    int meta = Math.min(stack.getItemDamage(), WIRE_TYPES.length - 1);
-    return WIRE_TYPES[meta];
+    int meta = Math.min(stack.getItemDamage(), wireTypes.length - 1);
+    return wireTypes[meta];
   }
 
   @SuppressWarnings("unchecked")
@@ -89,7 +87,6 @@ public class ItemCoil extends Item implements IWireCoil {
     if (!world.isRemote && world.getTileEntity(x, y, z) instanceof IImmersiveConnectable && ((IImmersiveConnectable) world.getTileEntity(x, y, z)).canConnect()) {
       TargetingInfo target = new TargetingInfo(side, hitX, hitY, hitZ);
       if (!((IImmersiveConnectable) world.getTileEntity(x, y, z)).canConnectCable(getWireType(stack), target) || (world.getTileEntity(x, y, z) instanceof TileEntityConnectorLV)) {
-//        getWireType(stack);
         player.addChatMessage(new ChatComponentTranslation(Lib.CHAT_WARN + "wrongCable"));
         return false;
       }

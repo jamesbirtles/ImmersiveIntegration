@@ -4,7 +4,6 @@ import blusunrize.immersiveengineering.api.WireType;
 import net.minecraft.item.ItemStack;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.items.IIItems;
-import unwrittenfun.minecraft.immersiveintegration.items.ItemCoil;
 
 public class FluixWire extends WireType {
   @Override
@@ -34,7 +33,7 @@ public class FluixWire extends WireType {
 
   @Override
   public ItemStack getWireCoil() {
-    return new ItemStack(IIItems.wireCoil, 1, ItemCoil.FLUIX_COIL_META);
+    return new ItemStack(IIItems.aeWireCoil, 1, IIItems.FLUIX_COIL_META);
   }
 
   @Override
