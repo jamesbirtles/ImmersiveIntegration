@@ -2,3 +2,4 @@ run/
 .gradle/
 *.iml
 libs/
+top_secret_ideas.txt
