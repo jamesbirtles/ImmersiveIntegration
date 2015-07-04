@@ -1,12 +1,17 @@
 package unwrittenfun.minecraft.immersiveintegration.client;
 
+import blusunrize.immersiveengineering.api.ManualHelper;
+import blusunrize.lib.manual.ManualInstance;
+import blusunrize.lib.manual.ManualPages;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import net.minecraft.item.ItemStack;
 import unwrittenfun.minecraft.immersiveintegration.CommonProxy;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.ModInfo;
 import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
 import unwrittenfun.minecraft.immersiveintegration.client.renderers.*;
+import unwrittenfun.minecraft.immersiveintegration.items.IIItems;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileExtendedPost;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileMEDenseWireConnector;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileMEWireConnector;
@@ -23,6 +28,29 @@ public class ClientProxy extends CommonProxy {
     if (ImmersiveIntegration.cfg.enableAE) {
       ClientRegistry.bindTileEntitySpecialRenderer(TileMEWireConnector.class, new TileRenderWireConnector(new ModelIIObj("immersiveengineering:models/connectorMV.obj", IIBlocks.meWireConnector)));
       ClientRegistry.bindTileEntitySpecialRenderer(TileMEDenseWireConnector.class, new TileRenderWireConnector(new ModelIIObj(ModInfo.MOD_ID + ":models/meDenseWireConnector.obj", IIBlocks.meDenseWireConnector)));
+    }
+  }
+
+  @Override
+  public void registerManualPages() {
+    ManualInstance manual = ManualHelper.getManual();
+    manual.addEntry("postExtension", "immersiveintegration",
+        new ManualPages.Crafting(manual, "postExtension0", new ItemStack(IIBlocks.extendedPost))
+    );
+    manual.addEntry("steelTrapdoor", "immersiveintegration",
+        new ManualPages.Crafting(manual, "steelTrapdoor0", new ItemStack(IIBlocks.steelTrapdoor))
+    );
+    manual.addEntry("redstoneWiring", "immersiveintegration",
+        new ManualPages.CraftingMulti(manual, "redstoneWiring0", new ItemStack(IIItems.iiWireCoil, 1, IIItems.REDSTONE_COIL_META), new ItemStack(IIBlocks.redstoneWireConnector)),
+        new ManualPages.Text(manual, "redstoneWiring1"),
+        new ManualPages.Text(manual, "redstoneWiring2")
+    );
+
+    if (ImmersiveIntegration.cfg.enableAE) {
+      manual.addEntry("meWiring", "immersiveintegration",
+          new ManualPages.CraftingMulti(manual, "meWiring0", new ItemStack(IIItems.aeWireCoil, 1, IIItems.FLUIX_COIL_META), new ItemStack(IIItems.aeWireCoil, 1, IIItems.DENSE_COIL_META)),
+          new ManualPages.CraftingMulti(manual, "meWiring1", new ItemStack(IIBlocks.meWireConnector), new ItemStack(IIBlocks.meDenseWireConnector))
+      );
     }
   }
 }

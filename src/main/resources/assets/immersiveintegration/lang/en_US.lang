@@ -28,6 +28,7 @@ immersiveintegration.config.desc.fluixWireRange=The maximum range of Fluix Wires
 immersiveintegration.config.denseWireRange=Dense Wire Range
 immersiveintegration.config.desc.denseWireRange=The maximum range of Dense Wires before needing a support
 
+
 # Colors
 immersiveintegration.color.black=Black
 immersiveintegration.color.red=Red
@@ -46,3 +47,25 @@ immersiveintegration.color.magenta=Magenta
 immersiveintegration.color.orange=Orange
 immersiveintegration.color.white=White
 
+
+# Manual
+ie.manual.category.immersiveintegration.name=Immersive Integration
+
+ie.manual.entry.postExtension.name=Wooden Post Extension
+ie.manual.entry.postExtension.subtext=Yup.
+ie.manual.entry.postExtension0=Place atop a <link:treatedwood:§o§nWooden Post§r:3> to add more connections. The hammer works as expected on the extension.
+
+ie.manual.entry.steelTrapdoor.name=Steel Trapdoor
+ie.manual.entry.steelTrapdoor.subtext=Shhh. It's a secret
+ie.manual.entry.steelTrapdoor0=Works just like a normal trapdoor, except it can ONLY be opened with a redstone signal.
+
+ie.manual.entry.redstoneWiring.name=Redstone Wiring
+ie.manual.entry.redstoneWiring.subtext=Signal wires, on telegraph poles?
+ie.manual.entry.redstoneWiring0=To get started you need a Redstone Wire Coil, and at least 2 Redstone Wire Connectors. You can connect them together like regular wires.
+ie.manual.entry.redstoneWiring1=Each connector can be assigned as an Input or an Output, as well as be assigned one of 16 channels. Rightclick with a hammer to toggle input and output mode, and shift rightclick with a hammer to change the channel. Rightclick with an empty hand to display the current mode and channel.
+ie.manual.entry.redstoneWiring2=Each channel is independent of each other allowing multiple signal to be relayed over one wire. The wire connectors output a strong signal on the bottom of the connector, and a weak signal on all other sides.
+
+ie.manual.entry.meWiring.name=ME Wiring
+ie.manual.entry.meWiring.subtext=Applied Energistics 2 Wiring
+ie.manual.entry.meWiring0=There are two types of wire coils for use with AE2. These are fluix and dense. As you may be able to guess, the Fluix Wire Coil is capable of transferring 8 channels, and the Dense Wire Coil is capable of 32 channels.
+ie.manual.entry.meWiring1=To connect your wire coils you will need wire connectors. Fluix wire coils can only connect to ME Wire Connectors, and Dense Wire Coils can only connector ME Dense Wire Connectors<br>Connectors can only connect to cables/machines on the bottom of the connector.
