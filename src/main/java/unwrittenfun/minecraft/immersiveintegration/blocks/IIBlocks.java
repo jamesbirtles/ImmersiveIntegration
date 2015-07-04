@@ -39,8 +39,8 @@ public class IIBlocks {
     GameRegistry.registerBlock(steelTrapdoor, STEEL_TRAPDOOR);
     GameRegistry.registerBlock(redstoneWireConnector, REDSTONE_WIRE_CONNECTOR_KEY);
 
-    GameRegistry.registerTileEntity(TileExtendedPost.class, EXTENDED_POST_KEY + "Tile");
-    GameRegistry.registerTileEntity(TileRedstoneWireConnector.class, REDSTONE_WIRE_CONNECTOR_KEY + "Tile");
+    GameRegistry.registerTileEntity(TileExtendedPost.class, ModInfo.MOD_ID + ":" + EXTENDED_POST_KEY + "Tile");
+    GameRegistry.registerTileEntity(TileRedstoneWireConnector.class, ModInfo.MOD_ID + ":" + REDSTONE_WIRE_CONNECTOR_KEY + "Tile");
 
     if (ImmersiveIntegration.cfg.enableAE) registerAE2(false);
   }
@@ -65,8 +65,8 @@ public class IIBlocks {
       GameRegistry.registerBlock(meWireConnector, ME_WIRE_CONNECTOR_KEY);
       GameRegistry.registerBlock(meDenseWireConnector, ME_DENSE_CONNECTOR_KEY);
 
-      GameRegistry.registerTileEntity(TileMEWireConnector.class, ME_WIRE_CONNECTOR_KEY + "Tile");
-      GameRegistry.registerTileEntity(TileMEDenseWireConnector.class, ME_DENSE_CONNECTOR_KEY + "Tile");
+      GameRegistry.registerTileEntity(TileMEWireConnector.class, ModInfo.MOD_ID + ":" + ME_WIRE_CONNECTOR_KEY + "Tile");
+      GameRegistry.registerTileEntity(TileMEDenseWireConnector.class, ModInfo.MOD_ID + ":" + ME_DENSE_CONNECTOR_KEY + "Tile");
     }
   }
 }

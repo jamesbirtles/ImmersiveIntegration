@@ -83,7 +83,7 @@ public class TileMEWireConnector extends TileWireConnector implements IGridHost,
   }
 
   public void destroyAELink() {
-    theGridNode.destroy();
+    if (theGridNode != null) theGridNode.destroy();
   }
 
   @Override
