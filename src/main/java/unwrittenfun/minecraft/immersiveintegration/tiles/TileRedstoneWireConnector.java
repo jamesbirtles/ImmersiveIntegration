@@ -51,6 +51,7 @@ public class TileRedstoneWireConnector extends TileWireConnector {
   public void toggleMode() {
     redstoneMode = !redstoneMode;
     wireNetwork.updateValues();
+    wireNetwork.notifyOfChange(worldObj, xCoord, yCoord, zCoord);
   }
 
   @Override
@@ -71,6 +72,7 @@ public class TileRedstoneWireConnector extends TileWireConnector {
       redstoneChannel = 0;
     }
     wireNetwork.updateValues();
+    wireNetwork.notifyOfChange(worldObj, xCoord, yCoord, zCoord);
   }
 
   public String getChannelName() {
