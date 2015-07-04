@@ -7,6 +7,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
+import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileRedstoneWireConnector;
 
 public class BlockRedstoneWireConnector extends BlockWireConnector {
@@ -68,6 +70,15 @@ public class BlockRedstoneWireConnector extends BlockWireConnector {
 
   @Override
   public int isProvidingStrongPower(IBlockAccess world, int x, int y, int z, int side) {
+    if (ForgeDirection.OPPOSITES[side] == world.getBlockMetadata(x, y, z)) {
+      return isProvidingWeakPower(world, x, y, z, side);
+    }
+
+    return 0;
+  }
+
+  @Override
+  public int isProvidingWeakPower(IBlockAccess world, int x, int y, int z, int side) {
     TileEntity tileEntity = world.getTileEntity(x, y, z);
     if (tileEntity instanceof TileRedstoneWireConnector) {
       TileRedstoneWireConnector wireConnector = (TileRedstoneWireConnector) tileEntity;
@@ -77,10 +88,5 @@ public class BlockRedstoneWireConnector extends BlockWireConnector {
     }
 
     return 0;
-  }
-
-  @Override
-  public int isProvidingWeakPower(IBlockAccess world, int x, int y, int z, int side) {
-    return isProvidingStrongPower(world, x, y, z, side);
   }
 }

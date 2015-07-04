@@ -4,6 +4,8 @@ import blusunrize.immersiveengineering.api.energy.ImmersiveNetHandler;
 import blusunrize.immersiveengineering.common.util.Utils;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileRedstoneWireConnector;
 
@@ -33,7 +35,7 @@ public class RedstoneWireNetwork {
     for (WeakReference<TileRedstoneWireConnector> connectorRef : wireNetwork.connectors) {
       TileRedstoneWireConnector connector = connectorRef.get();
       if (connector != null) {
-        connector.getWorldObj().notifyBlockOfNeighborChange(connector.xCoord, connector.yCoord, connector.zCoord, IIBlocks.redstoneWireConnector);
+        notifyOfChange(connector.getWorldObj(), connector.xCoord, connector.yCoord, connector.zCoord);
       }
     }
   }
@@ -68,7 +70,7 @@ public class RedstoneWireNetwork {
           }
         }
 
-        connector.getWorldObj().notifyBlocksOfNeighborChange(connector.xCoord, connector.yCoord, connector.zCoord, IIBlocks.redstoneWireConnector);
+        notifyOfChange(connector.getWorldObj(), connector.xCoord, connector.yCoord, connector.zCoord);
       }
     }
   }
@@ -89,7 +91,7 @@ public class RedstoneWireNetwork {
       for (WeakReference<TileRedstoneWireConnector> connectorRef : connectors) {
         TileRedstoneWireConnector connector = connectorRef.get();
         if (connector != null) {
-          connector.getWorldObj().notifyBlocksOfNeighborChange(connector.xCoord, connector.yCoord, connector.zCoord, IIBlocks.redstoneWireConnector);
+          notifyOfChange(connector.getWorldObj(), connector.xCoord, connector.yCoord, connector.zCoord);
         }
       }
     }
@@ -97,5 +99,11 @@ public class RedstoneWireNetwork {
 
   public int getPowerOutput(int redstoneChannel) {
     return channelValues[redstoneChannel];
+  }
+
+  public void notifyOfChange(World world, int x, int y, int z) {
+    world.notifyBlocksOfNeighborChange(x, y, z, IIBlocks.redstoneWireConnector);
+    ForgeDirection strongDirection = ForgeDirection.getOrientation(world.getBlockMetadata(x, y, z));
+    world.notifyBlocksOfNeighborChange(x + strongDirection.offsetX, y + strongDirection.offsetY, z + strongDirection.offsetZ, IIBlocks.redstoneWireConnector);
   }
 }
