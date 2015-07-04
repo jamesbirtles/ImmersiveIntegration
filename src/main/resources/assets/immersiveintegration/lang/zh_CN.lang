@@ -1,5 +1,43 @@
+# AE2
 item.immersiveintegration:wireCoilFluix.name=福鲁伊克斯线圈
 item.immersiveintegration:wireCoilDense.name=致密线圈
+
 tile.immersiveintegration:meWireConnector.name=ME接线器
 tile.immersiveintegration:meDenseWireConnector.name=ME致密接线器
+
+
+# IE/II
 tile.immersiveintegration:extendedPost.name=拓展木桩
+tile.immersiveintegration:redstoneWireConnector.name=红石接线器
+
+item.immersiveintegration:iiWireCoilRedstone.name=红石线圈
+
+
+# Config
+immersiveintegration.config.enableAE=开启AE2兼容
+immersiveintegration.config.desc.enableAE=启用/禁用AE2特定内容(若安装有AE2)
+
+immersiveintegration.config.fluixWireRange=福鲁伊克斯线缆长度
+immersiveintegration.config.desc.fluixWireRange=福鲁伊克斯线缆最大长度
+
+immersiveintegration.config.denseWireRange=致密线缆长度
+immersiveintegration.config.desc.denseWireRange=致密线缆最大长度
+
+
+# Colors
+immersiveintegration.color.black=黑色
+immersiveintegration.color.red=红色
+immersiveintegration.color.green=绿色
+immersiveintegration.color.brown=棕色
+immersiveintegration.color.blue=蓝色
+immersiveintegration.color.purple=紫色
+immersiveintegration.color.cyan=青色
+immersiveintegration.color.lightGrey=淡灰色
+immersiveintegration.color.grey=灰色
+immersiveintegration.color.pink=粉红色
+immersiveintegration.color.lime=黄绿色
+immersiveintegration.color.yellow=黄色
+immersiveintegration.color.lightBlue=淡蓝色
+immersiveintegration.color.magenta=品红色
+immersiveintegration.color.orange=橙色
+immersiveintegration.color.white=白色
