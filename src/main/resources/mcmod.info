@@ -7,7 +7,7 @@
     "authorList": [
       "UnwrittenFun"
     ],
-    "description": "Adds ME wire connectors to use IE style wires with AE",
+    "description": "Integrates IE with other mods, as well as some useful addition to IE itself",
     "url" : "https://github.com/UnwrittenFun/ImmersiveIntegration",
     "updateUrl" : "",
     "logoFile" : "",
