@@ -89,4 +89,14 @@ public class BlockRedstoneWireConnector extends BlockWireConnector {
 
     return 0;
   }
+
+  @Override
+  public boolean canProvidePower() {
+    return true;
+  }
+
+  @Override
+  public boolean canConnectRedstone(IBlockAccess world, int x, int y, int z, int side) {
+    return true;
+  }
 }
