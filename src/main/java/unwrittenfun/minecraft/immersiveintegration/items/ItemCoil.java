@@ -135,9 +135,6 @@ public class ItemCoil extends Item implements IWireCoil {
               world.markBlockForUpdate(pos[1], pos[2], pos[3]);
 
               TileEntity tileEntity = world.getTileEntity(x, y, z);
-              if (tileEntity instanceof TileMEWireConnector) {
-                ((TileMEWireConnector) tileEntity).connectTo(pos[1], pos[2], pos[3]);
-              }
               if (tileEntity instanceof TileWireConnector) {
                 ((TileWireConnector) tileEntity).connectTo(pos[1], pos[2], pos[3]);
               }

@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
-public class TileMEWireConnector extends TileEntity implements IImmersiveConnectable, IGridHost, IGridBlock {
+public class TileMEWireConnector extends TileWireConnector implements IGridHost, IGridBlock {
   public IGrid theGrid;
   public IGridNode theGridNode;
   public ArrayList<IGridConnection> gridConnections = new ArrayList<>();
@@ -74,39 +74,11 @@ public class TileMEWireConnector extends TileEntity implements IImmersiveConnect
   }
 
   @Override
-  public Packet getDescriptionPacket() {
-    NBTTagCompound compound = new NBTTagCompound();
-
-    if (worldObj != null && !worldObj.isRemote) {
-      NBTTagList connectionList = new NBTTagList();
-      List<ImmersiveNetHandler.Connection> conL = ImmersiveNetHandler.INSTANCE.getConnections(worldObj, Utils.toCC(this));
-      for (ImmersiveNetHandler.Connection con : conL) {
-        connectionList.appendTag(con.writeToNBT());
-      }
-      compound.setTag("connectionList", connectionList);
-    }
+  public void writeNBT(NBTTagCompound compound) {
+    super.writeNBT(compound);
 
     if (theGridNode == null) {
       createAELink();
-    }
-
-    return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, compound);
-  }
-
-  @Override
-  public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-    NBTTagCompound compound = pkt.func_148857_g();
-    worldObj.markBlockRangeForRenderUpdate(xCoord, yCoord, zCoord, xCoord, yCoord, zCoord);
-    if (worldObj != null && worldObj.isRemote) {
-      NBTTagList connectionList = compound.getTagList("connectionList", 10);
-      ImmersiveNetHandler.INSTANCE.clearConnectionsOriginatingFrom(Utils.toCC(this), worldObj);
-      for (int i = 0; i < connectionList.tagCount(); i++) {
-        NBTTagCompound conTag = connectionList.getCompoundTagAt(i);
-        ImmersiveNetHandler.Connection con = ImmersiveNetHandler.Connection.readFromNBT(conTag);
-        if (con != null) {
-          ImmersiveNetHandler.INSTANCE.addConnection(worldObj, Utils.toCC(this), con);
-        }
-      }
     }
   }
 
@@ -119,30 +91,6 @@ public class TileMEWireConnector extends TileEntity implements IImmersiveConnect
 
   public void destroyAELink() {
     theGridNode.destroy();
-  }
-
-  @Override
-  public boolean canConnect() {
-    return true;
-  }
-
-  @Override
-  public boolean isEnergyOutput() {
-    return false;
-  }
-
-  @Override
-  public int outputEnergy(int amount, boolean simulate, int energyType) {
-    return 0;
-  }
-
-  @Override
-  public boolean canConnectCable(WireType cableType, TargetingInfo target) {
-    return cableType == IIWires.fluixWire;
-  }
-
-  @Override
-  public void connectCable(WireType cableType, TargetingInfo target) {
   }
 
   @Override
@@ -169,31 +117,13 @@ public class TileMEWireConnector extends TileEntity implements IImmersiveConnect
       }
     }
 
-    this.markDirty();
-    worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-  }
-
-  @Override
-  public Vec3 getRaytraceOffset() {
-    ForgeDirection fd = ForgeDirection.getOrientation(getBlockMetadata()).getOpposite();
-    return Vec3.createVectorHelper(.5 + .5 * fd.offsetX, .5 + .5 * fd.offsetY, .5 + .5 * fd.offsetZ);
-  }
-
-  @Override
-  public Vec3 getConnectionOffset(ImmersiveNetHandler.Connection con) {
-    return Vec3.createVectorHelper(0.5, 0.5, 0.5);
-  }
-
-//  @Override
-  public boolean allowEnergyToPass(ImmersiveNetHandler.Connection con) {
-    return false;
+    super.removeCable(connection);
   }
 
   @Override
   public void invalidate() {
     super.invalidate();
     if (worldObj != null && !worldObj.isRemote) {
-      ImmersiveNetHandler.INSTANCE.clearAllConnectionsFor(Utils.toCC(this), worldObj);
       destroyAELink();
     }
   }

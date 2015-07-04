@@ -12,11 +12,6 @@ import java.util.EnumSet;
 
 public class TileMEDenseWireConnector extends TileMEWireConnector {
   @Override
-  public boolean canConnectCable(WireType cableType, TargetingInfo target) {
-    return cableType == IIWires.denseWire;
-  }
-
-  @Override
   public AECableType getCableConnectionType(ForgeDirection dir) {
     return AECableType.DENSE;
   }
