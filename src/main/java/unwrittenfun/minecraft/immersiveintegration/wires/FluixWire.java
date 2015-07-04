@@ -1,6 +1,6 @@
 package unwrittenfun.minecraft.immersiveintegration.wires;
 
-import blusunrize.immersiveengineering.api.WireType;
+import blusunrize.immersiveengineering.api.energy.WireType;
 import net.minecraft.item.ItemStack;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.items.IIItems;

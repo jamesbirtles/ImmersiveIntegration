@@ -1,10 +1,9 @@
 package unwrittenfun.minecraft.immersiveintegration.wires;
 
-import blusunrize.immersiveengineering.api.ImmersiveNetHandler;
+import blusunrize.immersiveengineering.api.energy.ImmersiveNetHandler;
 import blusunrize.immersiveengineering.common.util.Utils;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChunkCoordinates;
-import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileRedstoneWireConnector;
 
@@ -21,10 +20,6 @@ public class RedstoneWireNetwork {
   public RedstoneWireNetwork add(TileRedstoneWireConnector connector) {
     connectors.add(new WeakReference<>(connector));
     return this;
-  }
-
-  public boolean isLonely() {
-    return connectors.size() == 1;
   }
 
   public void mergeNetwork(RedstoneWireNetwork wireNetwork) {

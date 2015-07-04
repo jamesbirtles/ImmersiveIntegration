@@ -2,16 +2,12 @@ package unwrittenfun.minecraft.immersiveintegration.blocks;
 
 import blusunrize.immersiveengineering.common.util.Utils;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileRedstoneWireConnector;
-
-import java.util.Arrays;
 
 public class BlockRedstoneWireConnector extends BlockWireConnector {
   protected BlockRedstoneWireConnector(String key) {
@@ -25,7 +21,7 @@ public class BlockRedstoneWireConnector extends BlockWireConnector {
 
   @Override
   public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-    if (!Utils.isHammer(player.getCurrentEquippedItem())){
+    if (!Utils.isHammer(player.getCurrentEquippedItem())) {
       if (player.getCurrentEquippedItem() == null) {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         if (tileEntity instanceof TileRedstoneWireConnector) {
@@ -34,9 +30,9 @@ public class BlockRedstoneWireConnector extends BlockWireConnector {
             player.addChatComponentMessage(new ChatComponentText("Channel: " + wireConnector.getChannelName()));
             player.addChatComponentMessage(new ChatComponentText("Mode: " + (wireConnector.redstoneMode ? "Input" : "Output")));
 
-//            player.addChatComponentMessage(new ChatComponentText("Network ID: " + wireConnector.wireNetwork.hashCode()));
-//            player.addChatComponentMessage(new ChatComponentText("Network Size: " + wireConnector.wireNetwork.connectors.size()));
-//            player.addChatComponentMessage(new ChatComponentText("Network Outputs: " + Arrays.toString(wireConnector.wireNetwork.channelValues)));
+            //            player.addChatComponentMessage(new ChatComponentText("Network ID: " + wireConnector.wireNetwork.hashCode()));
+            //            player.addChatComponentMessage(new ChatComponentText("Network Size: " + wireConnector.wireNetwork.connectors.size()));
+            //            player.addChatComponentMessage(new ChatComponentText("Network Outputs: " + Arrays.toString(wireConnector.wireNetwork.channelValues)));
           }
         }
       }
@@ -49,10 +45,12 @@ public class BlockRedstoneWireConnector extends BlockWireConnector {
 
       if (player.isSneaking()) {
         wireConnector.incrementChannel();
-        if (!world.isRemote) player.addChatComponentMessage(new ChatComponentText("Channel Set: " + wireConnector.getChannelName()));
+        if (!world.isRemote)
+          player.addChatComponentMessage(new ChatComponentText("Channel Set: " + wireConnector.getChannelName()));
       } else {
         wireConnector.toggleMode();
-        if (!world.isRemote) player.addChatComponentMessage(new ChatComponentText("Mode Set: " + (wireConnector.redstoneMode ? "Input" : "Output")));
+        if (!world.isRemote)
+          player.addChatComponentMessage(new ChatComponentText("Mode Set: " + (wireConnector.redstoneMode ? "Input" : "Output")));
       }
     }
 

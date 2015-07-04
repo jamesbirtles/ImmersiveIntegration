@@ -1,10 +1,12 @@
 package unwrittenfun.minecraft.immersiveintegration.items;
 
-import blusunrize.immersiveengineering.api.*;
-import blusunrize.immersiveengineering.common.IEContent;
+import blusunrize.immersiveengineering.api.TargetingInfo;
+import blusunrize.immersiveengineering.api.energy.IImmersiveConnectable;
+import blusunrize.immersiveengineering.api.energy.IWireCoil;
+import blusunrize.immersiveengineering.api.energy.ImmersiveNetHandler;
+import blusunrize.immersiveengineering.api.energy.WireType;
 import blusunrize.immersiveengineering.common.IESaveData;
 import blusunrize.immersiveengineering.common.blocks.metal.TileEntityConnectorLV;
-import blusunrize.immersiveengineering.common.blocks.wooden.TileEntityWoodenPost;
 import blusunrize.immersiveengineering.common.util.ItemNBTHelper;
 import blusunrize.immersiveengineering.common.util.Lib;
 import blusunrize.immersiveengineering.common.util.Utils;
@@ -17,17 +19,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
-import unwrittenfun.minecraft.immersiveintegration.tiles.TileMEWireConnector;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileWireConnector;
-import unwrittenfun.minecraft.immersiveintegration.wires.IIWires;
 
 import java.util.List;
 
 public class ItemCoil extends Item implements IWireCoil {
-  protected IIcon[] icons;
-  protected String key;
   public String[] coilKeys;
   public WireType[] wireTypes;
+  protected IIcon[] icons;
+  protected String key;
 
   public ItemCoil(String key, String[] coilKeys, WireType... wireTypes) {
     this.key = key;

@@ -1,6 +1,6 @@
 package unwrittenfun.minecraft.immersiveintegration.wires;
 
-import blusunrize.immersiveengineering.api.WireType;
+import blusunrize.immersiveengineering.api.energy.WireType;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 
 public class IIWires {
