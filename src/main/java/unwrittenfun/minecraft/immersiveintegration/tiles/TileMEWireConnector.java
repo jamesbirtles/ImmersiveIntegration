@@ -132,7 +132,7 @@ public class TileMEWireConnector extends TileWireConnector implements IGridHost,
 
   @Override
   public double getIdlePowerUsage() {
-    return 1;
+    return 0;
   }
 
   @Override
