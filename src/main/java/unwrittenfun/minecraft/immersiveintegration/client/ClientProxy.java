@@ -23,7 +23,7 @@ public class ClientProxy extends CommonProxy {
     RenderingRegistry.registerBlockHandler(new BlockRenderIIBlocks());
     RenderingRegistry.registerBlockHandler(new BlockRenderExtendedPost());
     ClientRegistry.bindTileEntitySpecialRenderer(TileExtendedPost.class, new TileRenderExtendedPost());
-    ClientRegistry.bindTileEntitySpecialRenderer(TileRedstoneWireConnector.class, new TileRenderWireConnector(new ModelIIObj("immersiveengineering:models/connectorMV.obj", IIBlocks.redstoneWireConnector)));
+    ClientRegistry.bindTileEntitySpecialRenderer(TileRedstoneWireConnector.class, new TileRenderRedstoneWireConnector());
 
     if (ImmersiveIntegration.cfg.enableAE) {
       ClientRegistry.bindTileEntitySpecialRenderer(TileMEWireConnector.class, new TileRenderWireConnector(new ModelIIObj("immersiveengineering:models/connectorMV.obj", IIBlocks.meWireConnector)));

@@ -2,8 +2,17 @@ package unwrittenfun.minecraft.immersiveintegration.client.renderers;
 
 import blusunrize.immersiveengineering.client.render.TileRenderImmersiveConnectable;
 import blusunrize.immersiveengineering.common.util.chickenbones.Matrix4;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.item.ItemDye;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.AdvancedModelLoader;
+import net.minecraftforge.client.model.IModelCustom;
+import org.lwjgl.opengl.GL11;
+import unwrittenfun.minecraft.immersiveintegration.ModInfo;
+import unwrittenfun.minecraft.immersiveintegration.blocks.BlockRedstoneWireConnector;
+import unwrittenfun.minecraft.immersiveintegration.tiles.TileRedstoneWireConnector;
 
 public class TileRenderWireConnector extends TileRenderImmersiveConnectable {
   private final ModelIIObj model;
@@ -38,6 +47,6 @@ public class TileRenderWireConnector extends TileRenderImmersiveConnectable {
       }
     }
 
-    model.render(tile, tes, translationMatrix, rotationMatrix, true, false);
+      model.render(tile, tes, translationMatrix, rotationMatrix, true, false);
   }
 }

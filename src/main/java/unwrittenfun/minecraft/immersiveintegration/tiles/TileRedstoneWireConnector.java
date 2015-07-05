@@ -52,6 +52,7 @@ public class TileRedstoneWireConnector extends TileWireConnector {
     redstoneMode = !redstoneMode;
     wireNetwork.updateValues();
     wireNetwork.notifyOfChange(worldObj, xCoord, yCoord, zCoord);
+    worldObj.markBlockRangeForRenderUpdate(xCoord, yCoord, zCoord, xCoord, yCoord, zCoord);
   }
 
   @Override
