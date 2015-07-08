@@ -8,8 +8,7 @@ import net.minecraftforge.common.config.Configuration;
 
 public class Config {
   public boolean enableAE;
-  public int fluixWireRange;
-  public int denseWireRange;
+  public int fluixWireRange, denseWireRange, redstoneWireRange;
 
   public Configuration config;
 
@@ -24,6 +23,7 @@ public class Config {
     enableAE = enableAE && Loader.isModLoaded("appliedenergistics2");
     fluixWireRange = config.getInt("fluixWireRange", Configuration.CATEGORY_GENERAL, 16, 1, 64, StatCollector.translateToLocal("immersiveintegration.config.desc.fluixWireRange"), "immersiveintegration.config.fluixWireRange");
     denseWireRange = config.getInt("denseWireRange", Configuration.CATEGORY_GENERAL, 8, 1, 64, StatCollector.translateToLocal("immersiveintegration.config.desc.denseWireRange"), "immersiveintegration.config.denseWireRange");
+    redstoneWireRange = config.getInt("redstoneWireRange", Configuration.CATEGORY_GENERAL, 32, 1, 64, StatCollector.translateToLocal("immersiveintegration.config.desc.redstoneWireRange"), "immersiveintegration.config.redstoneWireRange");
     if (config.hasChanged()) {
       config.save();
     }

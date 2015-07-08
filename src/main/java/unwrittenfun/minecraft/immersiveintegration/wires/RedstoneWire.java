@@ -2,6 +2,7 @@ package unwrittenfun.minecraft.immersiveintegration.wires;
 
 import blusunrize.immersiveengineering.api.energy.WireType;
 import net.minecraft.item.ItemStack;
+import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.items.IIItems;
 
 public class RedstoneWire extends WireType {
@@ -27,7 +28,7 @@ public class RedstoneWire extends WireType {
 
   @Override
   public int getMaxLength() {
-    return 32;
+    return ImmersiveIntegration.cfg.redstoneWireRange;
   }
 
   @Override

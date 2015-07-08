@@ -28,6 +28,9 @@ immersiveintegration.config.desc.fluixWireRange=The maximum range of Fluix Wires
 immersiveintegration.config.denseWireRange=Dense Wire Range
 immersiveintegration.config.desc.denseWireRange=The maximum range of Dense Wires before needing a support
 
+immersiveintegration.config.redstoneWireRange=Redstone Wire Range
+immersiveintegration.config.desc.redstoneWireRange=The maximum range of Redstone Wires before needing a support
+
 
 # Colors
 immersiveintegration.color.black=Black
