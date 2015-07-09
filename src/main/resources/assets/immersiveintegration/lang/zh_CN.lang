@@ -16,7 +16,7 @@ item.immersiveintegration:iiWireCoilRedstone.name=红石线圈
 
 # Config
 immersiveintegration.config.enableAE=开启AE2兼容
-immersiveintegration.config.desc.enableAE=启用/禁用AE2特定内容(若有安装AE2)
+immersiveintegration.config.desc.enableAE=启用/禁用AE2特定内容(若装有AE2)
 
 immersiveintegration.config.fluixWireRange=福鲁伊克斯线缆长度
 immersiveintegration.config.desc.fluixWireRange=福鲁伊克斯线缆最大长度
@@ -55,12 +55,12 @@ ie.manual.entry.steelTrapdoor.subtext=嘘.这是一个秘密
 ie.manual.entry.steelTrapdoor0=像普通的活板门那样工作,但它§l只能§r用红石信号打开.
 
 ie.manual.entry.redstoneWiring.name=红石接线
-ie.manual.entry.redstoneWiring.subtext=Signal wires, on telegraph poles?
-ie.manual.entry.redstoneWiring0=要开始你需要一个红石线圈和至少两个红石接线器.你能像普通线缆一样连接它们.
-ie.manual.entry.redstoneWiring1=每个接线器可以被部署为输入或输出,以及16种频道之一. 用工程师锤右击可以切换接线器的输入输出模式,用工程师锤潜行右击可以切换接线器的通道.右击可以查看接线器的模式和通道.
-ie.manual.entry.redstoneWiring2=每个频道彼此之间互相独立,这保证了多重信号可以通过一条线路传输. 红石接线器将会在底部输出强充能信号,在其他的面输出弱充能信号.
+ie.manual.entry.redstoneWiring.subtext=信号线,在电线杆上?
+ie.manual.entry.redstoneWiring0=要开始,你需要一个红石线圈和至少两个红石接线器.你能像连接普通线缆一样连接它们.
+ie.manual.entry.redstoneWiring1=每个接线器可以被设定为输入或输出,以及16种频道之一.用工程师锤右击可以切换接线器的输入输出模式,用工程师锤潜行右击可以切换接线器的频道.右击可以查看接线器的模式和频道.
+ie.manual.entry.redstoneWiring2=每个频道彼此之间互相独立,这保证了多重信号可以通过一条线路传输.红石接线器会在底部输出强充能信号,在其他的面输出弱充能信号.
 
 ie.manual.entry.meWiring.name=ME接线
 ie.manual.entry.meWiring.subtext=AE2接线
 ie.manual.entry.meWiring0=有两种线缆可以搭配AE2使用.它们分别是福鲁伊克斯线圈和致密线圈. 正如你猜测的那样,福鲁伊克斯线圈能传输8个频道,致密线圈能传输32个频道.
-ie.manual.entry.meWiring1=连接线缆你将需要接线器.福鲁伊克斯线圈只能连接在ME接线器上,致密线圈只能连接在ME致密接线器上.<br>只有接线器的底部能与线缆/设备(ME网络)连接.
+ie.manual.entry.meWiring1=你需要接线器来连接你的线圈.福鲁伊克斯线圈只能连接在ME接线器上,致密线圈只能连接在ME致密接线器上.<br>只有接线器的底部能与AE线缆/设备连接.
