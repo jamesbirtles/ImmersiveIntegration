@@ -7,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -38,8 +39,8 @@ public class BlockRedstoneWireConnector extends BlockWireConnector {
         if (tileEntity instanceof TileRedstoneWireConnector) {
           TileRedstoneWireConnector wireConnector = (TileRedstoneWireConnector) tileEntity;
           if (!world.isRemote) {
-            player.addChatComponentMessage(new ChatComponentText("Channel: " + wireConnector.getChannelName()));
-            player.addChatComponentMessage(new ChatComponentText("Mode: " + (wireConnector.redstoneMode ? "Input" : "Output")));
+            player.addChatComponentMessage(new ChatComponentText(StatCollector.translateToLocal("immersiveintegration.chat.channel") + " " + wireConnector.getChannelName()));
+            player.addChatComponentMessage(new ChatComponentText(StatCollector.translateToLocal("immersiveintegration.chat.mode") + " " + (wireConnector.redstoneMode ? "Input" : "Output")));
 
             //            player.addChatComponentMessage(new ChatComponentText("Network ID: " + wireConnector.wireNetwork.hashCode()));
             //            player.addChatComponentMessage(new ChatComponentText("Network Size: " + wireConnector.wireNetwork.connectors.size()));
@@ -57,11 +58,11 @@ public class BlockRedstoneWireConnector extends BlockWireConnector {
       if (player.isSneaking()) {
         wireConnector.incrementChannel();
         if (!world.isRemote)
-          player.addChatComponentMessage(new ChatComponentText("Channel Set: " + wireConnector.getChannelName()));
+          player.addChatComponentMessage(new ChatComponentText(StatCollector.translateToLocal("immersiveintegration.chat.channelSet") + " " + wireConnector.getChannelName()));
       } else {
         wireConnector.toggleMode();
         if (!world.isRemote)
-          player.addChatComponentMessage(new ChatComponentText("Mode Set: " + (wireConnector.redstoneMode ? "Input" : "Output")));
+          player.addChatComponentMessage(new ChatComponentText(StatCollector.translateToLocal("immersiveintegration.chat.modeSet") + " " + (wireConnector.redstoneMode ? "Input" : "Output")));
       }
     }
 
