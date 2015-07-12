@@ -4,7 +4,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileMEDenseWireConnector;
 
-public class BlockMEDenseWireConnector extends BlockWireConnector {
+public class BlockMEDenseWireConnector extends BlockMEWireConnector {
   protected BlockMEDenseWireConnector(String key) {
     super(key);
   }
