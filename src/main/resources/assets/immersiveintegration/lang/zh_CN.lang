@@ -71,3 +71,5 @@ immersiveintegration.chat.channel=频道:
 immersiveintegration.chat.mode=模式:
 immersiveintegration.chat.channelSet=设置频道为:
 immersiveintegration.chat.modeSet=设置模式为:
+immersiveintegration.chat.input=输入
+immersiveintegration.chat.output=输出
