@@ -46,6 +46,7 @@ immersiveintegration.color.orange=橙色
 immersiveintegration.color.white=白色
 
 
+# Manual
 ie.manual.entry.postExtension.name=拓展木桩
 ie.manual.entry.postExtension.subtext=对.
 ie.manual.entry.postExtension0=放置在<link:treatedwood:§o§n木桩§r:3>顶部以增加接线点.工程师锤也会像你预期那样生效.
@@ -64,3 +65,11 @@ ie.manual.entry.meWiring.name=ME接线
 ie.manual.entry.meWiring.subtext=AE2接线
 ie.manual.entry.meWiring0=有两种线缆可以搭配AE2使用.它们分别是福鲁伊克斯线圈和致密线圈. 正如你猜测的那样,福鲁伊克斯线圈能传输8个频道,致密线圈能传输32个频道.
 ie.manual.entry.meWiring1=你需要接线器来连接你的线圈.福鲁伊克斯线圈只能连接在ME接线器上,致密线圈只能连接在ME致密接线器上.<br>只有接线器的底部能与AE线缆/设备连接.
+
+# chat
+immersiveintegration.chat.channel=频道:
+immersiveintegration.chat.mode=模式:
+immersiveintegration.chat.channelSet=设置频道为:
+immersiveintegration.chat.modeSet=设置模式为:
+immersiveintegration.chat.input=输入
+immersiveintegration.chat.output=输出
