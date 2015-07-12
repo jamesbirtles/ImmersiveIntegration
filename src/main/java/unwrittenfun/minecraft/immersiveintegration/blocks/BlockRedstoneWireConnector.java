@@ -62,7 +62,7 @@ public class BlockRedstoneWireConnector extends BlockWireConnector {
       } else {
         wireConnector.toggleMode();
         if (!world.isRemote)
-          player.addChatComponentMessage(new ChatComponentText(StatCollector.translateToLocal("immersiveintegration.chat.modeSet") + " " + (wireConnector.redstoneMode ? "Input" : "Output")));
+          player.addChatComponentMessage(new ChatComponentText(StatCollector.translateToLocal("immersiveintegration.chat.modeSet") + " " + (wireConnector.redstoneMode ? StatCollector.translateToLocal("immersiveintegration.chat.input") : StatCollector.translateToLocal("immersiveintegration.chat.output"))));
       }
     }
 
