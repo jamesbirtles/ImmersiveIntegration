@@ -24,4 +24,9 @@ public class DenseWire extends FluixWire {
   public double getRenderDiameter() {
     return 0.1f;
   }
+
+  @Override
+  public double getSlack() {
+    return 1.03;
+  }
 }
