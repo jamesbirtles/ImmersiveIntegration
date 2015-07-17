@@ -8,4 +8,8 @@ public class CommonProxy {
   public void registerManualPages() {
 
   }
+
+  public void registerClientSpecial() {
+
+  }
 }

@@ -6,12 +6,14 @@ import blusunrize.lib.manual.ManualPages;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import unwrittenfun.minecraft.immersiveintegration.CommonProxy;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.ModInfo;
 import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
 import unwrittenfun.minecraft.immersiveintegration.client.renderers.*;
 import unwrittenfun.minecraft.immersiveintegration.items.IIItems;
+import unwrittenfun.minecraft.immersiveintegration.special.SpecialEventHandler;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileExtendedPost;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileMEDenseWireConnector;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileMEWireConnector;
@@ -52,5 +54,10 @@ public class ClientProxy extends CommonProxy {
           new ManualPages.CraftingMulti(manual, "meWiring1", new ItemStack(IIBlocks.meWireConnector), new ItemStack(IIBlocks.meDenseWireConnector))
       );
     }
+  }
+
+  @Override
+  public void registerClientSpecial() {
+    MinecraftForge.EVENT_BUS.register(new SpecialEventHandler());
   }
 }
