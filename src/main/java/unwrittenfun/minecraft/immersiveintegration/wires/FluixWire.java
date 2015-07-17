@@ -49,7 +49,7 @@ public class FluixWire extends WireType {
 
   @Override
   public double getSlack() {
-    return 1.005;
+    return 1.03;
   }
 
   @Override
