@@ -108,4 +108,9 @@ public class TileRedstoneWireConnector extends TileWireConnector {
     super.removeCable(connection);
     wireNetwork.removeFromNetwork(this);
   }
+
+  @Override
+  public int getRenderRadiusIncrease() {
+    return IIWires.redstoneWire.getMaxLength();
+  }
 }

@@ -209,4 +209,9 @@ public class TileMEWireConnector extends TileWireConnector implements IGridHost,
       }
     }
   }
+
+  @Override
+  public int getRenderRadiusIncrease() {
+    return IIWires.fluixWire.getMaxLength();
+  }
 }

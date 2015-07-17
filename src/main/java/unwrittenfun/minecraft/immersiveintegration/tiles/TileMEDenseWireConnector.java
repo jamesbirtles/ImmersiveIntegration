@@ -32,4 +32,9 @@ public class TileMEDenseWireConnector extends TileMEWireConnector {
   public WireType getCableLimiter(TargetingInfo target) {
     return IIWires.denseWire;
   }
+
+  @Override
+  public int getRenderRadiusIncrease() {
+    return IIWires.denseWire.getMaxLength();
+  }
 }

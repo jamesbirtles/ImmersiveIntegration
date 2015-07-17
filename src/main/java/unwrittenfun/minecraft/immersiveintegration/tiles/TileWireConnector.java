@@ -4,15 +4,20 @@ import blusunrize.immersiveengineering.api.energy.IImmersiveConnectable;
 import blusunrize.immersiveengineering.api.energy.ImmersiveNetHandler;
 import blusunrize.immersiveengineering.api.TargetingInfo;
 import blusunrize.immersiveengineering.api.energy.WireType;
+import blusunrize.immersiveengineering.common.Config;
 import blusunrize.immersiveengineering.common.util.Utils;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Vec3;
 import net.minecraftforge.common.util.ForgeDirection;
+import unwrittenfun.minecraft.immersiveintegration.wires.IIWires;
 
 import java.util.List;
 
@@ -119,4 +124,13 @@ public abstract class TileWireConnector extends TileEntity implements IImmersive
   public void connectTo(int x, int y, int z) {
 
   }
+
+  @SideOnly(Side.CLIENT)
+  @Override
+  public AxisAlignedBB getRenderBoundingBox() {
+    int inc = getRenderRadiusIncrease();
+    return AxisAlignedBB.getBoundingBox(xCoord - inc, yCoord - inc, zCoord - inc, xCoord + inc + 1, yCoord + inc + 1, zCoord + inc + 1);
+  }
+
+  public abstract int getRenderRadiusIncrease();
 }
