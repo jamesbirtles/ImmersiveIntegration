@@ -107,6 +107,7 @@ public class BlockRedstoneWireConnector extends BlockWireConnector {
 
   @Override
   public boolean canConnectRedstone(IBlockAccess world, int x, int y, int z, int side) {
-    return false;
+    TileEntity tileEntity = world.getTileEntity(x, y, z);
+    return tileEntity instanceof TileRedstoneWireConnector && !((TileRedstoneWireConnector) tileEntity).isInput();
   }
 }

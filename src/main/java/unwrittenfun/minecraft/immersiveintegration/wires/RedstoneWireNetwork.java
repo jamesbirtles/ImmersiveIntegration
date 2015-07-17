@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class RedstoneWireNetwork {
-  public int[] channelValues = new int[16];
+  public byte[] channelValues = new byte[16];
 
   public List<WeakReference<TileRedstoneWireConnector>> connectors = new ArrayList<>();
 
@@ -76,13 +76,13 @@ public class RedstoneWireNetwork {
   }
 
   public void updateValues() {
-    int[] oldValues = channelValues;
-    channelValues = new int[16];
+    byte[] oldValues = channelValues;
+    channelValues = new byte[16];
     for (WeakReference<TileRedstoneWireConnector> connectorRef : connectors) {
       TileRedstoneWireConnector connector = connectorRef.get();
       if (connector != null) {
         if (connector.isInput()) {
-          channelValues[connector.redstoneChannel] = Math.max(connector.getWorldObj().getStrongestIndirectPower(connector.xCoord, connector.yCoord, connector.zCoord), channelValues[connector.redstoneChannel]);
+          channelValues[connector.redstoneChannel] = (byte) Math.max(connector.getWorldObj().getStrongestIndirectPower(connector.xCoord, connector.yCoord, connector.zCoord), channelValues[connector.redstoneChannel]);
         }
       }
     }
@@ -105,5 +105,13 @@ public class RedstoneWireNetwork {
     world.notifyBlocksOfNeighborChange(x, y, z, IIBlocks.redstoneWireConnector);
     ForgeDirection strongDirection = ForgeDirection.getOrientation(world.getBlockMetadata(x, y, z));
     world.notifyBlocksOfNeighborChange(x + strongDirection.offsetX, y + strongDirection.offsetY, z + strongDirection.offsetZ, IIBlocks.redstoneWireConnector);
+  }
+
+  public byte[] getByteValues() {
+    byte[] values = new byte[16];
+    for (int i = 0; i < values.length; i++) {
+      values[i] = (byte) (channelValues[i] * 16);
+    }
+    return values;
   }
 }
