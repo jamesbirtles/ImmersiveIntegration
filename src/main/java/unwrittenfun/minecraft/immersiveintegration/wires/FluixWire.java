@@ -1,5 +1,6 @@
 package unwrittenfun.minecraft.immersiveintegration.wires;
 
+import blusunrize.immersiveengineering.api.energy.ImmersiveNetHandler;
 import blusunrize.immersiveengineering.api.energy.WireType;
 import net.minecraft.item.ItemStack;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
@@ -22,7 +23,7 @@ public class FluixWire extends WireType {
   }
 
   @Override
-  public int getColour() {
+  public int getColour(ImmersiveNetHandler.Connection connection) {
     return 6171760;
   }
 
@@ -44,5 +45,15 @@ public class FluixWire extends WireType {
   @Override
   public boolean isEnergyWire() {
     return false;
+  }
+
+  @Override
+  public double getSlack() {
+    return 1.005;
+  }
+
+  @Override
+  public String getTexture(ImmersiveNetHandler.Connection connection) {
+    return "immersiveengineering:textures/misc/wire.png";
   }
 }
