@@ -1,11 +1,16 @@
 package unwrittenfun.minecraft.immersiveintegration.client.renderers;
 
 import blusunrize.immersiveengineering.client.render.TileRenderIE;
+import blusunrize.immersiveengineering.client.render.TileRenderPost;
 import blusunrize.immersiveengineering.common.IEContent;
+import blusunrize.immersiveengineering.common.blocks.wooden.TileEntityWoodenPost;
 import blusunrize.immersiveengineering.common.util.chickenbones.Matrix4;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.tileentity.TileEntity;
+import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileExtendedPost;
+
+import java.util.ArrayList;
 
 public class TileRenderExtendedPost extends TileRenderIE {
   ModelIIObj model = new ModelIIObj("immersiveintegration:models/extendedPost.obj", IEContent.blockWoodenDevice);
@@ -17,33 +22,37 @@ public class TileRenderExtendedPost extends TileRenderIE {
 
   @Override
   public void renderStatic(TileEntity tile, Tessellator tes, Matrix4 translationMatrix, Matrix4 rotationMatrix) {
-    boolean armLeft = false;
-    boolean armRight = false;
+    ArrayList<String> parts = new ArrayList<String>();
+    parts.add("Base");
+
     boolean rotate = false;
+    float fr = 0;
     if (tile.getWorldObj() != null) {
-      TileEntity tileX0 = tile.getWorldObj().getTileEntity(tile.xCoord + 1, tile.yCoord + 1, tile.zCoord);
-      TileEntity tileX1 = tile.getWorldObj().getTileEntity(tile.xCoord - 1, tile.yCoord + 1, tile.zCoord);
-      TileEntity tileZ0 = tile.getWorldObj().getTileEntity(tile.xCoord, tile.yCoord + 1, tile.zCoord + 1);
-      TileEntity tileZ1 = tile.getWorldObj().getTileEntity(tile.xCoord, tile.yCoord + 1, tile.zCoord - 1);
-      if (tileX0 instanceof TileExtendedPost && tileX0.getBlockMetadata() == 5) armLeft = true;
-      if (tileX1 instanceof TileExtendedPost && tileX1.getBlockMetadata() == 4) armRight = true;
-      if (tileZ0 instanceof TileExtendedPost && tileZ0.getBlockMetadata() == 3) {
-        armLeft = true;
-        rotate = true;
-      }
-      if (tileZ1 instanceof TileExtendedPost && tileZ1.getBlockMetadata() == 2) {
-        armRight = true;
-        rotate = true;
+      for (int i = 0; i < 4; i++) {
+        rotate |= handleArms(tile.getWorldObj().getTileEntity(tile.xCoord + (i == 2 ? -1 : i == 3 ? 1 : 0), tile.yCoord + 1, tile.zCoord + (i == 0 ? -1 : i == 1 ? 1 : 0)), 2 + i, fr, parts);
       }
     } else {
-      armRight = true;
-      armLeft = true;
+      parts.add("Arm_right_u");
+      parts.add("Arm_left_u");
     }
 
     translationMatrix.translate(.5, 0, .5);
     if (rotate) rotationMatrix.rotate(Math.toRadians(-90), 0.0, 1.0, 0.0);
 
-    String[] parts = armRight && armLeft ? new String[] { "Base", "Arm_right", "Arm_left" } : armRight ? new String[] { "Base", "Arm_right" } : armLeft ? new String[] { "Base", "Arm_left" } : new String[] { "Base" };
-    model.render(tile, tes, translationMatrix, rotationMatrix, true, false, parts);
+    model.render(tile, tes, translationMatrix, rotationMatrix, true, false, parts.toArray(new String[parts.size()]));
+  }
+
+  public boolean handleArms(TileEntity arm, int checkType, float rotate, ArrayList<String> parts) {
+    if (arm instanceof TileExtendedPost && arm.getBlockMetadata() == checkType) {
+      String dir = checkType % 2 == 1 ? "left" : "right";
+      if (TileRenderPost.canArmConnectToBlock(arm.getWorldObj(), arm.xCoord, arm.yCoord - 1, arm.zCoord, true)) {
+        parts.add("Arm_" + dir + "_d");
+        if (TileRenderPost.canArmConnectToBlock(arm.getWorldObj(), arm.xCoord, arm.yCoord + 1, arm.zCoord, false))
+          parts.add("Arm_" + dir + "_u");
+      } else
+        parts.add("Arm_" + dir + "_u");
+      return checkType < 4;
+    }
+    return false;
   }
 }
