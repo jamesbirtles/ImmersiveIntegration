@@ -67,8 +67,24 @@ public class BlockExtendedPost extends BlockContainer {
       case 3:
       case 4:
       case 5:
-        this.setBlockBounds(meta == 5 ? 0 : .3125f, .5f, meta == 3 ? 0 : .3125f, meta == 4 ? 1 : .6875f, 1f, meta == 2 ? 1 : .6875f);
+        float fd = .5f;
+        float fu = 1f;
+        if (canArmConnectToBlock(world, x, y - 1, z, true)) {
+          fd = 0f;
+          fu = 0.5f;
+
+          if (canArmConnectToBlock(world, x, y + 1, z, false)) fu = 1f;
+        }
+        this.setBlockBounds(meta == 5 ? 0 : .3125f, fd, meta == 3 ? 0 : .3125f, meta == 4 ? 1 : .6875f, fu, meta == 2 ? 1 : .6875f);
+        break;
     }
+  }
+
+  protected boolean canArmConnectToBlock(IBlockAccess world, int x, int y, int z, boolean down) {
+    if (world.isAirBlock(x, y, z))
+      return false;
+    world.getBlock(x, y, z).setBlockBoundsBasedOnState(world, x, y, z);
+    return down ? world.getBlock(x, y, z).getBlockBoundsMaxY() >= 1 : world.getBlock(x, y, z).getBlockBoundsMinY() <= 0;
   }
 
   @Override
@@ -142,7 +158,7 @@ public class BlockExtendedPost extends BlockContainer {
   @Override
   public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
     if (world.getBlockMetadata(x, y, z) == 0) {
-      if (!(world.getBlock(x, y - 1, z) == IEContent.blockWoodenDevice && world.getBlockMetadata(x, y-1, z) == 0) && world.getBlock(x, y - 1, z) != IIBlocks.extendedPost){
+      if (!(world.getBlock(x, y - 1, z) == IEContent.blockWoodenDevice && world.getBlockMetadata(x, y - 1, z) == 0) && world.getBlock(x, y - 1, z) != IIBlocks.extendedPost) {
         world.setBlockToAir(x, y, z);
       }
     }
