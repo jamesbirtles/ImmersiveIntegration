@@ -6,14 +6,20 @@ import net.minecraft.util.IIcon;
 
 public class ModelIIObj extends ModelIEObj {
   protected Block block;
+  protected int meta;
 
   public ModelIIObj(String path, Block block) {
+    this(path, block, 0);
+  }
+
+  public ModelIIObj(String path, Block block, int meta) {
     super(path);
     this.block = block;
+    this.meta = meta;
   }
 
   @Override
   public IIcon getBlockIcon() {
-    return block.getIcon(0, 0); // TODO: Get meta and side from constructor, not needed yet so hasn't been done
+    return block.getIcon(0, meta); // TODO: Get meta and side from constructor, not needed yet so hasn't been done
   }
 }

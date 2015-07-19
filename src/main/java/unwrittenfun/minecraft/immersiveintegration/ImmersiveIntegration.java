@@ -13,6 +13,7 @@ import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.Logger;
 import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
 import unwrittenfun.minecraft.immersiveintegration.items.IIItems;
+import unwrittenfun.minecraft.immersiveintegration.multiblocks.IIMultiblocks;
 import unwrittenfun.minecraft.immersiveintegration.special.Special;
 import unwrittenfun.minecraft.immersiveintegration.wires.IIWires;
 
@@ -50,6 +51,8 @@ public class ImmersiveIntegration {
     FMLCommonHandler.instance().bus().register(cfg);
 
     Special.preInit();
+
+    IIMultiblocks.registerMultiblocks();
   }
 
   @Mod.EventHandler

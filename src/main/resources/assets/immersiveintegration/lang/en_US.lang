@@ -14,6 +14,7 @@ tile.immersiveintegration:meDenseWireConnector.name=ME Dense Wire Connector
 tile.immersiveintegration:extendedPost.name=Wooden Post Extension
 tile.immersiveintegration:steelTrapdoor.name=Steel Trapdoor
 tile.immersiveintegration:redstoneWireConnector.name=Redstone Wire Connector
+tile.immersiveintegration:industrialCokeOven.name=Industrial Coke Oven
 
 item.immersiveintegration:iiWireCoilRedstone.name=Redstone Wire Coil
 

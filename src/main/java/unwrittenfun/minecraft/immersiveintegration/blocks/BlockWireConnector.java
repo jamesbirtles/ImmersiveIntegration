@@ -17,6 +17,7 @@ public abstract class BlockWireConnector extends BlockContainer {
     setBlockName(key);
     setBlockTextureName(key);
     setCreativeTab(ImmersiveIntegration.iiCreativeTab);
+    setHardness(2f);
   }
 
   @Override

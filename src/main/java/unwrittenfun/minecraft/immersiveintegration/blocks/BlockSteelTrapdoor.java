@@ -10,5 +10,6 @@ public class BlockSteelTrapdoor extends BlockTrapDoor {
     setBlockName(key);
     setBlockTextureName(key);
     setCreativeTab(ImmersiveIntegration.iiCreativeTab);
+    setHardness(3f);
   }
 }
