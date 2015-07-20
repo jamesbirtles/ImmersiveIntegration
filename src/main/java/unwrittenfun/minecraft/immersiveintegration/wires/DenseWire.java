@@ -17,7 +17,7 @@ public class DenseWire extends FluixWire {
 
   @Override
   public ItemStack getWireCoil() {
-    return new ItemStack(IIItems.aeWireCoil, IIItems.DENSE_COIL_META);
+    return new ItemStack(IIItems.aeWireCoil, 1, IIItems.DENSE_COIL_META);
   }
 
   @Override
