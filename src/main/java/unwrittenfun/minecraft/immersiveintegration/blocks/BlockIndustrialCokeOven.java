@@ -1,9 +1,11 @@
 package unwrittenfun.minecraft.immersiveintegration.blocks;
 
+import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -63,6 +65,7 @@ public class BlockIndustrialCokeOven extends BlockContainer {
       if (tileEntity instanceof IMultiblockTile) {
         IMultiblockTile multiblockTile = (IMultiblockTile) tileEntity;
         if (multiblockTile.isFormed()) {
+          multiblockTile.setFormed(false);
           int[] offset = multiblockTile.getOffset();
           for (int dz = -4; dz <= 0; dz++) {
             for (int dx = -3; dx <= 3; dx++) {
@@ -87,5 +90,20 @@ public class BlockIndustrialCokeOven extends BlockContainer {
       }
     }
     super.breakBlock(world, x, y, z, block, meta);
+  }
+
+  @Override
+  public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+    if (!world.isRemote) {
+      TileEntity tileEntity = world.getTileEntity(x, y, z);
+      if (tileEntity instanceof TileIndustrialCokeOven) {
+        TileIndustrialCokeOven cokeOven = (TileIndustrialCokeOven) tileEntity;
+        if (cokeOven.formed) {
+          int[] off = cokeOven.getOffset();
+          FMLNetworkHandler.openGui(player, ImmersiveIntegration.instance, 0, world, x - off[0], y - off[1], z - off[2]);
+        }
+      }
+    }
+    return world.getBlockMetadata(x, y, z) > 0;
   }
 }

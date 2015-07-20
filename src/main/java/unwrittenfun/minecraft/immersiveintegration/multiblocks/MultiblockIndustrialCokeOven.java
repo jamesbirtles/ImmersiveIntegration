@@ -74,7 +74,12 @@ public class MultiblockIndustrialCokeOven implements IMultiblock {
           int axis = 0;
           if (direction.offsetX != 0) axis = 1;
           ItemStack targetItem = targetStructure[dy + 1][dz + 4][dx + 3][axis];
-          world.setBlock(x + ddx, y + dy, z + ddz, ((ItemBlock) targetItem.getItem()).field_150939_a, targetItem.getItemDamage(), 3);
+          Block targetBlock = ((ItemBlock) targetItem.getItem()).field_150939_a;
+          if (world.getBlock(x + ddx, y + dy, z + ddz) == targetBlock) {
+            world.setBlockMetadataWithNotify(x + ddx, y + dy, z + ddz, targetItem.getItemDamage(), 3);
+          } else {
+            world.setBlock(x + ddx, y + dy, z + ddz, targetBlock, targetItem.getItemDamage(), 3);
+          }
           TileEntity tileEntity = world.getTileEntity(x + ddx, y + dy, z + ddz);
           if (tileEntity instanceof IMultiblockTile) {
             IMultiblockTile multiblock = (IMultiblockTile) tileEntity;

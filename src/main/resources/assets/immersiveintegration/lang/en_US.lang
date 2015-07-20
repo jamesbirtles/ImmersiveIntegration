@@ -74,6 +74,10 @@ ie.manual.entry.meWiring.subtext=Applied Energistics 2 Wiring
 ie.manual.entry.meWiring0=There are two types of wire coils for use with AE2. These are fluix and dense. As you may be able to guess, the Fluix Wire Coil is capable of transferring 8 channels, and the Dense Wire Coil is capable of 32 channels.
 ie.manual.entry.meWiring1=To connect your wire coils you will need wire connectors. Fluix wire coils can only connect to ME Wire Connectors, and Dense Wire Coils can only connector ME Dense Wire Connectors<br>Connectors can only connect to cables/machines on the bottom of the connector.
 
+ie.manual.entry.industrialCokeOven.name=Industrial Coke Oven
+ie.manual.entry.industrialCokeOven.subtext=Industrial Revolution
+ie.manual.entry.industrialCokeOven0=TODO
+
 
 # Chat
 

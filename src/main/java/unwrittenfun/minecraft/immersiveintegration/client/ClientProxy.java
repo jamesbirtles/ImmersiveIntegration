@@ -50,7 +50,7 @@ public class ClientProxy extends CommonProxy {
         new ManualPages.Text(manual, "redstoneWiring2")
     );
     manual.addEntry("industrialCokeOven", "immersiveintegration",
-        new ManualPageMultiblock(manual, "industrialCokeOven1", IIMultiblocks.industrialCokeOven)
+        new ManualPageMultiblock(manual, "industrialCokeOven0", IIMultiblocks.industrialCokeOven)
     );
 
     if (ImmersiveIntegration.cfg.enableAE) {

@@ -7,11 +7,13 @@ import cpw.mods.fml.common.event.FMLLoadCompleteEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.Logger;
 import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
+import unwrittenfun.minecraft.immersiveintegration.gui.GuiHandler;
 import unwrittenfun.minecraft.immersiveintegration.items.IIItems;
 import unwrittenfun.minecraft.immersiveintegration.multiblocks.IIMultiblocks;
 import unwrittenfun.minecraft.immersiveintegration.special.Special;
@@ -53,6 +55,8 @@ public class ImmersiveIntegration {
     Special.preInit();
 
     IIMultiblocks.registerMultiblocks();
+
+    NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
   }
 
   @Mod.EventHandler
