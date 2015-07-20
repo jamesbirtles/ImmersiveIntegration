@@ -6,6 +6,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.client.gui.SlotValid;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileIndustrialCokeOven;
 
@@ -19,14 +20,6 @@ public class ContainerIndustrialCokeOven extends Container {
     this.cokeOven = cokeOven;
     this.inventoryPlayer = inventoryPlayer;
 
-    for (int i = 0; i < 4; i++) {
-      addSlotToContainer(new SlotValid(cokeOven, i * 2, 14 + 28 * i, 13));
-      addSlotToContainer(new SlotValid(cokeOven, i * 2 + 1, 14 + 28 * i, 55));
-    }
-
-    addSlotToContainer(new SlotValid(cokeOven, 8, 146, 17));
-    addSlotToContainer(new SlotValid(cokeOven, 9, 146, 53));
-
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 9; j++) {
         addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 85 + i * 18));
@@ -36,6 +29,14 @@ public class ContainerIndustrialCokeOven extends Container {
     for (int i = 0; i < 9; i++) {
       addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 143));
     }
+
+    for (int i = 0; i < 4; i++) {
+      addSlotToContainer(new SlotValid(cokeOven, i * 2, 14 + 28 * i, 13));
+      addSlotToContainer(new SlotValid(cokeOven, i * 2 + 1, 14 + 28 * i, 55));
+    }
+
+    addSlotToContainer(new SlotValid(cokeOven, 8, 146, 17));
+    addSlotToContainer(new SlotValid(cokeOven, 9, 146, 53));
   }
 
   @Override
@@ -44,7 +45,36 @@ public class ContainerIndustrialCokeOven extends Container {
   }
 
   @Override
-  public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
+  public ItemStack transferStackInSlot(EntityPlayer player, int i) {
+    Slot slot = getSlot(i);
+    if (slot != null && slot.getHasStack()) {
+      ItemStack stack = slot.getStack();
+      ItemStack result = stack.copy();
+      if (i >= 36) {
+        if (!mergeItemStack(stack, 0, 36, false)) return null;
+      } else {
+        ImmersiveIntegration.log.info(i);
+//        if (cokeOven.isItemValidForSlot( i, stack)) {
+//          if (!mergeItemStack(stack, 36, 45, false)) return null;
+//        } else {
+//          return null;
+//        }
+        boolean merged = false;
+        for (int j = 0; j < cokeOven.getSizeInventory(); j++) {
+          if (cokeOven.isItemValidForSlot(j, stack)) {
+            if (mergeItemStack(stack, 36 + j, 37 + j, false)) {
+              merged = true;
+              break;
+            }
+          }
+        }
+        if (!merged) return null;
+      }
+      if (stack.stackSize == 0) slot.putStack(null);
+      else slot.onSlotChanged();
+      slot.onPickupFromSlot(player, stack);
+      return result;
+    }
     return null;
   }
 

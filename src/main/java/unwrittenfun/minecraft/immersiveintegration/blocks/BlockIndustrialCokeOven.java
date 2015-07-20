@@ -81,7 +81,9 @@ public class BlockIndustrialCokeOven extends BlockContainer {
                   IMultiblockTile multiblockTileReplace = (IMultiblockTile) tileEntity1;
                   ItemStack replaced = multiblockTileReplace.getReplaced();
                   multiblockTileReplace.setFormed(false);
-                  world.setBlock(x + ddx - offset[0], y + dy - offset[1], z + ddz - offset[2], ((ItemBlock) replaced.getItem()).field_150939_a, replaced.getItemDamage(), 3);
+                  if (replaced != null) {
+                    world.setBlock(x + ddx - offset[0], y + dy - offset[1], z + ddz - offset[2], ((ItemBlock) replaced.getItem()).field_150939_a, replaced.getItemDamage(), 3);
+                  }
                 }
               }
             }

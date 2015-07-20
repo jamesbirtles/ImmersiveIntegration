@@ -4,7 +4,7 @@ import blusunrize.immersiveengineering.api.CokeOvenRecipe;
 import blusunrize.immersiveengineering.common.IEContent;
 import blusunrize.immersiveengineering.common.util.Utils;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -15,13 +15,18 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import net.minecraftforge.oredict.OreDictionary;
+import org.apache.commons.lang3.ArrayUtils;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.client.gui.GuiIndustrialCokeOven;
 import unwrittenfun.minecraft.immersiveintegration.gui.IGuiProvider;
 import unwrittenfun.minecraft.immersiveintegration.gui.containers.ContainerIndustrialCokeOven;
 import unwrittenfun.minecraft.immersiveintegration.utils.TileUtils;
 
-public class TileIndustrialCokeOven extends TileEntity implements IMultiblockTile, IGuiProvider, IInventory, IFluidHandler {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class TileIndustrialCokeOven extends TileEntity implements IMultiblockTile, IGuiProvider, ISidedInventory, IFluidHandler {
   public int[] offset;
   public ItemStack replaced;
   public boolean formed;
@@ -192,11 +197,11 @@ public class TileIndustrialCokeOven extends TileEntity implements IMultiblockTil
   }
 
   public boolean isMaster() {
-    return offset[0] == 0 && offset[1] == 0 && offset[2] == 0;
+    return isFormed() && offset[0] == 0 && offset[1] == 0 && offset[2] == 0;
   }
 
   public TileIndustrialCokeOven getMaster() {
-    if (isMaster()) {
+    if (!isFormed() || isMaster() || !hasWorldObj()) {
       return null;
     }
     TileEntity master = worldObj.getTileEntity(xCoord - offset[0], yCoord - offset[1], zCoord - offset[2]);
@@ -213,11 +218,16 @@ public class TileIndustrialCokeOven extends TileEntity implements IMultiblockTil
 
   @Override
   public ItemStack getStackInSlot(int slot) {
+    TileIndustrialCokeOven master = getMaster();
+    if (master != null) return master.getStackInSlot(slot);
     return slot < getSizeInventory() ? items[slot] : null;
   }
 
   @Override
   public ItemStack decrStackSize(int slot, int amount) {
+    TileIndustrialCokeOven master = getMaster();
+    if (master != null) return master.decrStackSize(slot, amount);
+
     ItemStack stack = getStackInSlot(slot);
     if (stack != null) {
       if (stack.stackSize <= amount) {
@@ -239,8 +249,15 @@ public class TileIndustrialCokeOven extends TileEntity implements IMultiblockTil
 
   @Override
   public void setInventorySlotContents(int slot, ItemStack stack) {
-    items[slot] = stack;
-    markDirty();
+    if (isFormed()) {
+      TileIndustrialCokeOven master = getMaster();
+      if (isFormed() && master != null) {
+        master.setInventorySlotContents(slot, stack);
+        return;
+      }
+      items[slot] = stack;
+      markDirty();
+    }
   }
 
   @Override
@@ -275,9 +292,11 @@ public class TileIndustrialCokeOven extends TileEntity implements IMultiblockTil
 
   @Override
   public boolean isItemValidForSlot(int slot, ItemStack stack) {
+    TileIndustrialCokeOven master = getMaster();
+    if (master != null) { return master.isItemValidForSlot(slot, stack); }
+
     if (slot < 8) {
       if (slot % 2 == 1) { // Bottom row
-        ImmersiveIntegration.log.info(slot);
         return CokeOvenRecipe.findRecipe(stack) != null;
       }
     } else if (slot == 8) {
@@ -382,5 +401,36 @@ public class TileIndustrialCokeOven extends TileEntity implements IMultiblockTil
         }
       }
     }
+  }
+
+  @SuppressWarnings("unchecked")
+  @Override
+  public int[] getAccessibleSlotsFromSide(int side) {
+    if (isFormed()) {
+      List<Integer> slots = new ArrayList<>(Arrays.asList(0, 2, 4, 6, 8, 9));
+      int dir = offset[3] != 0 ? 2 : 0;
+      if (offset[dir] == -3) {
+        slots.add(1);
+      } else if (offset[dir] == -1) {
+        slots.add(3);
+      } else if (offset[dir] == 1) {
+        slots.add(5);
+      } else if (offset[dir] == 3) {
+        slots.add(7);
+      }
+
+      return ArrayUtils.toPrimitive(slots.toArray(new Integer[slots.size()]));
+    }
+    return new int[0];
+  }
+
+  @Override
+  public boolean canInsertItem(int slot, ItemStack stack, int side) {
+    return isFormed() && slot != 9 && isItemValidForSlot(slot, stack);
+  }
+
+  @Override
+  public boolean canExtractItem(int slot, ItemStack stack, int side) {
+    return isFormed() && ((slot % 2 == 0 && slot < 8) || slot == 9);
   }
 }
