@@ -6,7 +6,6 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.client.gui.SlotValid;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileIndustrialCokeOven;
 
@@ -53,12 +52,6 @@ public class ContainerIndustrialCokeOven extends Container {
       if (i >= 36) {
         if (!mergeItemStack(stack, 0, 36, false)) return null;
       } else {
-        ImmersiveIntegration.log.info(i);
-//        if (cokeOven.isItemValidForSlot( i, stack)) {
-//          if (!mergeItemStack(stack, 36, 45, false)) return null;
-//        } else {
-//          return null;
-//        }
         boolean merged = false;
         for (int j = 0; j < cokeOven.getSizeInventory(); j++) {
           if (cokeOven.isItemValidForSlot(j, stack)) {

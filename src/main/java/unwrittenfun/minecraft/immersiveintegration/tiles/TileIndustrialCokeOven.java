@@ -25,6 +25,7 @@ import unwrittenfun.minecraft.immersiveintegration.utils.TileUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class TileIndustrialCokeOven extends TileEntity implements IMultiblockTile, IGuiProvider, ISidedInventory, IFluidHandler {
   public int[] offset;
@@ -37,7 +38,7 @@ public class TileIndustrialCokeOven extends TileEntity implements IMultiblockTil
   public int[] processTimeMax = new int[4];
   public int clientFluidAmount = 0;
   public int[] clientProgress = new int[4];
-  private float speedBoost = 0.5f;
+  public Random random = new Random();
 
   @Override
   public void updateEntity() {
@@ -46,16 +47,17 @@ public class TileIndustrialCokeOven extends TileEntity implements IMultiblockTil
         int slot = i * 2 + 1;
         if (processTime[i] > 0) {
           processTime[i]++;
-          //          ImmersiveIntegration.log.info("Process Time (" + i + "): " + processTime[i] + " / " + processTimeMax[i]);
           if (processTime[i] > processTimeMax[i]) {
             CokeOvenRecipe recipe = CokeOvenRecipe.findRecipe(getStackInSlot(slot));
             if (recipe != null) {
-              if (TileUtils.addStack(this, recipe.output.copy(), i * 2, true) == 0) {
-                TileUtils.addStack(this, recipe.output.copy(), i * 2, false);
+              ItemStack outputStack = recipe.output.copy();
+              if (TileUtils.addStack(this, outputStack, i * 2, true) == 0) {
+                if (random.nextInt(ImmersiveIntegration.cfg.cokeOvenDoubleChance) == 0) {
+                  outputStack.stackSize += 1;
+                }
+                TileUtils.addStack(this, outputStack, i * 2, false);
                 decrStackSize(slot, 1);
-                this.tank.fill(new FluidStack(IEContent.fluidCreosote, (int) (recipe.creosoteOutput * 1.5)), true);
-                //                ImmersiveIntegration.log.info(this.tank.getFluidAmount());
-                //                markDirty();
+                this.tank.fill(new FluidStack(IEContent.fluidCreosote, (int) (recipe.creosoteOutput * ImmersiveIntegration.cfg.cokeOvenCreosoteMultiplier)), true);
               }
             }
             processTime[i] = 0;
@@ -65,7 +67,7 @@ public class TileIndustrialCokeOven extends TileEntity implements IMultiblockTil
           CokeOvenRecipe recipe = CokeOvenRecipe.findRecipe(getStackInSlot(slot));
           if (recipe != null) {
             processTime[i] = 1;
-            processTimeMax[i] = (int) (recipe.time * speedBoost);
+            processTimeMax[i] = (int) (recipe.time * ImmersiveIntegration.cfg.cokeOvenTimeMultiplier);
           }
         }
       }
@@ -393,8 +395,7 @@ public class TileIndustrialCokeOven extends TileEntity implements IMultiblockTil
       if (processTime[i] > 0) {
         CokeOvenRecipe recipe = CokeOvenRecipe.findRecipe(getStackInSlot(slot));
         if (recipe != null) {
-          //          processTime[i] = 1;
-          processTimeMax[i] = (int) (recipe.time * speedBoost);
+          processTimeMax[i] = (int) (recipe.time * ImmersiveIntegration.cfg.cokeOvenTimeMultiplier);
         } else {
           processTime[i] = 0;
           processTimeMax[i] = 0;
