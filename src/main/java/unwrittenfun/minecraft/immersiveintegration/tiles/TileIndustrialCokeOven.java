@@ -15,16 +15,12 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import net.minecraftforge.oredict.OreDictionary;
-import org.apache.commons.lang3.ArrayUtils;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.client.gui.GuiIndustrialCokeOven;
 import unwrittenfun.minecraft.immersiveintegration.gui.IGuiProvider;
 import unwrittenfun.minecraft.immersiveintegration.gui.containers.ContainerIndustrialCokeOven;
 import unwrittenfun.minecraft.immersiveintegration.utils.TileUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 public class TileIndustrialCokeOven extends TileEntity implements IMultiblockTile, IGuiProvider, ISidedInventory, IFluidHandler {
@@ -42,47 +38,55 @@ public class TileIndustrialCokeOven extends TileEntity implements IMultiblockTil
 
   @Override
   public void updateEntity() {
-    if (hasWorldObj() && !worldObj.isRemote && isFormed() && isMaster()) {
-      for (int i = 0; i < 4; i++) {
-        int slot = i * 2 + 1;
-        if (processTime[i] > 0) {
-          processTime[i]++;
-          if (processTime[i] > processTimeMax[i]) {
-            CokeOvenRecipe recipe = CokeOvenRecipe.findRecipe(getStackInSlot(slot));
-            if (recipe != null) {
-              ItemStack outputStack = recipe.output.copy();
-              if (TileUtils.addStack(this, outputStack, i * 2, true) == 0) {
-                if (random.nextInt(ImmersiveIntegration.cfg.cokeOvenDoubleChance) == 0) {
-                  outputStack.stackSize += 1;
+    if (hasWorldObj() && !worldObj.isRemote && isFormed()) {
+      if (isMaster()) {
+        for (int i = 0; i < 4; i++) {
+          int slot = i * 2 + 1;
+          if (processTime[i] > 0) {
+            processTime[i]++;
+            if (processTime[i] > processTimeMax[i]) {
+              CokeOvenRecipe recipe = CokeOvenRecipe.findRecipe(getStackInSlot(slot));
+              if (recipe != null) {
+                ItemStack outputStack = recipe.output.copy();
+                if (TileUtils.addStack(this, outputStack, i * 2, true) == 0) {
+                  if (random.nextInt(ImmersiveIntegration.cfg.cokeOvenDoubleChance) == 0) {
+                    outputStack.stackSize += 1;
+                  }
+                  TileUtils.addStack(this, outputStack, i * 2, false);
+                  decrStackSize(slot, 1);
+                  this.tank.fill(new FluidStack(IEContent.fluidCreosote, (int) (recipe.creosoteOutput * ImmersiveIntegration.cfg.cokeOvenCreosoteMultiplier)), true);
                 }
-                TileUtils.addStack(this, outputStack, i * 2, false);
-                decrStackSize(slot, 1);
-                this.tank.fill(new FluidStack(IEContent.fluidCreosote, (int) (recipe.creosoteOutput * ImmersiveIntegration.cfg.cokeOvenCreosoteMultiplier)), true);
               }
+              processTime[i] = 0;
+              processTimeMax[i] = 0;
             }
-            processTime[i] = 0;
-            processTimeMax[i] = 0;
-          }
-        } else {
-          CokeOvenRecipe recipe = CokeOvenRecipe.findRecipe(getStackInSlot(slot));
-          if (recipe != null) {
-            processTime[i] = 1;
-            processTimeMax[i] = (int) (recipe.time * ImmersiveIntegration.cfg.cokeOvenTimeMultiplier);
+          } else {
+            CokeOvenRecipe recipe = CokeOvenRecipe.findRecipe(getStackInSlot(slot));
+            if (isValidRecipe(recipe, i)) {
+              processTime[i] = 1;
+              processTimeMax[i] = (int) (recipe.time * ImmersiveIntegration.cfg.cokeOvenTimeMultiplier);
+            }
           }
         }
-      }
 
-      if (tank.getFluidAmount() > 0 && tank.getFluid() != null && (getStackInSlot(9) == null || getStackInSlot(9).stackSize < getStackInSlot(9).getMaxStackSize())) {
-        ItemStack filledContainer = Utils.fillFluidContainer(tank, getStackInSlot(8), getStackInSlot(9));
-        if (filledContainer != null) {
-          if (getStackInSlot(9) != null && OreDictionary.itemMatches(getStackInSlot(9), filledContainer, true))
-            getStackInSlot(9).stackSize += filledContainer.stackSize;
-          else if (getStackInSlot(9) == null)
-            setInventorySlotContents(9, filledContainer.copy());
-          this.decrStackSize(8, filledContainer.stackSize);
+        if (tank.getFluidAmount() > 0 && tank.getFluid() != null && (getStackInSlot(9) == null || getStackInSlot(9).stackSize < getStackInSlot(9).getMaxStackSize())) {
+          ItemStack filledContainer = Utils.fillFluidContainer(tank, getStackInSlot(8), getStackInSlot(9));
+          if (filledContainer != null) {
+            if (getStackInSlot(9) != null && OreDictionary.itemMatches(getStackInSlot(9), filledContainer, true))
+              getStackInSlot(9).stackSize += filledContainer.stackSize;
+            else if (getStackInSlot(9) == null)
+              setInventorySlotContents(9, filledContainer.copy());
+            this.decrStackSize(8, filledContainer.stackSize);
+          }
         }
+      } else {
+
       }
     }
+  }
+
+  private boolean isValidRecipe(CokeOvenRecipe recipe, int i) {
+    return recipe != null && (getStackInSlot(i * 2) == null || (recipe.output.isItemEqual(getStackInSlot(i * 2)) && (getStackInSlot(i * 2).getMaxStackSize() - getStackInSlot(i * 2).stackSize) >= recipe.output.stackSize));
   }
 
   @Override
@@ -253,7 +257,7 @@ public class TileIndustrialCokeOven extends TileEntity implements IMultiblockTil
   public void setInventorySlotContents(int slot, ItemStack stack) {
     if (isFormed()) {
       TileIndustrialCokeOven master = getMaster();
-      if (isFormed() && master != null) {
+      if (master != null) {
         master.setInventorySlotContents(slot, stack);
         return;
       }
@@ -394,7 +398,7 @@ public class TileIndustrialCokeOven extends TileEntity implements IMultiblockTil
       int slot = i * 2 + 1;
       if (processTime[i] > 0) {
         CokeOvenRecipe recipe = CokeOvenRecipe.findRecipe(getStackInSlot(slot));
-        if (recipe != null) {
+        if (isValidRecipe(recipe, i)) {
           processTimeMax[i] = (int) (recipe.time * ImmersiveIntegration.cfg.cokeOvenTimeMultiplier);
         } else {
           processTime[i] = 0;
@@ -408,19 +412,23 @@ public class TileIndustrialCokeOven extends TileEntity implements IMultiblockTil
   @Override
   public int[] getAccessibleSlotsFromSide(int side) {
     if (isFormed()) {
-      List<Integer> slots = new ArrayList<>(Arrays.asList(0, 2, 4, 6, 8, 9));
-      int dir = offset[3] != 0 ? 2 : 0;
-      if (offset[dir] == -3) {
-        slots.add(1);
-      } else if (offset[dir] == -1) {
-        slots.add(3);
-      } else if (offset[dir] == 1) {
-        slots.add(5);
-      } else if (offset[dir] == 3) {
-        slots.add(7);
+      ForgeDirection sideDir = ForgeDirection.getOrientation(side);
+      if (Math.abs(sideDir.offsetX) != Math.abs(offset[3]) || Math.abs(sideDir.offsetZ) != Math.abs(offset[4]))
+        return new int[0];
+      int mult = offset[3] != 0 ? offset[3] : -offset[4];
+      int x = offset[3] != 0 ? 2 : 0;
+      int z = offset[3] != 0 ? 0 : 2;
+      if (offset[1] == -1) {
+        if ((offset[z] == 0 && offset[x] == -3 * mult) || (Math.abs(offset[z]) == 4 && offset[x] == 3 * mult)) {
+          return new int[] { 0, 2, 4, 6, 8, 9, 7 };
+        } else if ((offset[z] == 0 && offset[x] == -1 * mult) || (Math.abs(offset[z]) == 4 && offset[x] == mult)) {
+          return new int[] { 0, 2, 4, 6, 8, 9, 5 };
+        } else if ((offset[z] == 0 && offset[x] == mult) || (Math.abs(offset[z]) == 4 && offset[x] == -1 * mult)) {
+          return new int[] { 0, 2, 4, 6, 8, 9, 3 };
+        } else if ((offset[z] == 0 && offset[x] == 3 * mult) || (Math.abs(offset[z]) == 4 && offset[x] == -3 * mult)) {
+          return new int[] { 0, 2, 4, 6, 8, 9, 1 };
+        }
       }
-
-      return ArrayUtils.toPrimitive(slots.toArray(new Integer[slots.size()]));
     }
     return new int[0];
   }

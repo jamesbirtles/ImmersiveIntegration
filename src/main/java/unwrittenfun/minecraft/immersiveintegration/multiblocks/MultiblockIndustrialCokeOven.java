@@ -40,7 +40,7 @@ public class MultiblockIndustrialCokeOven implements IMultiblock {
 
   @Override
   public boolean createStructure(World world, int x, int y, int z, int side, EntityPlayer player) {
-    ImmersiveIntegration.log.info("Attempt multiblock creation");
+//    ImmersiveIntegration.log.info("Attempt multiblock creation");
 
     ForgeDirection direction = ForgeDirection.getOrientation(side);
     for (int dz = -4; dz <= 0; dz++) {
@@ -54,8 +54,8 @@ public class MultiblockIndustrialCokeOven implements IMultiblock {
           }
           ItemStack targetItem = blockStructure[dy + 1][dz + 4][dx + 3];
           if (world.getBlock(x + ddx, y + dy, z + ddz) != ((ItemBlock) targetItem.getItem()).field_150939_a || world.getBlockMetadata(x + ddx, y + dy, z + ddz) != targetItem.getItemDamage()) {
-            ImmersiveIntegration.log.info(world.getBlock(x + ddx, y + dy, z + ddz).getLocalizedName() + ":" + world.getBlockMetadata(x + ddx, y + dy, z + ddz) + " - " + ((ItemBlock) targetItem.getItem()).field_150939_a.getLocalizedName() + ":" + targetItem.getItemDamage());
-            ImmersiveIntegration.log.info("Multiblock failed");
+//            ImmersiveIntegration.log.info(world.getBlock(x + ddx, y + dy, z + ddz).getLocalizedName() + ":" + world.getBlockMetadata(x + ddx, y + dy, z + ddz) + " - " + ((ItemBlock) targetItem.getItem()).field_150939_a.getLocalizedName() + ":" + targetItem.getItemDamage());
+//            ImmersiveIntegration.log.info("Multiblock failed");
             return false;
           }
         }
@@ -91,7 +91,7 @@ public class MultiblockIndustrialCokeOven implements IMultiblock {
       }
     }
 
-    ImmersiveIntegration.log.info("Multiblock valid");
+//    ImmersiveIntegration.log.info("Multiblock valid");
 
     return true;
   }
