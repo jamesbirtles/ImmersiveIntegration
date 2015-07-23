@@ -42,23 +42,23 @@ public class TileMEWireConnector extends TileWireConnector implements IGridHost,
             node.updateState();
           }
         }
+      }
 
-        for (ImmersiveNetHandler.Connection connection : ImmersiveNetHandler.INSTANCE.getConnections(worldObj, Utils.toCC(this))) {
-          ChunkCoordinates opposite = connection.end;
-          if (connection.end.equals(Utils.toCC(this))) {
-            opposite = connection.start;
-          }
+      for (ImmersiveNetHandler.Connection connection : ImmersiveNetHandler.INSTANCE.getConnections(worldObj, Utils.toCC(this))) {
+        ChunkCoordinates opposite = connection.end;
+        if (connection.end.equals(Utils.toCC(this))) {
+          opposite = connection.start;
+        }
 
-          TileEntity teOpposite = worldObj.getTileEntity(opposite.posX, opposite.posY, opposite.posZ);
-          if (teOpposite instanceof TileMEWireConnector) {
-            GridNode nodeA = (GridNode) ((TileMEWireConnector) teOpposite).getGridNode(ForgeDirection.UNKNOWN);
-            GridNode nodeB = (GridNode) getGridNode(ForgeDirection.UNKNOWN);
-            if (!nodeA.hasConnection(nodeB) && !nodeB.hasConnection(nodeA)) {
-              try {
-                gridConnections.add(AEApi.instance().createGridConnection(nodeA, nodeB));
-              } catch (FailedConnection failedConnection) {
-                failedConnection.printStackTrace();
-              }
+        TileEntity teOpposite = worldObj.getTileEntity(opposite.posX, opposite.posY, opposite.posZ);
+        if (teOpposite instanceof TileMEWireConnector) {
+          GridNode nodeA = (GridNode) ((TileMEWireConnector) teOpposite).getGridNode(ForgeDirection.UNKNOWN);
+          GridNode nodeB = (GridNode) getGridNode(ForgeDirection.UNKNOWN);
+          if (!nodeA.hasConnection(nodeB) && !nodeB.hasConnection(nodeA)) {
+            try {
+              gridConnections.add(AEApi.instance().createGridConnection(nodeA, nodeB));
+            } catch (FailedConnection failedConnection) {
+              failedConnection.printStackTrace();
             }
           }
         }
@@ -116,6 +116,13 @@ public class TileMEWireConnector extends TileWireConnector implements IGridHost,
   @Override
   public void invalidate() {
     super.invalidate();
+    if (worldObj != null && !worldObj.isRemote) {
+      destroyAELink();
+    }
+  }
+
+  @Override
+  public void onChunkUnload() {
     if (worldObj != null && !worldObj.isRemote) {
       destroyAELink();
     }
