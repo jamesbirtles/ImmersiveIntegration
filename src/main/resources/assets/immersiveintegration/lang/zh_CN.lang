@@ -10,22 +10,10 @@ tile.immersiveintegration:meDenseWireConnector.name=ME致密接线器
 tile.immersiveintegration:extendedPost.name=拓展木桩
 tile.immersiveintegration:steelTrapdoor.name=钢质活板门
 tile.immersiveintegration:redstoneWireConnector.name=红石接线器
+tile.immersiveintegration:industrialCokeOven.name=工业高炉
 
 item.immersiveintegration:iiWireCoilRedstone.name=红石线圈
 
-
-# Config
-immersiveintegration.config.enableAE=开启AE2兼容
-immersiveintegration.config.desc.enableAE=启用/禁用AE2特定内容(若装有AE2)
-
-immersiveintegration.config.fluixWireRange=福鲁伊克斯线缆长度
-immersiveintegration.config.desc.fluixWireRange=福鲁伊克斯线缆最大长度
-
-immersiveintegration.config.denseWireRange=致密线缆长度
-immersiveintegration.config.desc.denseWireRange=致密线缆最大长度
-
-immersiveintegration.config.redstoneWireRange=红石线缆长度
-immersiveintegration.config.desc.redstoneWireRange=红石线缆最大长度
 
 # Colors
 immersiveintegration.color.black=黑色
@@ -66,6 +54,11 @@ ie.manual.entry.meWiring.subtext=AE2接线
 ie.manual.entry.meWiring0=有两种线缆可以搭配AE2使用.它们分别是福鲁伊克斯线圈和致密线圈. 正如你猜测的那样,福鲁伊克斯线圈能传输8个频道,致密线圈能传输32个频道.
 ie.manual.entry.meWiring1=你需要接线器来连接你的线圈.福鲁伊克斯线圈只能连接在ME接线器上,致密线圈只能连接在ME致密接线器上.<br>只有接线器的底部能与AE线缆/设备连接.
 
+ie.manual.entry.industrialCokeOven.name=工业焦炉
+ie.manual.entry.industrialCokeOven.subtext=工业革命
+ie.manual.entry.industrialCokeOven0=TODO
+
+
 # chat
 immersiveintegration.chat.channel=频道:
 immersiveintegration.chat.mode=模式:
@@ -73,3 +66,26 @@ immersiveintegration.chat.channelSet=设置频道为:
 immersiveintegration.chat.modeSet=设置模式为:
 immersiveintegration.chat.input=输入
 immersiveintegration.chat.output=输出
+
+
+# Config
+immersiveintegration.config.enableAE=开启AE2兼容
+immersiveintegration.config.desc.enableAE=启用/禁用AE2特定内容(若装有AE2)
+
+immersiveintegration.config.fluixWireRange=福鲁伊克斯线缆长度
+immersiveintegration.config.desc.fluixWireRange=福鲁伊克斯线缆最大长度
+
+immersiveintegration.config.denseWireRange=致密线缆长度
+immersiveintegration.config.desc.denseWireRange=致密线缆最大长度
+
+immersiveintegration.config.redstoneWireRange=红石线缆长度
+immersiveintegration.config.desc.redstoneWireRange=红石线缆最大长度
+
+immersiveintegration.config.cokeOvenDoubleChance=工业焦炉双倍几率
+immersiveintegration.config.desc.cokeOvenDoubleChance=工业焦炉额外输出几率.该值设定为10表示概率为1/10.
+
+immersiveintegration.config.cokeOvenCreosoteMultiplier=工业焦炉杂酚油乘数
+immersiveintegration.config.desc.cokeOvenCreosoteMultiplier=每次处理杂酚油输出.该值设定为1.5表示产量为焦炉的1.5倍
+
+immersiveintegration.config.cokeOvenTimeMultiplier=工业焦炉时间乘数
+immersiveintegration.config.desc.cokeOvenTimeMultiplier=每次处理消耗时间.该值设定为0.5表示消耗时间为是焦炉的一半
