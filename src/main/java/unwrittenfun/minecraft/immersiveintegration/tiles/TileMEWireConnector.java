@@ -204,6 +204,7 @@ public class TileMEWireConnector extends TileWireConnector implements IGridHost,
 
   }
 
+  @Override
   public void connectTo(int x, int y, int z) {
     TileEntity tileEntity = worldObj.getTileEntity(x, y, z);
     if (tileEntity instanceof TileMEWireConnector) {
@@ -212,7 +213,7 @@ public class TileMEWireConnector extends TileWireConnector implements IGridHost,
         gridConnections.add(AEApi.instance().createGridConnection(connector.getGridNode(ForgeDirection.UNKNOWN), getGridNode(ForgeDirection.UNKNOWN)));
       } catch (FailedConnection failedConnection) {
         failedConnection.printStackTrace();
-        ImmersiveIntegration.log.error("Something went wrong connecting the flux wire!");
+        ImmersiveIntegration.log.error("Something went wrong connecting the fluix wire!");
       }
     }
   }

@@ -21,7 +21,7 @@ import unwrittenfun.minecraft.immersiveintegration.wires.IIWires;
 
 import java.util.List;
 
-public abstract class TileWireConnector extends TileEntity implements IImmersiveConnectable {
+public abstract class TileWireConnector extends TileEntity implements IImmersiveConnectable, IWireConnector {
   @Override
   public boolean canConnect() {
     return true;
@@ -119,10 +119,6 @@ public abstract class TileWireConnector extends TileEntity implements IImmersive
     if (worldObj != null && !worldObj.isRemote) {
       ImmersiveNetHandler.INSTANCE.clearAllConnectionsFor(Utils.toCC(this), worldObj);
     }
-  }
-
-  public void connectTo(int x, int y, int z) {
-
   }
 
   @SideOnly(Side.CLIENT)

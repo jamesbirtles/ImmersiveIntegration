@@ -12,6 +12,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.ModInfo;
 import unwrittenfun.minecraft.immersiveintegration.items.ItemBlockExtendedPost;
+import unwrittenfun.minecraft.immersiveintegration.items.ItemBlockMETransformer;
 import unwrittenfun.minecraft.immersiveintegration.tiles.*;
 
 public class IIBlocks {
@@ -22,6 +23,7 @@ public class IIBlocks {
   public static final String REDSTONE_WIRE_CONNECTOR_KEY = "redstoneWireConnector";
   public static final String INDUSTRIAL_COKE_OVEN = "industrialCokeOven";
   public static final String ITEM_ROBIN_KEY = "itemRobin";
+  public static final String ME_TRANSFORMER_KEY = "meTransformer";
 
   public static Block meWireConnector;
   public static Block meDenseWireConnector;
@@ -30,6 +32,7 @@ public class IIBlocks {
   public static Block redstoneWireConnector;
   public static Block industrialCokeOven;
   public static Block itemRobin;
+  public static Block meTransformer;
 
   public static void registerBlocks() {
     extendedPost = new BlockExtendedPost(ModInfo.MOD_ID + ":" + EXTENDED_POST_KEY);
@@ -70,12 +73,15 @@ public class IIBlocks {
     } else {
       meWireConnector = new BlockMEWireConnector(ModInfo.MOD_ID + ":" + ME_WIRE_CONNECTOR_KEY);
       meDenseWireConnector = new BlockMEDenseWireConnector(ModInfo.MOD_ID + ":" + ME_DENSE_CONNECTOR_KEY);
+      meTransformer = new BlockMETransformer(ModInfo.MOD_ID + ":" + ME_TRANSFORMER_KEY);
 
       GameRegistry.registerBlock(meWireConnector, ME_WIRE_CONNECTOR_KEY);
       GameRegistry.registerBlock(meDenseWireConnector, ME_DENSE_CONNECTOR_KEY);
+      GameRegistry.registerBlock(meTransformer, ItemBlockMETransformer.class, ME_TRANSFORMER_KEY);
 
       GameRegistry.registerTileEntity(TileMEWireConnector.class, ModInfo.MOD_ID + ":" + ME_WIRE_CONNECTOR_KEY + "Tile");
       GameRegistry.registerTileEntity(TileMEDenseWireConnector.class, ModInfo.MOD_ID + ":" + ME_DENSE_CONNECTOR_KEY + "Tile");
+      GameRegistry.registerTileEntity(TileMETransformer.class, ModInfo.MOD_ID + ":" + ME_TRANSFORMER_KEY + "Tile");
     }
   }
 }

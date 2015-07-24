@@ -19,6 +19,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
+import unwrittenfun.minecraft.immersiveintegration.tiles.IWireConnector;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileWireConnector;
 
 import java.util.List;
@@ -135,8 +136,8 @@ public class ItemCoil extends Item implements IWireCoil {
               world.markBlockForUpdate(pos[1], pos[2], pos[3]);
 
               TileEntity tileEntity = world.getTileEntity(x, y, z);
-              if (tileEntity instanceof TileWireConnector) {
-                ((TileWireConnector) tileEntity).connectTo(pos[1], pos[2], pos[3]);
+              if (tileEntity instanceof IWireConnector) {
+                ((IWireConnector) tileEntity).connectTo(pos[1], pos[2], pos[3]);
               }
             } else player.addChatMessage(new ChatComponentTranslation(Lib.CHAT_WARN + "cantSee"));
           }
