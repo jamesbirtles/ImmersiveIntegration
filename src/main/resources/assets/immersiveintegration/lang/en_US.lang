@@ -15,6 +15,7 @@ tile.immersiveintegration:extendedPost.name=Wooden Post Extension
 tile.immersiveintegration:steelTrapdoor.name=Steel Trapdoor
 tile.immersiveintegration:redstoneWireConnector.name=Redstone Wire Connector
 tile.immersiveintegration:industrialCokeOven.name=Industrial Coke Oven
+tile.immersiveintegration:itemRobin.name=Item Robin
 
 item.immersiveintegration:iiWireCoilRedstone.name=Redstone Wire Coil
 
@@ -73,6 +74,8 @@ immersiveintegration.chat.channelSet=Channel Set:
 immersiveintegration.chat.modeSet=Mode Set:
 immersiveintegration.chat.input=Input
 immersiveintegration.chat.output=Output
+
+immersiveintegration.chat.itemRobin.countSet=Item count set to
 
 
 # Config

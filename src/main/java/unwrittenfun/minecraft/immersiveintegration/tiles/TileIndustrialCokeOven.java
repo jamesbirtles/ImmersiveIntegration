@@ -446,7 +446,7 @@ public class TileIndustrialCokeOven extends TileEntity implements IMultiblockTil
   public int[] getAccessibleSlotsFromSide(int side) {
     if (isFormed()) {
       ForgeDirection sideDir = ForgeDirection.getOrientation(side);
-      if (sideDir.ordinal() != offset[3] && sideDir.ordinal() != offset[3])
+      if (Math.abs(sideDir.offsetX) != Math.abs(getFacing().offsetX) || Math.abs(sideDir.offsetZ) != Math.abs(getFacing().offsetZ))
         return new int[0];
       int mult = getFacing().offsetX != 0 ? getFacing().offsetX : -getFacing().offsetZ;
       int x = getFacing().offsetX != 0 ? 2 : 0;
