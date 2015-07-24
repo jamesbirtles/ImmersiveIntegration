@@ -83,7 +83,7 @@ public class MultiblockIndustrialCokeOven implements IMultiblock {
           TileEntity tileEntity = world.getTileEntity(x + ddx, y + dy, z + ddz);
           if (tileEntity instanceof IMultiblockTile) {
             IMultiblockTile multiblock = (IMultiblockTile) tileEntity;
-            multiblock.setOffset(new int[] { ddx, dy, ddz, direction.offsetX, direction.offsetZ });
+            multiblock.setOffset(new int[] { ddx, dy, ddz, direction.ordinal() });
             multiblock.setReplaced(blockStructure[dy + 1][dz + 4][dx + 3].copy());
             multiblock.setFormed(true);
           }

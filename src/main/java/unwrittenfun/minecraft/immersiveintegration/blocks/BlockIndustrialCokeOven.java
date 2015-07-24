@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.client.renderers.BlockRenderIndustrialCokeOven;
 import unwrittenfun.minecraft.immersiveintegration.tiles.IMultiblockTile;
@@ -20,7 +21,7 @@ public class BlockIndustrialCokeOven extends BlockContainer {
   public IIcon topIcon;
 
   protected BlockIndustrialCokeOven(String key) {
-    super(Material.rock);
+    super(Material.iron);
     setBlockName(key);
     setBlockTextureName(key);
     setCreativeTab(ImmersiveIntegration.iiCreativeTab);
@@ -70,11 +71,11 @@ public class BlockIndustrialCokeOven extends BlockContainer {
           for (int dz = -4; dz <= 0; dz++) {
             for (int dx = -3; dx <= 3; dx++) {
               for (int dy = -1; dy <= 2; dy++) {
-                int ddz = dz * offset[4];
+                int ddz = dz * ForgeDirection.getOrientation(offset[3]).offsetZ;
                 int ddx = dx;
-                if (offset[3] != 0) {
+                if (ForgeDirection.getOrientation(offset[3]).offsetX != 0) {
                   ddz = dx;
-                  ddx = dz * offset[3];
+                  ddx = dz * ForgeDirection.getOrientation(offset[3]).offsetX;
                 }
                 TileEntity tileEntity1 = world.getTileEntity(x + ddx - offset[0], y + dy - offset[1], z + ddz - offset[2]);
                 if (tileEntity1 != tileEntity && tileEntity1 instanceof IMultiblockTile) {

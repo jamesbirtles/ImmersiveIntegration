@@ -2,11 +2,13 @@ package unwrittenfun.minecraft.immersiveintegration.utils;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileUtils {
   public static void writeInventoryToNBT(NBTTagCompound compound, IInventory inventory) {
@@ -87,5 +89,32 @@ public class TileUtils {
         return stack.stackSize;
       }
     }
+  }
+
+  public static int addStackToInventory(IInventory inventory, ForgeDirection side, ItemStack stack) {
+    stack = stack.copy();
+    if (inventory instanceof ISidedInventory) {
+      ISidedInventory sidedInventory = (ISidedInventory) inventory;
+      int[] slots = sidedInventory.getAccessibleSlotsFromSide(side.ordinal());
+      for (int slot : slots) {
+        if (sidedInventory.canInsertItem(slot, stack, side.ordinal())) {
+          stack.stackSize = addStack(inventory, stack, slot, false);
+          if (stack.stackSize <= 0) {
+            break;
+          }
+        }
+      }
+    } else {
+      for (int slot = 0; slot <= inventory.getSizeInventory(); slot++) {
+        if (inventory.isItemValidForSlot(slot, stack)) {
+          stack.stackSize = addStack(inventory, stack, slot, false);
+          if (stack.stackSize <= 0) {
+            break;
+          }
+        }
+      }
+    }
+
+    return stack.stackSize;
   }
 }

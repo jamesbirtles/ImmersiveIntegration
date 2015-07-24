@@ -1,9 +1,10 @@
 package unwrittenfun.minecraft.immersiveintegration.tiles;
 
-import blusunrize.immersiveengineering.api.CokeOvenRecipe;
+import blusunrize.immersiveengineering.api.crafting.CokeOvenRecipe;
 import blusunrize.immersiveengineering.common.IEContent;
 import blusunrize.immersiveengineering.common.util.Utils;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -80,9 +81,41 @@ public class TileIndustrialCokeOven extends TileEntity implements IMultiblockTil
           }
         }
       } else {
-
+        if (isIOSide()) {
+          doAutoOutput(getFacing());
+          doAutoOutput(getFacing().getOpposite());
+        }
       }
     }
+  }
+
+  public void doAutoOutput(ForgeDirection side) {
+    TileEntity tileEntity = worldObj.getTileEntity(xCoord + side.offsetX, yCoord + side.offsetY, zCoord + side.offsetZ);
+    if (tileEntity instanceof IInventory && !(tileEntity instanceof TileIndustrialCokeOven)) {
+      IInventory inv = (IInventory) tileEntity;
+      for (int i = 0; i < 4; i++) {
+        outputStackInSlot(i * 2, inv, side.getOpposite());
+      }
+      outputStackInSlot(9, inv, side.getOpposite());
+    }
+  }
+
+  public void outputStackInSlot(int slot, IInventory inv, ForgeDirection side) {
+    ItemStack stack = getStackInSlot(slot);
+    if (stack != null) {
+      int leftover = TileUtils.addStackToInventory(inv, side, stack);
+      if (leftover <= 0) {
+        setInventorySlotContents(slot, null);
+      } else {
+        stack.stackSize = leftover;
+      }
+    }
+  }
+
+  public boolean isIOSide() {
+    int x = getFacing().offsetX != 0 ? 2 : 0;
+    int z = getFacing().offsetX != 0 ? 0 : 2;
+    return offset[1] == -1 && (Math.abs(offset[x]) == 3 || Math.abs(offset[x]) == 1) && (Math.abs(offset[z]) == 4 || offset[z] == 0);
   }
 
   private boolean isValidRecipe(CokeOvenRecipe recipe, int i) {
@@ -413,11 +446,11 @@ public class TileIndustrialCokeOven extends TileEntity implements IMultiblockTil
   public int[] getAccessibleSlotsFromSide(int side) {
     if (isFormed()) {
       ForgeDirection sideDir = ForgeDirection.getOrientation(side);
-      if (Math.abs(sideDir.offsetX) != Math.abs(offset[3]) || Math.abs(sideDir.offsetZ) != Math.abs(offset[4]))
+      if (sideDir.ordinal() != offset[3] && sideDir.ordinal() != offset[3])
         return new int[0];
-      int mult = offset[3] != 0 ? offset[3] : -offset[4];
-      int x = offset[3] != 0 ? 2 : 0;
-      int z = offset[3] != 0 ? 0 : 2;
+      int mult = getFacing().offsetX != 0 ? getFacing().offsetX : -getFacing().offsetZ;
+      int x = getFacing().offsetX != 0 ? 2 : 0;
+      int z = getFacing().offsetX != 0 ? 0 : 2;
       if (offset[1] == -1) {
         if ((offset[z] == 0 && offset[x] == -3 * mult) || (Math.abs(offset[z]) == 4 && offset[x] == 3 * mult)) {
           return new int[] { 0, 2, 4, 6, 8, 9, 7 };
@@ -431,6 +464,10 @@ public class TileIndustrialCokeOven extends TileEntity implements IMultiblockTil
       }
     }
     return new int[0];
+  }
+
+  public ForgeDirection getFacing() {
+    return ForgeDirection.getOrientation(offset[3]);
   }
 
   @Override
