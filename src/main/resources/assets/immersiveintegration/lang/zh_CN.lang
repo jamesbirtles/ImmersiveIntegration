@@ -37,7 +37,7 @@ immersiveintegration.color.white=白色
 # Manual
 ie.manual.entry.postExtension.name=拓展木桩
 ie.manual.entry.postExtension.subtext=对.
-ie.manual.entry.postExtension0=放置在<link:treatedwood:§o§n木桩§r:3>顶部以增加接线点.工程师锤也会像你预期那样生效.
+ie.manual.entry.postExtension0=放置在<link;treatedwood;§o§n木桩§r;3>顶部以增加接线点.工程师锤也会像你预期那样生效.
 
 ie.manual.entry.steelTrapdoor.name=钢质活板门
 ie.manual.entry.steelTrapdoor.subtext=嘘.这是一个秘密

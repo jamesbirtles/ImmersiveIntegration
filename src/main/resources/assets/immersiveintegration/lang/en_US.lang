@@ -44,7 +44,7 @@ ie.manual.category.immersiveintegration.name=Immersive Integration
 
 ie.manual.entry.postExtension.name=Wooden Post Extension
 ie.manual.entry.postExtension.subtext=Yup.
-ie.manual.entry.postExtension0=Place atop a <link:treatedwood:§o§nWooden Post§r:3> to add more connections. The hammer works as expected on the extension.
+ie.manual.entry.postExtension0=Place atop a <link;treatedwood;§o§nWooden Post§r;3> to add more connections. The hammer works as expected on the extension.
 
 ie.manual.entry.steelTrapdoor.name=Steel Trapdoor
 ie.manual.entry.steelTrapdoor.subtext=Shhh. It's a secret
@@ -63,8 +63,13 @@ ie.manual.entry.meWiring1=To connect your wire coils you will need wire connecto
 
 ie.manual.entry.industrialCokeOven.name=Industrial Coke Oven
 ie.manual.entry.industrialCokeOven.subtext=Industrial Revolution
-ie.manual.entry.industrialCokeOven0=TODO
+ie.manual.entry.industrialCokeOven0=It soon becomes apparent that a traditional coke oven is just not good enough. You could build more coke ovens.. or you could build an Industrial Coke Oven!
+ie.manual.entry.industrialCokeOven1=The industrial coke oven allows 4 pieces of coal coke to cook up at once. This new oven also seems more efficient, cooking faster, and yielding more resources per operation. Inserting items into all 4 slots would be tricky without some kind of <link;itemRobin;§o§nround robin§r;0> system.
+ie.manual.entry.industrialCokeOven2=You didn't think this would be easy did you?
 
+ie.manual.entry.itemRobin.name=Item Robin
+ie.manual.entry.itemRobin.subtext=Chirp, chirp.
+ie.manual.entry.itemRobin0=You go there, you go there, you three go there, and you two go there. The item robin will take an input and share it out to adjacent inventories (including converyors). You can right click a side with the number of items you would like to go into an inventory on that side per cycle. Hold a hammer in your hand to see the current settings on each side.
 
 # Chat
 
