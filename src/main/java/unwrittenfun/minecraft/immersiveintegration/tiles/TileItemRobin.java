@@ -1,6 +1,6 @@
 package unwrittenfun.minecraft.immersiveintegration.tiles;
 
-import blusunrize.immersiveengineering.common.blocks.IEBlockInterfaces;
+import blusunrize.immersiveengineering.common.blocks.IEBlockInterfaces.IBlockOverlayText;
 import blusunrize.immersiveengineering.common.util.Utils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -21,7 +21,7 @@ import unwrittenfun.minecraft.immersiveintegration.utils.TileUtils;
 
 import java.util.ArrayList;
 
-public class TileItemRobin extends TileEntity implements ISidedInventory, IEBlockInterfaces.IBlockOverlayText {
+public class TileItemRobin extends TileEntity implements ISidedInventory, IBlockOverlayText {
   public int currentSide = 0;
   public ArrayList<SidedItemStack> itemBuffer = new ArrayList<>();
   protected int[] sideCount = new int[6];
@@ -203,7 +203,7 @@ public class TileItemRobin extends TileEntity implements ISidedInventory, IEBloc
 
   @Override
   public String[] getOverlayText(MovingObjectPosition mop) {
-    return new String []{
+    return new String[] {
         StatCollector.translateToLocal("desc.ImmersiveEngineering.info.blockSide." + ForgeDirection.getOrientation(mop.sideHit)),
         "Item count: " + sideCount[mop.sideHit]
     };
