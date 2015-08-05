@@ -5,8 +5,10 @@ import appeng.api.definitions.IDefinitions;
 import appeng.api.util.AEColor;
 import blusunrize.immersiveengineering.common.IEContent;
 import blusunrize.immersiveengineering.common.blocks.metal.BlockMetalDecoration;
+import blusunrize.immersiveengineering.common.blocks.metal.BlockMetalDevices;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
@@ -57,7 +59,8 @@ public class IIBlocks {
     GameRegistry.addRecipe(new ItemStack(steelTrapdoor, 2), "sss", "sss", 's', new ItemStack(IEContent.blockMetalDecoration, 1, BlockMetalDecoration.META_scaffolding));
     GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(redstoneWireConnector, 8), "beb", " r ", "beb", 'b', "blockRedstone", 'e', "ingotElectrum", 'r', "dustRedstone"));
 
-    // TODO: Recipe for item robin and industrial coke oven.
+    GameRegistry.addRecipe(new ItemStack(industrialCokeOven), "sbs", "sbs", "scs", 's', new ItemStack(IEContent.itemMaterial, 1, 12), 'b', Items.bucket, 'c', new ItemStack(IEContent.blockMetalDevice, 1, BlockMetalDevices.META_conveyorBelt));
+    GameRegistry.addRecipe(new ShapedOreRecipe(itemRobin, " r ", "scs", " r ", 's', new ItemStack(IEContent.itemMaterial, 1, 12), 'r', "dustRedstone", 'c', new ItemStack(IEContent.blockWoodenDevice, 1, 4)));
 
     if (ImmersiveIntegration.cfg.enableAE) registerAE2(true);
   }
