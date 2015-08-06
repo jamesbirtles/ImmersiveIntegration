@@ -17,7 +17,15 @@ tile.immersiveintegration:redstoneWireConnector.name=Redstone Wire Connector
 tile.immersiveintegration:industrialCokeOven.name=Industrial Coke Oven
 tile.immersiveintegration:itemRobin.name=Item Robin
 
+tile.immersiveintegration:steelDecorationOvenWall.name=Coke Oven Wall
+tile.immersiveintegration:steelDecorationOvenWallHeated.name=Heated Coke Oven Wall
+tile.immersiveintegration:steelDecorationOvenWallPort.name=Coke Oven Port
+
 item.immersiveintegration:iiWireCoilRedstone.name=Redstone Wire Coil
+
+
+# Tooltips
+immersiveintegration.tooltip.safe=Safe for decoration
 
 
 # Colors
