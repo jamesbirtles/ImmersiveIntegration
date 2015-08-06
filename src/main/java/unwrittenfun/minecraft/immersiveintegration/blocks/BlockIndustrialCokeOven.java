@@ -5,9 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -21,14 +19,21 @@ import unwrittenfun.minecraft.immersiveintegration.client.renderers.BlockRenderI
 import unwrittenfun.minecraft.immersiveintegration.tiles.IMultiblockTile;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileIndustrialCokeOven;
 
-import java.util.List;
-
 public class BlockIndustrialCokeOven extends BlockContainer {
+  public IIcon mapIcon;
+
   protected BlockIndustrialCokeOven(String key) {
     super(Material.iron);
     setBlockName(key);
-    setBlockTextureName(ModInfo.MOD_ID + ":" + IIBlocks.STEEL_BLOCKS_KEY + IIBlocks.STEEL_BLOCKS_KEYS[0]);
+    setBlockTextureName(key);
     setHardness(3f);
+    setStepSound(Block.soundTypeMetal);
+  }
+
+  @Override
+  public void registerBlockIcons(IIconRegister register) {
+    super.registerBlockIcons(register);
+    mapIcon = register.registerIcon(getTextureName() + "Map");
   }
 
   @Override
@@ -50,12 +55,12 @@ public class BlockIndustrialCokeOven extends BlockContainer {
 
   @Override
   public boolean renderAsNormalBlock() {
-    return false;
+    return true;
   }
 
   @Override
   public boolean isOpaqueCube() {
-    return false;
+    return true;
   }
 
   @Override

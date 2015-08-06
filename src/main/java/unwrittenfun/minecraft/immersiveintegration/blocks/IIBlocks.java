@@ -35,7 +35,7 @@ public class IIBlocks {
   public static Block extendedPost;
   public static Block steelTrapdoor;
   public static Block redstoneWireConnector;
-  public static Block industrialCokeOven;
+  public static BlockIndustrialCokeOven industrialCokeOven;
   public static Block itemRobin;
   public static Block steelDecoration;
 

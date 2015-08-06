@@ -20,6 +20,7 @@ public class BlockSteelDecoration extends Block {
     setBlockTextureName(key);
     setCreativeTab(ImmersiveIntegration.iiCreativeTab);
     setHardness(2.5f);
+    setStepSound(Block.soundTypeMetal);
 
     this.keys = keys;
   }
