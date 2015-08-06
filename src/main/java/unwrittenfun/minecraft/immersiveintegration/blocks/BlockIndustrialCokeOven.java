@@ -5,26 +5,29 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
+import unwrittenfun.minecraft.immersiveintegration.ModInfo;
 import unwrittenfun.minecraft.immersiveintegration.client.renderers.BlockRenderIndustrialCokeOven;
 import unwrittenfun.minecraft.immersiveintegration.tiles.IMultiblockTile;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileIndustrialCokeOven;
 
-public class BlockIndustrialCokeOven extends BlockContainer {
-  public IIcon topIcon;
+import java.util.List;
 
+public class BlockIndustrialCokeOven extends BlockContainer {
   protected BlockIndustrialCokeOven(String key) {
     super(Material.iron);
     setBlockName(key);
-    setBlockTextureName(key);
-    setCreativeTab(ImmersiveIntegration.iiCreativeTab);
+    setBlockTextureName(ModInfo.MOD_ID + ":" + IIBlocks.STEEL_BLOCKS_KEY + IIBlocks.STEEL_BLOCKS_KEYS[0]);
     setHardness(3f);
   }
 
@@ -34,14 +37,15 @@ public class BlockIndustrialCokeOven extends BlockContainer {
   }
 
   @Override
-  public void registerBlockIcons(IIconRegister iconRegister) {
-    super.registerBlockIcons(iconRegister);
-    topIcon = iconRegister.registerIcon(getTextureName() + "Top");
-  }
-
-  @Override
-  public IIcon getIcon(int side, int meta) {
-    return (side == 0 || side == 1) ? topIcon : blockIcon;
+  public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
+    TileEntity tileEntity = world.getTileEntity(target.blockX, target.blockY, target.blockZ);
+    if (tileEntity instanceof TileIndustrialCokeOven) {
+      TileIndustrialCokeOven industrialCokeOven = (TileIndustrialCokeOven) tileEntity;
+      if (industrialCokeOven.getReplaced() != null) {
+        return industrialCokeOven.getReplaced().copy();
+      }
+    }
+    return new ItemStack(IIBlocks.steelDecoration);
   }
 
   @Override

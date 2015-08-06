@@ -1,12 +1,10 @@
 package unwrittenfun.minecraft.immersiveintegration;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLLoadCompleteEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -57,6 +55,13 @@ public class ImmersiveIntegration {
     IIMultiblocks.registerMultiblocks();
 
     NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
+  }
+
+  @Mod.EventHandler
+  public void init(FMLInitializationEvent event) {
+    if (Loader.isModLoaded("Waila")) {
+      FMLInterModComms.sendMessage("Waila", "register", "unwrittenfun.minecraft.immersiveintegration.waila.WailaHandler.init");
+    }
   }
 
   @Mod.EventHandler
