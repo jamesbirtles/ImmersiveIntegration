@@ -65,8 +65,10 @@ public class TileItemRobin extends TileEntity implements ISidedInventory, IBlock
   @Override
   public void invalidate() {
     super.invalidate();
-    for (SidedItemStack sidedStack : itemBuffer) {
-      TileUtils.dropItemStack(sidedStack.getStack(), worldObj, xCoord, yCoord + 1, zCoord);
+    if (!worldObj.isRemote) {
+      for (SidedItemStack sidedStack : itemBuffer) {
+        TileUtils.dropItemStack(sidedStack.getStack(), worldObj, xCoord, yCoord + 1, zCoord);
+      }
     }
   }
 
