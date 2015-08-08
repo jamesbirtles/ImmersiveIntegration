@@ -1,5 +1,6 @@
 package unwrittenfun.minecraft.immersiveintegration.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,6 +19,7 @@ public class BlockItemRobin extends BlockContainer {
     setBlockTextureName(key);
     setCreativeTab(ImmersiveIntegration.iiCreativeTab);
     setHardness(2.5f);
+    setStepSound(Block.soundTypeMetal);
   }
 
   @Override

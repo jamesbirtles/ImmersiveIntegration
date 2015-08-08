@@ -5,9 +5,7 @@ import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
-import org.lwjgl.opengl.GL11;
 
 public class BlockRenderIndustrialCokeOven implements ISimpleBlockRenderingHandler {
   public static int RENDER_ID = RenderingRegistry.getNextAvailableRenderId();
@@ -20,10 +18,14 @@ public class BlockRenderIndustrialCokeOven implements ISimpleBlockRenderingHandl
 
   @Override
   public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
-    if (world.getBlockMetadata(x, y, z) == 0) {
+    int meta = world.getBlockMetadata(x, y, z);
+    if (meta == 0) {
       block.setBlockBoundsBasedOnState(world, x, y, z);
       renderer.setRenderBoundsFromBlock(block);
       return renderer.renderStandardBlock(block, x, y, z);
+    } else if (meta < 3) {
+      ClientUtils.handleStaticTileRenderer(world.getTileEntity(x, y, z));
+      return true;
     } else {
       if (renderer.hasOverrideBlockTexture()) {
         block.setBlockBoundsBasedOnState(world, x, y, z);

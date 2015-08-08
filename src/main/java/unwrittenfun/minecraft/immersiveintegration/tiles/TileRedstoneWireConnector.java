@@ -1,17 +1,18 @@
 package unwrittenfun.minecraft.immersiveintegration.tiles;
 
-import blusunrize.immersiveengineering.api.energy.ImmersiveNetHandler;
 import blusunrize.immersiveengineering.api.TargetingInfo;
+import blusunrize.immersiveengineering.api.energy.ImmersiveNetHandler;
 import blusunrize.immersiveengineering.api.energy.WireType;
-import mrtjp.projectred.api.IBundledEmitter;
+import blusunrize.immersiveengineering.common.blocks.IEBlockInterfaces.IBlockOverlayText;
 import mrtjp.projectred.api.IBundledTile;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
 import unwrittenfun.minecraft.immersiveintegration.wires.IIWires;
 import unwrittenfun.minecraft.immersiveintegration.wires.RedstoneWireNetwork;
 
-public class TileRedstoneWireConnector extends TileWireConnector implements IBundledTile {
+public class TileRedstoneWireConnector extends TileWireConnector implements IBundledTile, IBlockOverlayText {
   public static final String[] UNLOC_COLORS = new String[] { "white", "orange", "magenta", "lightBlue", "yellow", "lime", "pink", "grey", "lightGrey", "cyan", "purple", "blue", "brown", "green", "red", "black" };
   private static final int NUM_CHANNELS = 16;
   public boolean redstoneMode = false; // False - Output, True - Input
@@ -127,5 +128,16 @@ public class TileRedstoneWireConnector extends TileWireConnector implements IBun
   @Override
   public byte[] getBundledSignal(int dir) {
     return wireNetwork.getByteValues();
+  }
+
+
+  /// IBlockOverlayText
+
+  @Override
+  public String[] getOverlayText(MovingObjectPosition mop) {
+    return new String[] {
+        StatCollector.translateToLocal("immersiveintegration.chat.channel") + " " + getChannelName(),
+        StatCollector.translateToLocal("immersiveintegration.chat.mode") + " " + (redstoneMode ? "Input" : "Output")
+    };
   }
 }

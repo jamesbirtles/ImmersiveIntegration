@@ -1,5 +1,6 @@
 package unwrittenfun.minecraft.immersiveintegration.tiles;
 
+import blusunrize.immersiveengineering.common.blocks.IEBlockInterfaces.IBlockOverlayText;
 import blusunrize.immersiveengineering.common.util.Utils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -7,7 +8,12 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 import unwrittenfun.minecraft.immersiveintegration.utils.MathUtils;
 import unwrittenfun.minecraft.immersiveintegration.utils.SidedItemStack;
@@ -15,7 +21,7 @@ import unwrittenfun.minecraft.immersiveintegration.utils.TileUtils;
 
 import java.util.ArrayList;
 
-public class TileItemRobin extends TileEntity implements ISidedInventory {
+public class TileItemRobin extends TileEntity implements ISidedInventory, IBlockOverlayText {
   public int currentSide = 0;
   public ArrayList<SidedItemStack> itemBuffer = new ArrayList<>();
   protected int[] sideCount = new int[6];
@@ -59,8 +65,10 @@ public class TileItemRobin extends TileEntity implements ISidedInventory {
   @Override
   public void invalidate() {
     super.invalidate();
-    for (SidedItemStack sidedStack : itemBuffer) {
-      TileUtils.dropItemStack(sidedStack.getStack(), worldObj, xCoord, yCoord + 1, zCoord);
+    if (!worldObj.isRemote) {
+      for (SidedItemStack sidedStack : itemBuffer) {
+        TileUtils.dropItemStack(sidedStack.getStack(), worldObj, xCoord, yCoord + 1, zCoord);
+      }
     }
   }
 
@@ -95,6 +103,18 @@ public class TileItemRobin extends TileEntity implements ISidedInventory {
     }
   }
 
+  @Override
+  public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+    super.onDataPacket(net, pkt);
+    sideCount = pkt.func_148857_g().getIntArray("sideCount");
+  }
+
+  @Override
+  public Packet getDescriptionPacket() {
+    NBTTagCompound compound = new NBTTagCompound();
+    compound.setIntArray("sideCount", sideCount);
+    return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 3, compound);
+  }
 
   // ISidedInventory
 
@@ -178,5 +198,16 @@ public class TileItemRobin extends TileEntity implements ISidedInventory {
   @Override
   public boolean isItemValidForSlot(int slot, ItemStack stack) {
     return true;
+  }
+
+
+  /// IBlockOverlayText
+
+  @Override
+  public String[] getOverlayText(MovingObjectPosition mop) {
+    return new String[] {
+        StatCollector.translateToLocal("desc.ImmersiveEngineering.info.blockSide." + ForgeDirection.getOrientation(mop.sideHit)),
+        "Item count: " + sideCount[mop.sideHit]
+    };
   }
 }
