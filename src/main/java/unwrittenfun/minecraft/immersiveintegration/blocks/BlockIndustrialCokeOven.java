@@ -4,7 +4,7 @@ import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -15,10 +15,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
-import unwrittenfun.minecraft.immersiveintegration.ModInfo;
 import unwrittenfun.minecraft.immersiveintegration.client.renderers.BlockRenderIndustrialCokeOven;
 import unwrittenfun.minecraft.immersiveintegration.tiles.IMultiblockTile;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileIndustrialCokeOven;
+
+import java.util.ArrayList;
 
 public class BlockIndustrialCokeOven extends BlockContainer {
   public IIcon mapIcon;
@@ -29,12 +30,6 @@ public class BlockIndustrialCokeOven extends BlockContainer {
     setBlockTextureName(key);
     setHardness(3f);
     setStepSound(Block.soundTypeMetal);
-  }
-
-  @Override
-  public void registerBlockIcons(IIconRegister register) {
-    super.registerBlockIcons(register);
-    mapIcon = register.registerIcon(getTextureName() + "Map");
   }
 
   @Override
@@ -80,7 +75,12 @@ public class BlockIndustrialCokeOven extends BlockContainer {
       TileEntity tileEntity = world.getTileEntity(x, y, z);
       if (tileEntity instanceof IMultiblockTile) {
         IMultiblockTile multiblockTile = (IMultiblockTile) tileEntity;
+
         if (multiblockTile.isFormed()) {
+          if (multiblockTile.getReplaced() != null) {
+            world.spawnEntityInWorld(new EntityItem(world, x + .5, y + .5, z + .5, multiblockTile.getReplaced().copy()));
+          }
+
           multiblockTile.setFormed(false);
           int[] offset = multiblockTile.getOffset();
           for (int dz = -4; dz <= 0; dz++) {
@@ -124,4 +124,11 @@ public class BlockIndustrialCokeOven extends BlockContainer {
     }
     return world.getBlockMetadata(x, y, z) > 0;
   }
+
+  @Override
+  public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
+    return new ArrayList<>();
+  }
+
+
 }

@@ -20,14 +20,14 @@ public class MultiblockIndustrialCokeOven implements IMultiblock {
     for (int h = 0; h < 4; h++) {
       for (int l = 0; l < 5; l++) {
         for (int w = 0; w < 7; w++) {
-          if (l == 2 || w == 3) {
+          if ((h == 0 && (w == 0 || w == 2 || w == 4 || w == 6) && (l == 0 || l == 4)) || (h == 1 && (w == 0 || w == 6) && l == 2)) {
+            blockStructure[h][l][w] = new ItemStack(IIBlocks.steelDecoration, 1, 2);
+          } else if (w == 1 || w == 3 || w == 5) {
             blockStructure[h][l][w] = new ItemStack(IIBlocks.steelDecoration, 1, 1);
           } else {
             blockStructure[h][l][w] = new ItemStack(IIBlocks.steelDecoration, 1, 0);
           }
-          if (h == 0 && (w == 0 || w == 2 || w == 4 || w == 6) && (l == 0 || l == 4)) {
-            blockStructure[h][l][w] = new ItemStack(IIBlocks.steelDecoration, 1, 2);
-          }
+
           if (h == 1 && l == 2 && w == 3) {
             targetStructure[h][l][w][0] = new ItemStack(IIBlocks.industrialCokeOven, 1, 1);
             targetStructure[h][l][w][1] = new ItemStack(IIBlocks.industrialCokeOven, 1, 2);
@@ -111,9 +111,9 @@ public class MultiblockIndustrialCokeOven implements IMultiblock {
   @Override
   public ItemStack[] getTotalMaterials() {
     return new ItemStack[] {
-        new ItemStack(IIBlocks.steelDecoration, 88, 0),
-        new ItemStack(IIBlocks.steelDecoration, 44, 1),
-        new ItemStack(IIBlocks.steelDecoration, 8, 2)
+        new ItemStack(IIBlocks.steelDecoration, 70, 0),
+        new ItemStack(IIBlocks.steelDecoration, 60, 1),
+        new ItemStack(IIBlocks.steelDecoration, 10, 2)
     };
   }
 }
