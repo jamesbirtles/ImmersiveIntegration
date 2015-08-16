@@ -19,6 +19,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.Vec3;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -121,7 +122,7 @@ public class TileMETransformer extends TileEntity implements IGridHost, IGridBlo
 
   @Override
   public double getIdlePowerUsage() {
-    return (getBlockMetadata() & 8) == 8 ? 0 : 2;
+    return (getBlockMetadata() & 8) == 8 ? 0 : ImmersiveIntegration.cfg.meTransformerPowerDrain;
   }
 
   @Override
@@ -312,5 +313,9 @@ public class TileMETransformer extends TileEntity implements IGridHost, IGridBlo
         ImmersiveIntegration.log.error("Something went wrong connecting the fluix wire!");
       }
     }
+  }
+
+  public AxisAlignedBB getRenderBoundingBox() {
+    return AxisAlignedBB.getBoundingBox(xCoord, yCoord - 1, zCoord, xCoord + 1, yCoord + 2, zCoord + 1);
   }
 }
