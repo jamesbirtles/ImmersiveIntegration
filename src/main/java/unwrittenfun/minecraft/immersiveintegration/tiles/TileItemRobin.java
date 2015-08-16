@@ -25,6 +25,7 @@ public class TileItemRobin extends TileEntity implements ISidedInventory, IBlock
   public int currentSide = 0;
   public ArrayList<SidedItemStack> itemBuffer = new ArrayList<>();
   protected int[] sideCount = new int[6];
+  protected boolean locked;
   private int cachedSideCount = 0;
 
   @Override
@@ -78,6 +79,7 @@ public class TileItemRobin extends TileEntity implements ISidedInventory, IBlock
     compound.setIntArray("sideCount", sideCount);
     compound.setInteger("currentSide", currentSide);
     compound.setInteger("cachedSideCount", cachedSideCount);
+    compound.setBoolean("locked", locked);
 
     NBTTagList itemList = new NBTTagList();
     for (SidedItemStack sidedStack : itemBuffer) {
@@ -95,6 +97,7 @@ public class TileItemRobin extends TileEntity implements ISidedInventory, IBlock
     sideCount = compound.getIntArray("sideCount");
     currentSide = compound.getInteger("currentSide");
     cachedSideCount = compound.getInteger("cachedSideCount");
+    locked = compound.getBoolean("locked");
 
     NBTTagList itemList = compound.getTagList("items", 10);
     for (int i = 0; i < itemList.tagCount(); i++) {
@@ -107,12 +110,14 @@ public class TileItemRobin extends TileEntity implements ISidedInventory, IBlock
   public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
     super.onDataPacket(net, pkt);
     sideCount = pkt.func_148857_g().getIntArray("sideCount");
+    locked = pkt.func_148857_g().getBoolean("locked");
   }
 
   @Override
   public Packet getDescriptionPacket() {
     NBTTagCompound compound = new NBTTagCompound();
     compound.setIntArray("sideCount", sideCount);
+    compound.setBoolean("locked", locked);
     return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 3, compound);
   }
 
@@ -207,7 +212,16 @@ public class TileItemRobin extends TileEntity implements ISidedInventory, IBlock
   public String[] getOverlayText(MovingObjectPosition mop) {
     return new String[] {
         StatCollector.translateToLocal("desc.ImmersiveEngineering.info.blockSide." + ForgeDirection.getOrientation(mop.sideHit)),
-        "Item count: " + sideCount[mop.sideHit]
+        "Item count: " + sideCount[mop.sideHit],
+        locked ? "Locked" : ""
     };
+  }
+
+  public void toggleLocked() {
+    this.locked = !locked;
+  }
+
+  public boolean isLocked() {
+    return locked;
   }
 }

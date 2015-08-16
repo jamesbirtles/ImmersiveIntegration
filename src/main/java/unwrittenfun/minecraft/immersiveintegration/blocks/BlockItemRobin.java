@@ -1,5 +1,7 @@
 package unwrittenfun.minecraft.immersiveintegration.blocks;
 
+import blusunrize.immersiveengineering.common.IEContent;
+import blusunrize.immersiveengineering.common.util.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -34,9 +36,16 @@ public class BlockItemRobin extends BlockContainer {
       if (tileEntity instanceof TileItemRobin) {
         TileItemRobin itemRobin = (TileItemRobin) tileEntity;
         ItemStack held = player.getHeldItem();
-        int count = held == null ? 0 : held.stackSize;
-        itemRobin.setSideCount(side, count);
-        player.addChatComponentMessage(new ChatComponentText(StatCollector.translateToLocal("immersiveintegration.chat.itemRobin.countSet") + " " + count));
+
+        if (held != null) {
+          if (Utils.isHammer(held)) {
+            itemRobin.toggleLocked();
+            world.markBlockForUpdate(x, y, z);
+          } else if (!itemRobin.isLocked()) {
+            itemRobin.setSideCount(side, held.stackSize);
+            player.addChatComponentMessage(new ChatComponentText(StatCollector.translateToLocal("immersiveintegration.chat.itemRobin.countSet") + " " + held.stackSize));
+          }
+        }
       }
     }
     return true;
