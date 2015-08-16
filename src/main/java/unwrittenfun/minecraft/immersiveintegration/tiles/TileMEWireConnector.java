@@ -67,8 +67,8 @@ public class TileMEWireConnector extends TileWireConnector implements IGridHost,
   }
 
   @Override
-  public void writeNBT(NBTTagCompound compound) {
-    super.writeNBT(compound);
+  public void writeCustomNBT(NBTTagCompound nbt, boolean descPacket) {
+    super.writeCustomNBT(nbt, descPacket);
 
     if (theGridNode == null) {
       createAELink();

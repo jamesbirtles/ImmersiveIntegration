@@ -30,18 +30,6 @@ public class TileRedstoneWireConnector extends TileWireConnector implements IBun
   }
 
   @Override
-  public void writeToNBT(NBTTagCompound compound) {
-    super.writeToNBT(compound);
-    writeNBT(compound);
-  }
-
-  @Override
-  public void readFromNBT(NBTTagCompound compound) {
-    super.readFromNBT(compound);
-    readNBT(compound);
-  }
-
-  @Override
   public boolean canConnectCable(WireType cableType, TargetingInfo target) {
     return super.canConnectCable(cableType, target);
   }
@@ -59,13 +47,15 @@ public class TileRedstoneWireConnector extends TileWireConnector implements IBun
   }
 
   @Override
-  public void writeNBT(NBTTagCompound compound) {
+  public void writeCustomNBT(NBTTagCompound compound, boolean descPacket) {
+    super.writeCustomNBT(compound, descPacket);
     compound.setBoolean("redstoneMode", redstoneMode);
     compound.setInteger("redstoneChannel", redstoneChannel);
   }
 
   @Override
-  public void readNBT(NBTTagCompound compound) {
+  public void readCustomNBT(NBTTagCompound compound, boolean descPacket) {
+    super.readCustomNBT(compound, descPacket);
     redstoneMode = compound.getBoolean("redstoneMode");
     redstoneChannel = compound.getInteger("redstoneChannel");
   }
