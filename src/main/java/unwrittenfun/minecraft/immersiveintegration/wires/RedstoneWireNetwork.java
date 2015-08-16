@@ -70,7 +70,7 @@ public class RedstoneWireNetwork {
           }
         }
 
-        notifyOfChange(connector.getWorldObj(), connector.xCoord, connector.yCoord, connector.zCoord);
+        if (!connector.isInvalid()) notifyOfChange(connector.getWorldObj(), connector.xCoord, connector.yCoord, connector.zCoord);
       }
     }
   }
