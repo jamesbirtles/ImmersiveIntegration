@@ -4,6 +4,7 @@ item.immersiveintegration:wireCoilDense.name=致密线圈
 
 tile.immersiveintegration:meWireConnector.name=ME接线器
 tile.immersiveintegration:meDenseWireConnector.name=ME致密接线器
+tile.immersiveintegration:meTransformer.name=ME变压器
 
 
 # IE/II
@@ -104,3 +105,12 @@ immersiveintegration.config.desc.cokeOvenCreosoteMultiplier=每次处理杂酚�
 
 immersiveintegration.config.cokeOvenTimeMultiplier=工业焦炉时间乘数
 immersiveintegration.config.desc.cokeOvenTimeMultiplier=每次处理消耗时间.该值设定为0.5表示消耗时间为是焦炉的一半
+
+immersiveintegration.config.meTransformerPowerDrain=ME变压器能量消耗
+immersiveintegration.config.desc.meTransformerPowerDrain=每个ME变压器消耗多少AE/t
+
+immersiveintegration.config.meWireConnectorDrain=ME接线器能量消耗
+immersiveintegration.config.desc.meWireConnectorDrain=每个ME接线器消耗多少AE/t
+
+immersiveintegration.config.meDenseWireConnectorDrain=ME致密接线器能量消耗
+immersiveintegration.config.desc.meDenseWireConnectorDrain=每个ME致密接线器消耗多少AE/t
