@@ -90,6 +90,8 @@ immersiveintegration.chat.input=Input
 immersiveintegration.chat.output=Output
 
 immersiveintegration.chat.itemRobin.countSet=Item count set to
+immersiveintegration.chat.itemRobin.locked=Locked
+immersiveintegration.chat.itemRobin.itemCount=Item Count: %s
 
 
 # Config
