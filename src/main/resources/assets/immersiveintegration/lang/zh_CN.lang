@@ -10,9 +10,17 @@ tile.immersiveintegration:meDenseWireConnector.name=ME致密接线器
 tile.immersiveintegration:extendedPost.name=拓展木桩
 tile.immersiveintegration:steelTrapdoor.name=钢质活板门
 tile.immersiveintegration:redstoneWireConnector.name=红石接线器
-tile.immersiveintegration:industrialCokeOven.name=工业高炉
+tile.immersiveintegration:industrialCokeOven.name=工业焦炉
+
+tile.immersiveintegration:steelDecorationOvenWall.name=焦炉墙
+tile.immersiveintegration:steelDecorationOvenWallHeated.name=焦炉加热墙
+tile.immersiveintegration:steelDecorationOvenWallPort.name=焦炉接口
 
 item.immersiveintegration:iiWireCoilRedstone.name=红石线圈
+
+
+# Tooltips
+immersiveintegration.tooltip.safe=安全的装饰
 
 
 # Colors
@@ -56,8 +64,13 @@ ie.manual.entry.meWiring1=你需要接线器来连接你的线圈.福鲁伊克�
 
 ie.manual.entry.industrialCokeOven.name=工业焦炉
 ie.manual.entry.industrialCokeOven.subtext=工业革命
-ie.manual.entry.industrialCokeOven0=TODO
-
+ie.manual.entry.industrialCokeOven0=一座旧式焦炉是远远不够的,这一点在不久后将十分显著.你可以选择建造更多的焦炉..或者仅建造一座工业焦炉!
+ie.manual.entry.industrialCokeOven1=工业焦炉一次可以烧制4个焦煤.新炉子似乎更有效率,它烧制得更快,且每次会产出更多产物.给所有4个槽添加物品将会十分棘手,如果不使用些<link;itemRobin;§o§nround robin§r;0>系统的话.
+ie.manual.entry.industrialCokeOven2=你不觉得这对你来说很简单吗?
+ 
+ie.manual.entry.itemRobin.name=物品调度仓
+ie.manual.entry.itemRobin.subtext=唧唧,喳喳.
+ie.manual.entry.itemRobin0=物品调度仓会将输入的物品分配到相邻的容器中(包括传送带).拿着物品(设定好数量)右击一个面,设定这个面每周期分配的物品数量.手持工程师锤查看每个面设定的物品数量.
 
 # chat
 immersiveintegration.chat.channel=频道:
@@ -66,6 +79,8 @@ immersiveintegration.chat.channelSet=设置频道为:
 immersiveintegration.chat.modeSet=设置模式为:
 immersiveintegration.chat.input=输入
 immersiveintegration.chat.output=输出
+
+immersiveintegration.chat.itemRobin.countSet=物品数量设置为
 
 
 # Config
