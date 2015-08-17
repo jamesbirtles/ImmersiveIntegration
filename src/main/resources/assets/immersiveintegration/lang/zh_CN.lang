@@ -58,7 +58,7 @@ ie.manual.entry.redstoneWiring0=要开始,你需要一个红石线圈和至少�
 ie.manual.entry.redstoneWiring1=每个接线器可以被设定为输入或输出,以及16种频道之一.用工程师锤右击可以切换接线器的输入输出模式,用工程师锤潜行右击可以切换接线器的频道.右击可以查看接线器的模式和频道.
 ie.manual.entry.redstoneWiring2=每个频道彼此之间互相独立,这保证了多重信号可以通过一条线路传输.红石接线器会在底部输出强充能信号,在其他的面输出弱充能信号.
 
-ie.manual.entry.meWiring.name=ME接线
+ie.manual.entry.meWiring.name=ME接线技术
 ie.manual.entry.meWiring.subtext=AE2接线
 ie.manual.entry.meWiring0=有两种线缆可以搭配AE2使用.它们分别是福鲁伊克斯线圈和致密线圈. 正如你猜测的那样,福鲁伊克斯线圈能传输8个频道,致密线圈能传输32个频道.
 ie.manual.entry.meWiring1=你需要接线器来连接你的线圈.福鲁伊克斯线圈只能连接在ME接线器上,致密线圈只能连接在ME致密接线器上.<br>只有接线器的底部能与AE线缆/设备连接.
