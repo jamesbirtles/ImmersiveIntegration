@@ -8,7 +8,7 @@ import net.minecraftforge.common.config.Configuration;
 
 public class Config {
   public boolean enableAE;
-  public int fluixWireRange, denseWireRange, redstoneWireRange, meTransformerPowerDrain;
+  public int fluixWireRange, denseWireRange, redstoneWireRange, meTransformerPowerDrain, meWireConnectorDrain, meDenseWireConnectorDrain;
   public int cokeOvenDoubleChance;
   public float cokeOvenCreosoteMultiplier, cokeOvenTimeMultiplier;
 
@@ -26,6 +26,8 @@ public class Config {
     fluixWireRange = config.getInt("fluixWireRange", Configuration.CATEGORY_GENERAL, 16, 1, 64, StatCollector.translateToLocal("immersiveintegration.config.desc.fluixWireRange"), "immersiveintegration.config.fluixWireRange");
     denseWireRange = config.getInt("denseWireRange", Configuration.CATEGORY_GENERAL, 8, 1, 64, StatCollector.translateToLocal("immersiveintegration.config.desc.denseWireRange"), "immersiveintegration.config.denseWireRange");
     meTransformerPowerDrain = config.getInt("meTransformerPowerDrain", Configuration.CATEGORY_GENERAL, 24, 0, Integer.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.meTransformerPowerDrain"), "immersiveintegration.config.meTransformerPowerDrain");
+    meWireConnectorDrain = config.getInt("meWireConnectorDrain", Configuration.CATEGORY_GENERAL, 2, 0, Integer.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.meWireConnectorDrain"), "immersiveintegration.config.meWireConnectorDrain");
+    meDenseWireConnectorDrain = config.getInt("meDenseWireConnectorDrain", Configuration.CATEGORY_GENERAL, 4, 0, Integer.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.meDenseWireConnectorDrain"), "immersiveintegration.config.meDenseWireConnectorDrain");
 
 
     redstoneWireRange = config.getInt("redstoneWireRange", Configuration.CATEGORY_GENERAL, 32, 1, 64, StatCollector.translateToLocal("immersiveintegration.config.desc.redstoneWireRange"), "immersiveintegration.config.redstoneWireRange");

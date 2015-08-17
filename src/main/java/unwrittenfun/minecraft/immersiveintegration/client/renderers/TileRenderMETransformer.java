@@ -17,14 +17,15 @@ import unwrittenfun.minecraft.immersiveintegration.ModInfo;
 import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
 
 public class TileRenderMETransformer extends TileRenderIE {
-  private final ModelIIObj modelItem = new ModelIIObj("immersiveengineering:models/transformerHV.obj", IIBlocks.meTransformer);
-  private final IModelCustom model = ClientUtils.getModel("immersiveengineering:models/transformerHV.obj");
+  private final ModelIIObj modelItem = new ModelIIObj(ModInfo.MOD_ID + ":models/meTransformer.obj", IIBlocks.meTransformer);
+  private final IModelCustom model = ClientUtils.getModel(ModInfo.MOD_ID + ":models/meTransformer.obj");
+  private final ModelIIObj modelConnector = new ModelIIObj("immersiveengineering:models/connectorMV.obj", IIBlocks.meWireConnector);
 
   @Override
   public void renderDynamic(TileEntity tile, double x, double y, double z, float f) {
     int meta = tile.hasWorldObj() ? tile.getBlockMetadata() : 8;
     if ((meta & 8) == 8) {
-      ClientEventHandler.renderAllIEConnections(f);
+//      ClientEventHandler.renderAllIEConnections(f);
 
       GL11.glPushMatrix();
 
@@ -58,12 +59,15 @@ public class TileRenderMETransformer extends TileRenderIE {
 
   @Override
   public void renderStatic(TileEntity tile, Tessellator tes, Matrix4 translationMatrix, Matrix4 rotationMatrix) {
+    translationMatrix.translate(.5, .5, .5);
     if (!tile.hasWorldObj()) {
 
-      translationMatrix.translate(.5, .5, .5);
       translationMatrix.translate(0, .4, 0);
       GL11.glScaled(0.5f, 0.5f, 0.5f);
       modelItem.render(tile, tes, translationMatrix, rotationMatrix, true, false, "Base", "Connector_Right");
     }
+
+    translationMatrix.translate(0, 0.875f, 0);
+    modelConnector.render(tile, tes, translationMatrix, rotationMatrix, true, false);
   }
 }

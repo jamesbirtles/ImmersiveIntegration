@@ -7,12 +7,18 @@ import blusunrize.immersiveengineering.api.TargetingInfo;
 import blusunrize.immersiveengineering.api.energy.WireType;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
+import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
 import unwrittenfun.minecraft.immersiveintegration.wires.IIWires;
 
 import java.util.EnumSet;
 
 public class TileMEDenseWireConnector extends TileMEWireConnector {
+  @Override
+  public double getIdlePowerUsage() {
+    return ImmersiveIntegration.cfg.meDenseWireConnectorDrain;
+  }
+
   @Override
   public AECableType getCableConnectionType(ForgeDirection dir) {
     return AECableType.DENSE;

@@ -116,3 +116,9 @@ immersiveintegration.config.desc.cokeOvenTimeMultiplier=How much faster each ope
 
 immersiveintegration.config.meTransformerPowerDrain=ME Transformer Power Drain
 immersiveintegration.config.desc.meTransformerPowerDrain=How much power to drain per transformer in AE/t
+
+immersiveintegration.config.meWireConnectorDrain=ME Wire Connector Power Drain
+immersiveintegration.config.desc.meWireConnectorDrain=How much power to drain per connector in AE/t
+
+immersiveintegration.config.meDenseWireConnectorDrain=ME Dense Wire Connector Power Drain
+immersiveintegration.config.desc.meDenseWireConnectorDrain=How much power to drain per dense connector in AE/t

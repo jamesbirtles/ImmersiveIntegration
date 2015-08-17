@@ -34,15 +34,6 @@ public class TileMEWireConnector extends TileWireConnector implements IGridHost,
     if (!loaded && hasWorldObj() && !worldObj.isRemote) {
       loaded = true;
       createAELink();
-      for (ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS) {
-        TileEntity tileEntity = worldObj.getTileEntity(xCoord + direction.offsetX, yCoord + direction.offsetY, zCoord + direction.offsetZ);
-        if (tileEntity instanceof IGridHost) {
-          IGridNode node = ((IGridHost) tileEntity).getGridNode(direction);
-          if (node != null) {
-            node.updateState();
-          }
-        }
-      }
 
       for (ImmersiveNetHandler.Connection connection : ImmersiveNetHandler.INSTANCE.getConnections(worldObj, Utils.toCC(this))) {
         ChunkCoordinates opposite = connection.end;
@@ -51,8 +42,8 @@ public class TileMEWireConnector extends TileWireConnector implements IGridHost,
         }
 
         TileEntity teOpposite = worldObj.getTileEntity(opposite.posX, opposite.posY, opposite.posZ);
-        if (teOpposite instanceof TileMEWireConnector) {
-          GridNode nodeA = (GridNode) ((TileMEWireConnector) teOpposite).getGridNode(ForgeDirection.UNKNOWN);
+        if (teOpposite instanceof IGridHost) {
+          GridNode nodeA = (GridNode) ((IGridHost) teOpposite).getGridNode(ForgeDirection.UNKNOWN);
           GridNode nodeB = (GridNode) getGridNode(ForgeDirection.UNKNOWN);
           if (!nodeA.hasConnection(nodeB) && !nodeB.hasConnection(nodeA)) {
             try {
@@ -132,7 +123,7 @@ public class TileMEWireConnector extends TileWireConnector implements IGridHost,
 
   @Override
   public double getIdlePowerUsage() {
-    return 0;
+    return ImmersiveIntegration.cfg.meWireConnectorDrain;
   }
 
   @Override
@@ -167,7 +158,7 @@ public class TileMEWireConnector extends TileWireConnector implements IGridHost,
 
   @Override
   public EnumSet<ForgeDirection> getConnectableSides() {
-    return EnumSet.of(ForgeDirection.getOrientation(getBlockMetadata()));
+    return EnumSet.noneOf(ForgeDirection.class);
   }
 
   @Override
@@ -207,10 +198,10 @@ public class TileMEWireConnector extends TileWireConnector implements IGridHost,
   @Override
   public void connectTo(int x, int y, int z) {
     TileEntity tileEntity = worldObj.getTileEntity(x, y, z);
-    if (tileEntity instanceof TileMEWireConnector) {
-      TileMEWireConnector connector = (TileMEWireConnector) tileEntity;
+    if (tileEntity instanceof IGridHost) {
+      IGridHost gridHost = (IGridHost) tileEntity;
       try {
-        gridConnections.add(AEApi.instance().createGridConnection(connector.getGridNode(ForgeDirection.UNKNOWN), getGridNode(ForgeDirection.UNKNOWN)));
+        gridConnections.add(AEApi.instance().createGridConnection(gridHost.getGridNode(ForgeDirection.UNKNOWN), getGridNode(ForgeDirection.UNKNOWN)));
       } catch (FailedConnection failedConnection) {
         failedConnection.printStackTrace();
         ImmersiveIntegration.log.error("Something went wrong connecting the fluix wire!");
