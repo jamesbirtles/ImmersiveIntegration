@@ -1,31 +1,28 @@
 package unwrittenfun.minecraft.immersiveintegration.client.renderers;
 
-import blusunrize.immersiveengineering.client.ClientEventHandler;
 import blusunrize.immersiveengineering.client.ClientUtils;
 import blusunrize.immersiveengineering.client.render.TileRenderIE;
-import blusunrize.immersiveengineering.client.render.TileRenderImmersiveConnectable;
 import blusunrize.immersiveengineering.common.util.chickenbones.Matrix4;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
-import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.ModInfo;
 import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
+import unwrittenfun.minecraft.immersiveintegration.tiles.TileMEDenseTransformer;
 
 public class TileRenderMETransformer extends TileRenderIE {
   private final ModelIIObj modelItem = new ModelIIObj(ModInfo.MOD_ID + ":models/meTransformer.obj", IIBlocks.meTransformer);
   private final IModelCustom model = ClientUtils.getModel(ModInfo.MOD_ID + ":models/meTransformer.obj");
-  private final ModelIIObj modelConnector = new ModelIIObj("immersiveengineering:models/connectorMV.obj", IIBlocks.meWireConnector);
+  private final IModelCustom modelConnector = ClientUtils.getModel("immersiveengineering:models/connectorMV.obj");
+  private final IModelCustom modelDenseConnector = ClientUtils.getModel(ModInfo.MOD_ID + ":models/meDenseWireConnector.obj");
 
   @Override
   public void renderDynamic(TileEntity tile, double x, double y, double z, float f) {
     int meta = tile.hasWorldObj() ? tile.getBlockMetadata() : 8;
     if ((meta & 8) == 8) {
-//      ClientEventHandler.renderAllIEConnections(f);
+      //      ClientEventHandler.renderAllIEConnections(f);
 
       GL11.glPushMatrix();
 
@@ -51,8 +48,16 @@ public class TileRenderMETransformer extends TileRenderIE {
       OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) l1, (float) l2);
 
       ClientUtils.bindTexture(ModInfo.MOD_ID + ":textures/blocks/meTransformer.png");
-      model.renderOnly("Base", "Connector_Right");
+      model.renderAll();
 
+      GL11.glTranslated(0, 0.875f, 0);
+      if (tile instanceof TileMEDenseTransformer) {
+        ClientUtils.bindTexture(ModInfo.MOD_ID + ":textures/blocks/meDenseWireConnector.png");
+        modelDenseConnector.renderAll();
+      } else {
+        ClientUtils.bindTexture(ModInfo.MOD_ID + ":textures/blocks/meWireConnector.png");
+        modelConnector.renderAll();
+      }
       GL11.glPopMatrix();
     }
   }
@@ -64,10 +69,7 @@ public class TileRenderMETransformer extends TileRenderIE {
 
       translationMatrix.translate(0, .4, 0);
       GL11.glScaled(0.5f, 0.5f, 0.5f);
-      modelItem.render(tile, tes, translationMatrix, rotationMatrix, true, false, "Base", "Connector_Right");
+      modelItem.render(tile, tes, translationMatrix, rotationMatrix, true, false);
     }
-
-    translationMatrix.translate(0, 0.875f, 0);
-    modelConnector.render(tile, tes, translationMatrix, rotationMatrix, true, false);
   }
 }
