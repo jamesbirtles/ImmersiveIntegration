@@ -78,7 +78,7 @@ ie.manual.entry.industrialCokeOven2=You didn't think this would be easy did you?
 
 ie.manual.entry.itemRobin.name=Item Robin
 ie.manual.entry.itemRobin.subtext=Chirp, chirp.
-ie.manual.entry.itemRobin0=The item robin will take an input and share it out to adjacent inventories (including converyors). You can right click a side with the number of items you would like to go into an inventory on that side per cycle. Hold a hammer in your hand to see the current settings on each side.
+ie.manual.entry.itemRobin0=The item robin will take an input and share it out to adjacent inventories (including conveyors). You can right click a side with the number of items you would like to go into an inventory on that side per cycle. Hold a hammer in your hand to see the current settings on each side.
 
 # Chat
 
