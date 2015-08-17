@@ -5,6 +5,7 @@ import blusunrize.immersiveengineering.common.util.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -163,5 +164,10 @@ public class BlockExtendedPost extends BlockContainer {
         world.setBlockToAir(x, y, z);
       }
     }
+  }
+
+  @Override
+  public boolean isLadder(IBlockAccess world, int x, int y, int z, EntityLivingBase entity) {
+    return true;
   }
 }
