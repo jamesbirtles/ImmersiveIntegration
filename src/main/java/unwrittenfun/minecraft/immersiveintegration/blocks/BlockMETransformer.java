@@ -14,7 +14,6 @@ import net.minecraftforge.common.util.ForgeDirection;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.client.renderers.BlockRenderIIBlocks;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileMETransformer;
-import unwrittenfun.minecraft.immersiveintegration.tiles.TileMEWireConnector;
 
 public class BlockMETransformer extends BlockContainer {
   public BlockMETransformer(String key) {
@@ -63,9 +62,16 @@ public class BlockMETransformer extends BlockContainer {
   public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
     TileEntity tileEntity = world.getTileEntity(x, y, z);
     if (!world.isRemote && entity instanceof EntityPlayer && tileEntity instanceof TileMETransformer) {
-      TileMETransformer wireConnector = (TileMETransformer) tileEntity;
-      if (wireConnector.theGridNode == null) wireConnector.createAELink();
-      wireConnector.theGridNode.setPlayerID(WorldSettings.getInstance().getPlayerID(((EntityPlayer) entity).getGameProfile()));
+      TileMETransformer transformer = (TileMETransformer) tileEntity;
+      if (transformer.theGridNode == null) transformer.createAELink();
+      transformer.theGridNode.setPlayerID(WorldSettings.getInstance().getPlayerID(((EntityPlayer) entity).getGameProfile()));
+    }
+
+    TileEntity tileEntity1 = world.getTileEntity(x, y + 1, z);
+    if (!world.isRemote && entity instanceof EntityPlayer && tileEntity1 instanceof TileMETransformer) {
+      TileMETransformer transformer = (TileMETransformer) tileEntity1;
+      if (transformer.theGridNode == null) transformer.createAELink();
+      transformer.theGridNode.setPlayerID(WorldSettings.getInstance().getPlayerID(((EntityPlayer) entity).getGameProfile()));
     }
   }
 }

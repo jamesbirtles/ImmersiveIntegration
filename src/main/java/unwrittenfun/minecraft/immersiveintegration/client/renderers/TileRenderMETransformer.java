@@ -1,11 +1,11 @@
 package unwrittenfun.minecraft.immersiveintegration.client.renderers;
 
+import blusunrize.immersiveengineering.client.ClientEventHandler;
 import blusunrize.immersiveengineering.client.ClientUtils;
 import blusunrize.immersiveengineering.client.render.TileRenderIE;
 import blusunrize.immersiveengineering.common.util.chickenbones.Matrix4;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
 import unwrittenfun.minecraft.immersiveintegration.ModInfo;
 import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
@@ -19,6 +19,7 @@ public class TileRenderMETransformer extends TileRenderIE {
 
   @Override
   public void renderDynamic(TileEntity tile, double x, double y, double z, float f) {
+    if (tile.hasWorldObj()) ClientEventHandler.renderAllIEConnections(f);
   }
 
   @Override
@@ -37,10 +38,10 @@ public class TileRenderMETransformer extends TileRenderIE {
           case 3:
             break;
           case 4:
-            translationMatrix.rotate(-Math.PI/2, 0, 1, 0);
+            translationMatrix.rotate(-Math.PI / 2, 0, 1, 0);
             break;
           case 5:
-            translationMatrix.rotate(Math.PI/2, 0, 1, 0);
+            translationMatrix.rotate(Math.PI / 2, 0, 1, 0);
             break;
         }
       }
