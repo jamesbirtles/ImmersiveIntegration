@@ -117,7 +117,7 @@ public class TileRedstoneWireConnector extends TileWireConnector implements IBun
 
   @Override
   public byte[] getBundledSignal(int dir) {
-    return wireNetwork.getByteValues();
+    return isInput() ? null : wireNetwork.getByteValues();
   }
 
 

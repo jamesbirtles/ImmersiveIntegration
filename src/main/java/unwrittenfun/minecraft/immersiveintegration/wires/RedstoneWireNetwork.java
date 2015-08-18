@@ -2,6 +2,7 @@ package unwrittenfun.minecraft.immersiveintegration.wires;
 
 import blusunrize.immersiveengineering.api.energy.ImmersiveNetHandler;
 import blusunrize.immersiveengineering.common.util.Utils;
+import mrtjp.projectred.api.ProjectRedAPI;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
@@ -70,7 +71,8 @@ public class RedstoneWireNetwork {
           }
         }
 
-        if (!connector.isInvalid()) notifyOfChange(connector.getWorldObj(), connector.xCoord, connector.yCoord, connector.zCoord);
+        if (!connector.isInvalid())
+          notifyOfChange(connector.getWorldObj(), connector.xCoord, connector.yCoord, connector.zCoord);
       }
     }
   }
@@ -82,6 +84,14 @@ public class RedstoneWireNetwork {
       TileRedstoneWireConnector connector = connectorRef.get();
       if (connector != null) {
         if (connector.isInput()) {
+          for (ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS) {
+            byte[] values = ProjectRedAPI.transmissionAPI.getBundledInput(connector.getWorldObj(), connector.xCoord, connector.yCoord, connector.zCoord, direction.getOpposite().ordinal());
+            if (values != null) {
+              for (int i = 0; i < values.length; i++) {
+                channelValues[i] = (byte) Math.max((values[i] & 255) / 16f, channelValues[i]);
+              }
+            }
+          }
           channelValues[connector.redstoneChannel] = (byte) Math.max(connector.getWorldObj().getStrongestIndirectPower(connector.xCoord, connector.yCoord, connector.zCoord), channelValues[connector.redstoneChannel]);
         }
       }
