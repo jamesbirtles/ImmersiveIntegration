@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.ModInfo;
+import unwrittenfun.minecraft.immersiveintegration.items.ItemBlockAEDecoration;
 import unwrittenfun.minecraft.immersiveintegration.items.ItemBlockExtendedPost;
 import unwrittenfun.minecraft.immersiveintegration.items.ItemBlockMETransformer;
 import unwrittenfun.minecraft.immersiveintegration.items.ItemBlockSteelDecoration;
@@ -32,15 +33,21 @@ public class IIBlocks {
   public static final String[] STEEL_BLOCKS_KEYS = new String[] {
       "OvenWall", "OvenWallHeated", "OvenWallPort"
   };
+  public static final String AE_DECORATIONS_KEY = "aeDecoration";
+  public static final String[] AE_DECORATION_KEYS = new String[] {
+      "FluixCoil", "DenseCoil"
+  };
 
   public static Block meWireConnector;
   public static Block meDenseWireConnector;
+  public static Block meTransformer, meDenseTransformer;
+  public static Block aeDecoration;
+
   public static Block extendedPost;
   public static Block steelTrapdoor;
   public static Block redstoneWireConnector;
   public static BlockIndustrialCokeOven industrialCokeOven;
   public static Block itemRobin;
-  public static Block meTransformer, meDenseTransformer;
   public static Block steelDecoration;
 
   public static void registerBlocks() {
@@ -89,11 +96,13 @@ public class IIBlocks {
       meDenseWireConnector = new BlockMEDenseWireConnector(ModInfo.MOD_ID + ":" + ME_DENSE_CONNECTOR_KEY);
       meTransformer = new BlockMETransformer(ModInfo.MOD_ID + ":" + ME_TRANSFORMER_KEY);
       meDenseTransformer = new BlockMEDenseTransformer(ModInfo.MOD_ID + ":" + ME_DENSE_TRANSFORMER_KEY);
+      aeDecoration = new BlockAEDecoration(ModInfo.MOD_ID + ":" + AE_DECORATIONS_KEY);
 
       GameRegistry.registerBlock(meWireConnector, ME_WIRE_CONNECTOR_KEY);
       GameRegistry.registerBlock(meDenseWireConnector, ME_DENSE_CONNECTOR_KEY);
       GameRegistry.registerBlock(meTransformer, ItemBlockMETransformer.class, ME_TRANSFORMER_KEY);
       GameRegistry.registerBlock(meDenseTransformer, ItemBlockMETransformer.class, ME_DENSE_TRANSFORMER_KEY);
+      GameRegistry.registerBlock(aeDecoration, ItemBlockAEDecoration.class, AE_DECORATIONS_KEY);
 
       GameRegistry.registerTileEntity(TileMEWireConnector.class, ModInfo.MOD_ID + ":" + ME_WIRE_CONNECTOR_KEY + "Tile");
       GameRegistry.registerTileEntity(TileMEDenseWireConnector.class, ModInfo.MOD_ID + ":" + ME_DENSE_CONNECTOR_KEY + "Tile");

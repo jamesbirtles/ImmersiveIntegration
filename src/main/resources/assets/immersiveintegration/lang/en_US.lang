@@ -10,6 +10,8 @@ tile.immersiveintegration:meWireConnector.name=ME Wire Connector
 tile.immersiveintegration:meDenseWireConnector.name=ME Dense Wire Connector
 tile.immersiveintegration:meTransformer.name=ME Transformer
 tile.immersiveintegration:meDenseTransformer.name=ME Dense Transformer
+tile.immersiveintegration:aeDecorationFluixCoil.name=Fluix Wire Coil
+tile.immersiveintegration:aeDecorationDenseCoil.name=Dense Wire Coil
 
 
 ## IE/II
