@@ -15,7 +15,7 @@ import java.util.EnumSet;
 public class TileMEDenseTransformer extends TileMETransformer {
   @Override
   public double getIdlePowerUsage() {
-    return ImmersiveIntegration.cfg.meDenseWireConnectorDrain;
+    return (getBlockMetadata() & 8) == 8 ? 0 : ImmersiveIntegration.cfg.meDenseTransformerPowerDrain;
   }
 
   @Override
@@ -30,7 +30,7 @@ public class TileMEDenseTransformer extends TileMETransformer {
 
   @Override
   public ItemStack getMachineRepresentation() {
-    return new ItemStack(IIBlocks.meDenseTransformer);
+    return (getBlockMetadata() & 8) == 8 ? null : new ItemStack(IIBlocks.meDenseTransformer);
   }
 
   public boolean canConnectCable(WireType cableType, TargetingInfo target) {

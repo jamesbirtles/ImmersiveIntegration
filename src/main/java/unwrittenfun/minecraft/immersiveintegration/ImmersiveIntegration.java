@@ -8,6 +8,7 @@ import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.Logger;
 import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
@@ -61,6 +62,17 @@ public class ImmersiveIntegration {
   public void init(FMLInitializationEvent event) {
     if (Loader.isModLoaded("Waila")) {
       FMLInterModComms.sendMessage("Waila", "register", "unwrittenfun.minecraft.immersiveintegration.waila.WailaHandler.init");
+    }
+
+    if (Loader.isModLoaded("ForgeMicroblock")) {
+      FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(IIBlocks.steelDecoration, 1, 0));
+      FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(IIBlocks.steelDecoration, 1, 1));
+      FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(IIBlocks.steelDecoration, 1, 2));
+
+      if (cfg.enableAE) {
+        FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(IIBlocks.aeDecoration, 1, 0));
+        FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(IIBlocks.aeDecoration, 1, 1));
+      }
     }
   }
 

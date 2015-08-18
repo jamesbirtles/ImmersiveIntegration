@@ -12,7 +12,8 @@ public class Config {
   public static String CATEGORY_MINECRAFT = "minecraft";
 
   public boolean enableAE;
-  public int fluixWireRange, denseWireRange, redstoneWireRange, meTransformerPowerDrain, meWireConnectorDrain, meDenseWireConnectorDrain;
+  public int fluixWireRange, denseWireRange, redstoneWireRange, meTransformerPowerDrain, meDenseTransformerPowerDrain,
+      meWireConnectorDrain, meDenseWireConnectorDrain;
   public int cokeOvenDoubleChance;
   public float cokeOvenCreosoteMultiplier, cokeOvenTimeMultiplier;
 
@@ -29,7 +30,8 @@ public class Config {
     enableAE = enableAE && Loader.isModLoaded("appliedenergistics2");
     fluixWireRange = config.getInt("fluixWireRange", CATEGORY_AE, 24, 1, 64, StatCollector.translateToLocal("immersiveintegration.config.desc.fluixWireRange"), "immersiveintegration.config.fluixWireRange");
     denseWireRange = config.getInt("denseWireRange", CATEGORY_AE, 16, 1, 64, StatCollector.translateToLocal("immersiveintegration.config.desc.denseWireRange"), "immersiveintegration.config.denseWireRange");
-    meTransformerPowerDrain = config.getInt("meTransformerPowerDrain", CATEGORY_AE, 24, 0, Integer.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.meTransformerPowerDrain"), "immersiveintegration.config.meTransformerPowerDrain");
+    meTransformerPowerDrain = config.getInt("meTransformerPowerDrain", CATEGORY_AE, 16, 0, Integer.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.meTransformerPowerDrain"), "immersiveintegration.config.meTransformerPowerDrain");
+    meDenseTransformerPowerDrain = config.getInt("meDenseTransformerPowerDrain", CATEGORY_AE, 32, 0, Integer.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.meDenseTransformerPowerDrain"), "immersiveintegration.config.meDenseTransformerPowerDrain");
     meWireConnectorDrain = config.getInt("meWireConnectorDrain", CATEGORY_AE, 2, 0, Integer.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.meWireConnectorDrain"), "immersiveintegration.config.meWireConnectorDrain");
     meDenseWireConnectorDrain = config.getInt("meDenseWireConnectorDrain",CATEGORY_AE, 4, 0, Integer.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.meDenseWireConnectorDrain"), "immersiveintegration.config.meDenseWireConnectorDrain");
 

@@ -71,7 +71,9 @@ ie.manual.entry.redstoneWiring2=Each channel is independent of each other allowi
 ie.manual.entry.meWiring.name=ME Wiring
 ie.manual.entry.meWiring.subtext=Applied Energistics 2 Wiring
 ie.manual.entry.meWiring0=There are two types of wire coils for use with AE2. These are fluix and dense. As you may be able to guess, the Fluix Wire Coil is capable of transferring 8 channels, and the Dense Wire Coil is capable of 32 channels.
-ie.manual.entry.meWiring1=To connect your wire coils you will need wire connectors. Fluix wire coils can only connect to ME Wire Connectors, and Dense Wire Coils can only connector ME Dense Wire Connectors<br>Connectors can only connect to cables/machines on the bottom of the connector.
+ie.manual.entry.meWiring1=To connect two parts of your system together, you will need at least two transformers. One to step up the signal to transmit across the wires, and a second to step back down the signal for use with normal fluix cables.
+ie.manual.entry.meWiring2=Whilst you can connect two transformers directly to each other, you will likely want to go a longer distance. Use the wire connectors with their respective wire coil to increase the distance.
+ie.manual.entry.meWiring3=You will need to build some wire coil blocks in order to make a transformer.
 
 ie.manual.entry.industrialCokeOven.name=Industrial Coke Oven
 ie.manual.entry.industrialCokeOven.subtext=Industrial Revolution
@@ -81,7 +83,8 @@ ie.manual.entry.industrialCokeOven2=You didn't think this would be easy did you?
 
 ie.manual.entry.itemRobin.name=Item Robin
 ie.manual.entry.itemRobin.subtext=Chirp, chirp.
-ie.manual.entry.itemRobin0=The item robin will take an input and share it out to adjacent inventories (including conveyors). You can right click a side with the number of items you would like to go into an inventory on that side per cycle. Hold a hammer in your hand to see the current settings on each side.
+ie.manual.entry.itemRobin0=The item robin will take an input and share it out to adjacent inventories (including conveyors). You can right click a side with the number of items you would like to go into an inventory on that side per cycle.
+ie.manual.entry.itemRobin1=Holding a hammer in your hand will allow you to see the current settings on each side. Once you have it configured, you can right click the block with a hammer to toggle it locked.
 
 # Chat
 
@@ -128,6 +131,9 @@ immersiveintegration.config.desc.cokeOvenTimeMultiplier=How much faster each ope
 
 immersiveintegration.config.meTransformerPowerDrain=ME Transformer Power Drain
 immersiveintegration.config.desc.meTransformerPowerDrain=How much power to drain per transformer in AE/t
+
+immersiveintegration.config.meDenseTransformerPowerDrain=ME Dense Transformer Power Drain
+immersiveintegration.config.desc.meDenseTransformerPowerDrain=How much power to drain per dense transformer in AE/t
 
 immersiveintegration.config.meWireConnectorDrain=ME Wire Connector Power Drain
 immersiveintegration.config.desc.meWireConnectorDrain=How much power to drain per connector in AE/t

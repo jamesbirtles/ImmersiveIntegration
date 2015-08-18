@@ -58,13 +58,16 @@ public class ClientProxy extends CommonProxy {
         new ManualPageMultiblock(manual, "industrialCokeOven2", IIMultiblocks.industrialCokeOven)
     );
     manual.addEntry("itemRobin", "immersiveintegration",
-        new ManualPages.Crafting(manual, "itemRobin0", new ItemStack(IIBlocks.itemRobin))
+        new ManualPages.Crafting(manual, "itemRobin0", new ItemStack(IIBlocks.itemRobin)),
+        new ManualPages.Text(manual, "itemRobin1")
     );
 
     if (ImmersiveIntegration.cfg.enableAE) {
       manual.addEntry("meWiring", "immersiveintegration",
           new ManualPages.CraftingMulti(manual, "meWiring0", new ItemStack(IIItems.aeWireCoil, 1, IIItems.FLUIX_COIL_META), new ItemStack(IIItems.aeWireCoil, 1, IIItems.DENSE_COIL_META)),
-          new ManualPages.CraftingMulti(manual, "meWiring1", new ItemStack(IIBlocks.meWireConnector), new ItemStack(IIBlocks.meDenseWireConnector))
+          new ManualPages.CraftingMulti(manual, "meWiring1", new ItemStack(IIBlocks.meTransformer), new ItemStack(IIBlocks.meDenseTransformer)),
+          new ManualPages.CraftingMulti(manual, "meWiring2", new ItemStack(IIBlocks.meWireConnector), new ItemStack(IIBlocks.meDenseWireConnector)),
+          new ManualPages.CraftingMulti(manual, "meWiring3", new ItemStack(IIBlocks.aeDecoration, 1, 0), new ItemStack(IIBlocks.aeDecoration, 1, 1))
       );
     }
   }
