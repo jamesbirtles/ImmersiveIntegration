@@ -7,6 +7,10 @@ import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.config.Configuration;
 
 public class Config {
+  public static String CATEGORY_AE = "appliedenergistics2";
+  public static String CATEGORY_IE = "immersiveengineering";
+  public static String CATEGORY_MINECRAFT = "minecraft";
+
   public boolean enableAE;
   public int fluixWireRange, denseWireRange, redstoneWireRange, meTransformerPowerDrain, meWireConnectorDrain, meDenseWireConnectorDrain;
   public int cokeOvenDoubleChance;
@@ -21,20 +25,20 @@ public class Config {
   }
 
   private void readConfig() {
-    enableAE = config.getBoolean("enableAE", Configuration.CATEGORY_GENERAL, true, StatCollector.translateToLocal("immersiveintegration.config.desc.enableAE"), "immersiveintegration.config.enableAE");
+    enableAE = config.getBoolean("enableAE", CATEGORY_AE, true, StatCollector.translateToLocal("immersiveintegration.config.desc.enableAE"), "immersiveintegration.config.enableAE");
     enableAE = enableAE && Loader.isModLoaded("appliedenergistics2");
-    fluixWireRange = config.getInt("fluixWireRange", Configuration.CATEGORY_GENERAL, 16, 1, 64, StatCollector.translateToLocal("immersiveintegration.config.desc.fluixWireRange"), "immersiveintegration.config.fluixWireRange");
-    denseWireRange = config.getInt("denseWireRange", Configuration.CATEGORY_GENERAL, 8, 1, 64, StatCollector.translateToLocal("immersiveintegration.config.desc.denseWireRange"), "immersiveintegration.config.denseWireRange");
-    meTransformerPowerDrain = config.getInt("meTransformerPowerDrain", Configuration.CATEGORY_GENERAL, 24, 0, Integer.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.meTransformerPowerDrain"), "immersiveintegration.config.meTransformerPowerDrain");
-    meWireConnectorDrain = config.getInt("meWireConnectorDrain", Configuration.CATEGORY_GENERAL, 2, 0, Integer.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.meWireConnectorDrain"), "immersiveintegration.config.meWireConnectorDrain");
-    meDenseWireConnectorDrain = config.getInt("meDenseWireConnectorDrain", Configuration.CATEGORY_GENERAL, 4, 0, Integer.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.meDenseWireConnectorDrain"), "immersiveintegration.config.meDenseWireConnectorDrain");
+    fluixWireRange = config.getInt("fluixWireRange", CATEGORY_AE, 24, 1, 64, StatCollector.translateToLocal("immersiveintegration.config.desc.fluixWireRange"), "immersiveintegration.config.fluixWireRange");
+    denseWireRange = config.getInt("denseWireRange", CATEGORY_AE, 16, 1, 64, StatCollector.translateToLocal("immersiveintegration.config.desc.denseWireRange"), "immersiveintegration.config.denseWireRange");
+    meTransformerPowerDrain = config.getInt("meTransformerPowerDrain", CATEGORY_AE, 24, 0, Integer.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.meTransformerPowerDrain"), "immersiveintegration.config.meTransformerPowerDrain");
+    meWireConnectorDrain = config.getInt("meWireConnectorDrain", CATEGORY_AE, 2, 0, Integer.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.meWireConnectorDrain"), "immersiveintegration.config.meWireConnectorDrain");
+    meDenseWireConnectorDrain = config.getInt("meDenseWireConnectorDrain",CATEGORY_AE, 4, 0, Integer.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.meDenseWireConnectorDrain"), "immersiveintegration.config.meDenseWireConnectorDrain");
 
 
-    redstoneWireRange = config.getInt("redstoneWireRange", Configuration.CATEGORY_GENERAL, 32, 1, 64, StatCollector.translateToLocal("immersiveintegration.config.desc.redstoneWireRange"), "immersiveintegration.config.redstoneWireRange");
+    redstoneWireRange = config.getInt("redstoneWireRange", CATEGORY_MINECRAFT, 32, 1, 64, StatCollector.translateToLocal("immersiveintegration.config.desc.redstoneWireRange"), "immersiveintegration.config.redstoneWireRange");
 
-    cokeOvenDoubleChance = config.getInt("cokeOvenDoubleChance", Configuration.CATEGORY_GENERAL, 10, 1, Integer.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.cokeOvenDoubleChance"), "immersiveintegration.config.cokeOvenDoubleChance");
-    cokeOvenCreosoteMultiplier = config.getFloat("cokeOvenCreosoteMultiplier", Configuration.CATEGORY_GENERAL, 1.5f, 1f, Float.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.cokeOvenCreosoteMultiplier"), "immersiveintegration.config.cokeOvenCreosoteMultiplier");
-    cokeOvenTimeMultiplier = config.getFloat("cokeOvenTimeMultiplier", Configuration.CATEGORY_GENERAL, 0.5f, 0.01f, Float.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.cokeOvenTimeMultiplier"), "immersiveintegration.config.cokeOvenTimeMultiplier");
+    cokeOvenDoubleChance = config.getInt("cokeOvenDoubleChance", CATEGORY_IE, 10, 1, Integer.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.cokeOvenDoubleChance"), "immersiveintegration.config.cokeOvenDoubleChance");
+    cokeOvenCreosoteMultiplier = config.getFloat("cokeOvenCreosoteMultiplier", CATEGORY_IE, 1.5f, 1f, Float.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.cokeOvenCreosoteMultiplier"), "immersiveintegration.config.cokeOvenCreosoteMultiplier");
+    cokeOvenTimeMultiplier = config.getFloat("cokeOvenTimeMultiplier", CATEGORY_IE, 0.5f, 0.01f, Float.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.cokeOvenTimeMultiplier"), "immersiveintegration.config.cokeOvenTimeMultiplier");
 
     if (config.hasChanged()) {
       config.save();

@@ -13,10 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.ModInfo;
-import unwrittenfun.minecraft.immersiveintegration.items.ItemBlockAEDecoration;
-import unwrittenfun.minecraft.immersiveintegration.items.ItemBlockExtendedPost;
-import unwrittenfun.minecraft.immersiveintegration.items.ItemBlockMETransformer;
-import unwrittenfun.minecraft.immersiveintegration.items.ItemBlockSteelDecoration;
+import unwrittenfun.minecraft.immersiveintegration.items.*;
 import unwrittenfun.minecraft.immersiveintegration.tiles.*;
 
 public class IIBlocks {
@@ -91,6 +88,11 @@ public class IIBlocks {
       IDefinitions ae = AEApi.instance().definitions();
       GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(meWireConnector, 4), " c ", "fsf", "sfs", 'c', ae.parts().cableGlass().stack(AEColor.Transparent, 1), 'f', "dustFluix", 's', ae.blocks().skyStone().maybeBlock().get()));
       GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(meDenseWireConnector, 2), " d ", "rcr", "cgc", 'd', ae.parts().cableDense().stack(AEColor.Transparent, 1), 'r', "dustRedstone", 'c', meWireConnector, 'g', "dustGlowstone"));
+      GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(aeDecoration, 1, 0), "www", "wiw", "www", 'w', new ItemStack(IIItems.aeWireCoil, 1, 0), 'i', "ingotIron"));
+      GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(aeDecoration, 1, 1), "www", "wiw", "www", 'w', new ItemStack(IIItems.aeWireCoil, 1, 1), 'i', "ingotIron"));
+      GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(meTransformer), " w ", "ibi", "iii", 'w', meWireConnector,  'b', new ItemStack(aeDecoration, 1, 0), 'i', "ingotIron"));
+      GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(meDenseTransformer), " w ", "ibi", "iii", 'w', meDenseWireConnector,  'b', new ItemStack(aeDecoration, 1, 1), 'i', "ingotIron"));
+
     } else {
       meWireConnector = new BlockMEWireConnector(ModInfo.MOD_ID + ":" + ME_WIRE_CONNECTOR_KEY);
       meDenseWireConnector = new BlockMEDenseWireConnector(ModInfo.MOD_ID + ":" + ME_DENSE_CONNECTOR_KEY);

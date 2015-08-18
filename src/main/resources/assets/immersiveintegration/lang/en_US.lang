@@ -98,6 +98,13 @@ immersiveintegration.chat.itemRobin.itemCount=Item Count: %s
 
 
 # Config
+immersiveintegration.config.category.ae=Applied Energistics 2
+immersiveintegration.config.category.ae.tooltip=Applied Energistics 2 Additions
+immersiveintegration.config.category.ie=Immersive Integration
+immersiveintegration.config.category.ie.tooltip=Immersive Engineering Additions
+immersiveintegration.config.category.minecraft=Minecraft
+immersiveintegration.config.category.minecraft.tooltip=Minecraft Additions
+
 immersiveintegration.config.enableAE=Enable AE2 Integration
 immersiveintegration.config.desc.enableAE=Enable/disable the AE2 specific content if AE2 is installed
 
