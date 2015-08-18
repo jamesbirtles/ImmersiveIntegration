@@ -5,6 +5,9 @@ item.immersiveintegration:wireCoilDense.name=致密线圈
 tile.immersiveintegration:meWireConnector.name=ME接线器
 tile.immersiveintegration:meDenseWireConnector.name=ME致密接线器
 tile.immersiveintegration:meTransformer.name=ME变压器
+tile.immersiveintegration:meDenseTransformer.name=ME致密变压器
+tile.immersiveintegration:aeDecorationFluixCoil.name=福鲁伊克斯线圈
+tile.immersiveintegration:aeDecorationDenseCoil.name=致密线圈
 
 
 # IE/II
@@ -82,6 +85,8 @@ immersiveintegration.chat.input=输入
 immersiveintegration.chat.output=输出
 
 immersiveintegration.chat.itemRobin.countSet=物品数量设置为
+immersiveintegration.chat.itemRobin.locked=锁定
+immersiveintegration.chat.itemRobin.itemCount=物品数量:%s
 
 
 # Config
