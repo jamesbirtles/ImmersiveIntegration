@@ -84,11 +84,13 @@ public class RedstoneWireNetwork {
       TileRedstoneWireConnector connector = connectorRef.get();
       if (connector != null) {
         if (connector.isInput()) {
-          for (ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS) {
-            byte[] values = ProjectRedAPI.transmissionAPI.getBundledInput(connector.getWorldObj(), connector.xCoord, connector.yCoord, connector.zCoord, direction.getOpposite().ordinal());
-            if (values != null) {
-              for (int i = 0; i < values.length; i++) {
-                channelValues[i] = (byte) Math.max((values[i] & 255) / 16f, channelValues[i]);
+          if (ProjectRedAPI.transmissionAPI != null) {
+            for (ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS) {
+              byte[] values = ProjectRedAPI.transmissionAPI.getBundledInput(connector.getWorldObj(), connector.xCoord, connector.yCoord, connector.zCoord, direction.getOpposite().ordinal());
+              if (values != null) {
+                for (int i = 0; i < values.length; i++) {
+                  channelValues[i] = (byte) Math.max((values[i] & 255) / 16f, channelValues[i]);
+                }
               }
             }
           }
