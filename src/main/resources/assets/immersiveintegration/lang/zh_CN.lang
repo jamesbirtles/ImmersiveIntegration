@@ -4,8 +4,8 @@ item.immersiveintegration:wireCoilDense.name=致密线圈
 
 tile.immersiveintegration:meWireConnector.name=ME接线器
 tile.immersiveintegration:meDenseWireConnector.name=ME致密接线器
-tile.immersiveintegration:meTransformer.name=ME变压器
-tile.immersiveintegration:meDenseTransformer.name=ME致密变压器
+tile.immersiveintegration:meTransformer.name=ME转接器
+tile.immersiveintegration:meDenseTransformer.name=ME致密转接器
 tile.immersiveintegration:aeDecorationFluixCoil.name=福鲁伊克斯线圈
 tile.immersiveintegration:aeDecorationDenseCoil.name=致密线圈
 
@@ -64,7 +64,9 @@ ie.manual.entry.redstoneWiring2=每个频道彼此之间互相独立,这保证�
 ie.manual.entry.meWiring.name=ME接线技术
 ie.manual.entry.meWiring.subtext=AE2接线
 ie.manual.entry.meWiring0=有两种线缆可以搭配AE2使用.它们分别是福鲁伊克斯线圈和致密线圈. 正如你猜测的那样,福鲁伊克斯线圈能传输8个频道,致密线圈能传输32个频道.
-ie.manual.entry.meWiring1=你需要接线器来连接你的线圈.福鲁伊克斯线圈只能连接在ME接线器上,致密线圈只能连接在ME致密接线器上.<br>只有接线器的底部能与AE线缆/设备连接.
+ie.manual.entry.meWiring1=为了汇并两个网络,你需要至少两个转接器.一个用于将频道信号增强到能在线缆内传输,另一个用于将频道信号减弱恢复到在普通的ME线缆内使用.
+ie.manual.entry.meWiring2=虽然可以直接将两个转接器彼此相连,但你可能会更希望线缆连得远些.使用接线器及相配套的线圈增大传输距离.
+ie.manual.entry.meWiring3=要制作转接器你将需要制作一些线圈块.
 
 ie.manual.entry.industrialCokeOven.name=工业焦炉
 ie.manual.entry.industrialCokeOven.subtext=工业革命
@@ -74,7 +76,8 @@ ie.manual.entry.industrialCokeOven2=你不觉得这对你来说很简单吗?
  
 ie.manual.entry.itemRobin.name=物品调度仓
 ie.manual.entry.itemRobin.subtext=唧唧,喳喳.
-ie.manual.entry.itemRobin0=物品调度仓会将输入的物品分配到相邻的容器中(包括传送带).拿着物品(设定好数量)右击一个面,设定这个面每周期分配的物品数量.手持工程师锤查看每个面设定的物品数量.
+ie.manual.entry.itemRobin0=物品调度仓会将输入的物品分配到相邻的容器中(包括传送带).拿着物品(设定好数量)右击一个面,设定这个面每周期分配的物品数量.
+ie.manual.entry.itemRobin1=手持工程师锤查看每个面设定的物品数量.当你设定好之后,你可以用锤子右击锁定它.
 
 # chat
 immersiveintegration.chat.channel=频道:
@@ -111,8 +114,11 @@ immersiveintegration.config.desc.cokeOvenCreosoteMultiplier=每次处理杂酚�
 immersiveintegration.config.cokeOvenTimeMultiplier=工业焦炉时间乘数
 immersiveintegration.config.desc.cokeOvenTimeMultiplier=每次处理消耗时间.该值设定为0.5表示消耗时间为是焦炉的一半
 
-immersiveintegration.config.meTransformerPowerDrain=ME变压器能量消耗
-immersiveintegration.config.desc.meTransformerPowerDrain=每个ME变压器消耗多少AE/t
+immersiveintegration.config.meTransformerPowerDrain=ME转接器能量消耗
+immersiveintegration.config.desc.meTransformerPowerDrain=每个ME转接器消耗多少AE/t
+
+immersiveintegration.config.meDenseTransformerPowerDrain=ME致密转接器能量消耗
+immersiveintegration.config.desc.meDenseTransformerPowerDrain=每个ME致密转接器消耗多少AE/t
 
 immersiveintegration.config.meWireConnectorDrain=ME接线器能量消耗
 immersiveintegration.config.desc.meWireConnectorDrain=每个ME接线器消耗多少AE/t
