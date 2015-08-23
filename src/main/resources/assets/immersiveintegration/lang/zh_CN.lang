@@ -65,7 +65,7 @@ ie.manual.entry.meWiring.name=ME接线技术
 ie.manual.entry.meWiring.subtext=AE2接线
 ie.manual.entry.meWiring0=有两种线缆可以搭配AE2使用.它们分别是福鲁伊克斯线圈和致密线圈. 正如你猜测的那样,福鲁伊克斯线圈能传输8个频道,致密线圈能传输32个频道.
 ie.manual.entry.meWiring1=为了汇并两个网络,你需要至少两个转接器.一个用于将频道信号增强到能在线缆内传输,另一个用于将频道信号减弱恢复到在普通的ME线缆内使用.
-ie.manual.entry.meWiring2=虽然你可以直接将两个转接器彼此相连,但你可能更希望线缆连得远些.使用线缆接线器及相配套的线圈增大传输距离.
+ie.manual.entry.meWiring2=虽然可以直接将两个转接器彼此相连,但你可能会更希望线缆连得远些.使用接线器及相配套的线圈增大传输距离.
 ie.manual.entry.meWiring3=要制作转接器你将需要制作一些线圈块.
 
 ie.manual.entry.industrialCokeOven.name=工业焦炉
