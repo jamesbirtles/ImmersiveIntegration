@@ -29,10 +29,10 @@ public class TileRenderIndustrialCokeOven extends TileEntitySpecialRenderer {
         GL11.glTranslated(-1, 0, 0);
       }
 
-            int l = tile.getWorldObj().getLightBrightnessForSkyBlocks(tile.xCoord, tile.yCoord + 3000, tile.zCoord, 0);
-            int l1 = l % 65536;
-            int l2 = l / 65536;
-            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) l1, (float) l2);
+//            int l = tile.getWorldObj().getLightBrightnessForSkyBlocks(tile.xCoord, tile.yCoord + 3000, tile.zCoord, 0);
+//            int l1 = l % 65536;
+//            int l2 = l / 65536;
+//            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) l1, (float) l2);
 
 
       Matrix4 translationMatrix = new Matrix4();
@@ -46,7 +46,7 @@ public class TileRenderIndustrialCokeOven extends TileEntitySpecialRenderer {
       GL11.glColor4f(1, 1, 1, 1);
       ClientUtils.bindTexture(ModInfo.MOD_ID + ":textures/blocks/cokeOven.png");
       Tessellator.instance.startDrawingQuads();
-      ClientUtils.renderStaticWavefrontModel(tile, model, Tessellator.instance, translationMatrix, rotationMatrix, false, false);
+      ClientUtils.renderStaticWavefrontModel(tile, model, Tessellator.instance, translationMatrix, rotationMatrix, 0, false);
       Tessellator.instance.draw();
 
       IIcon lava = Blocks.lava.getIcon(0, 0);

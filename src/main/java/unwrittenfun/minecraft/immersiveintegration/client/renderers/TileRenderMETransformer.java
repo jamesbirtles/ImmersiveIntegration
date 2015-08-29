@@ -47,16 +47,16 @@ public class TileRenderMETransformer extends TileRenderIE {
       }
 
       if (tile instanceof TileMEDenseTransformer) {
-        modelItemDense.render(tile, tes, translationMatrix, rotationMatrix, true, false);
+        modelItemDense.render(tile, tes, translationMatrix, rotationMatrix, 0, false);
       } else {
-        modelItem.render(tile, tes, translationMatrix, rotationMatrix, true, false);
+        modelItem.render(tile, tes, translationMatrix, rotationMatrix, 0, false);
       }
 
       translationMatrix.translate(0, 0.875, 0);
       if (tile instanceof TileMEDenseTransformer) {
-        modelItemDenseConnector.render(tile, tes, translationMatrix, rotationMatrix, true, false);
+        modelItemDenseConnector.render(tile, tes, translationMatrix, rotationMatrix, 0, false);
       } else {
-        modelItemConnector.render(tile, tes, translationMatrix, rotationMatrix, true, false);
+        modelItemConnector.render(tile, tes, translationMatrix, rotationMatrix, 0, false);
       }
     }
   }

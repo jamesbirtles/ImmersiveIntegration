@@ -55,17 +55,19 @@ public class RedstoneWireNetwork {
       if (connector != null) {
         ChunkCoordinates conCC = Utils.toCC(connector);
         List<ImmersiveNetHandler.Connection> connections = ImmersiveNetHandler.INSTANCE.getConnections(connector.getWorldObj(), conCC);
-        for (ImmersiveNetHandler.Connection connection : connections) {
-          ChunkCoordinates node = connection.start;
-          if (node.equals(conCC)) {
-            node = connection.end;
-          }
-          if (!node.equals(removedCC)) {
-            TileEntity tileEntity = connector.getWorldObj().getTileEntity(node.posX, node.posY, node.posZ);
-            if (tileEntity instanceof TileRedstoneWireConnector) {
-              TileRedstoneWireConnector wireConnector = (TileRedstoneWireConnector) tileEntity;
-              if (connector.wireNetwork != wireConnector.wireNetwork) {
-                connector.wireNetwork.mergeNetwork(wireConnector.wireNetwork);
+        if (connections != null) {
+          for (ImmersiveNetHandler.Connection connection : connections) {
+            ChunkCoordinates node = connection.start;
+            if (node.equals(conCC)) {
+              node = connection.end;
+            }
+            if (!node.equals(removedCC)) {
+              TileEntity tileEntity = connector.getWorldObj().getTileEntity(node.posX, node.posY, node.posZ);
+              if (tileEntity instanceof TileRedstoneWireConnector) {
+                TileRedstoneWireConnector wireConnector = (TileRedstoneWireConnector) tileEntity;
+                if (connector.wireNetwork != wireConnector.wireNetwork) {
+                  connector.wireNetwork.mergeNetwork(wireConnector.wireNetwork);
+                }
               }
             }
           }

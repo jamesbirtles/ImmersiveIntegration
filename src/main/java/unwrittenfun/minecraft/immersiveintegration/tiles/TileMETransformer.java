@@ -8,17 +8,12 @@ import appeng.api.util.AEColor;
 import appeng.api.util.DimensionalCoord;
 import appeng.me.GridNode;
 import blusunrize.immersiveengineering.api.TargetingInfo;
-import blusunrize.immersiveengineering.api.energy.IImmersiveConnectable;
 import blusunrize.immersiveengineering.api.energy.ImmersiveNetHandler;
 import blusunrize.immersiveengineering.api.energy.WireType;
 import blusunrize.immersiveengineering.common.blocks.TileEntityImmersiveConnectable;
 import blusunrize.immersiveengineering.common.util.Utils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChunkCoordinates;
@@ -63,21 +58,24 @@ public class TileMETransformer extends TileEntityImmersiveConnectable implements
           }
         }
       } else {
-        for (ImmersiveNetHandler.Connection connection : ImmersiveNetHandler.INSTANCE.getConnections(worldObj, Utils.toCC(this))) {
-          ChunkCoordinates opposite = connection.end;
-          if (connection.end.equals(Utils.toCC(this))) {
-            opposite = connection.start;
-          }
+        List<ImmersiveNetHandler.Connection> connections = ImmersiveNetHandler.INSTANCE.getConnections(worldObj, Utils.toCC(this));
+        if (connections != null) {
+          for (ImmersiveNetHandler.Connection connection : connections) {
+            ChunkCoordinates opposite = connection.end;
+            if (connection.end.equals(Utils.toCC(this))) {
+              opposite = connection.start;
+            }
 
-          TileEntity teOpposite = worldObj.getTileEntity(opposite.posX, opposite.posY, opposite.posZ);
-          if (teOpposite instanceof IGridHost) {
-            GridNode nodeA = (GridNode) ((IGridHost) teOpposite).getGridNode(ForgeDirection.UNKNOWN);
-            GridNode nodeB = (GridNode) getGridNode(ForgeDirection.UNKNOWN);
-            if (!nodeA.hasConnection(nodeB) && !nodeB.hasConnection(nodeA)) {
-              try {
-                gridConnections.add(AEApi.instance().createGridConnection(nodeA, nodeB));
-              } catch (FailedConnection failedConnection) {
-                failedConnection.printStackTrace();
+            TileEntity teOpposite = worldObj.getTileEntity(opposite.posX, opposite.posY, opposite.posZ);
+            if (teOpposite instanceof IGridHost) {
+              GridNode nodeA = (GridNode) ((IGridHost) teOpposite).getGridNode(ForgeDirection.UNKNOWN);
+              GridNode nodeB = (GridNode) getGridNode(ForgeDirection.UNKNOWN);
+              if (!nodeA.hasConnection(nodeB) && !nodeB.hasConnection(nodeA)) {
+                try {
+                  gridConnections.add(AEApi.instance().createGridConnection(nodeA, nodeB));
+                } catch (FailedConnection failedConnection) {
+                  failedConnection.printStackTrace();
+                }
               }
             }
           }

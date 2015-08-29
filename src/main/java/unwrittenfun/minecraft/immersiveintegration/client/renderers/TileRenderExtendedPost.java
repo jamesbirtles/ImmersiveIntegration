@@ -39,7 +39,7 @@ public class TileRenderExtendedPost extends TileRenderIE {
     translationMatrix.translate(.5, 0, .5);
     if (rotate) rotationMatrix.rotate(Math.toRadians(-90), 0.0, 1.0, 0.0);
 
-    model.render(tile, tes, translationMatrix, rotationMatrix, true, false, parts.toArray(new String[parts.size()]));
+    model.render(tile, tes, translationMatrix, rotationMatrix, 0, false, parts.toArray(new String[parts.size()]));
   }
 
   public boolean handleArms(TileEntity arm, int checkType, float rotate, ArrayList<String> parts) {

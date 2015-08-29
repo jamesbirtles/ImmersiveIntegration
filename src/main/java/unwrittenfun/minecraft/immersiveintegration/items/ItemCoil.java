@@ -113,8 +113,11 @@ public class ItemCoil extends Item implements IWireCoil {
           IImmersiveConnectable nodeLink = (IImmersiveConnectable) world.getTileEntity(pos[1], pos[2], pos[3]);
           boolean connectionExists = false;
           if (nodeHere != null && nodeLink != null) {
-            for (ImmersiveNetHandler.Connection con : ImmersiveNetHandler.INSTANCE.getConnections(world, Utils.toCC(nodeHere))) {
-              if (con.end.equals(Utils.toCC(nodeLink))) connectionExists = true;
+            List<ImmersiveNetHandler.Connection> connections = ImmersiveNetHandler.INSTANCE.getConnections(world, Utils.toCC(nodeHere));
+            if (connections != null) {
+              for (ImmersiveNetHandler.Connection con : connections) {
+                if (con.end.equals(Utils.toCC(nodeLink))) connectionExists = true;
+              }
             }
           }
           if (connectionExists) player.addChatMessage(new ChatComponentTranslation(Lib.CHAT_WARN + "connectionExists"));

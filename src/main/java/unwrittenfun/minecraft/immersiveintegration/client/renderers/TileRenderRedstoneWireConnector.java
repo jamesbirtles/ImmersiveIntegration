@@ -99,12 +99,12 @@ public class TileRenderRedstoneWireConnector extends TileRenderImmersiveConnecta
 
     if (tile.hasWorldObj()) {
       if (tile instanceof TileRedstoneWireConnector && ((TileRedstoneWireConnector) tile).isInput()) {
-        modelInput.render(tile, tes, translationMatrix, rotationMatrix, true, false, "connectorMV");
+        modelInput.render(tile, tes, translationMatrix, rotationMatrix, 0, false, "connectorMV");
       } else {
-        modelOutput.render(tile, tes, translationMatrix, rotationMatrix, true, false, "connectorMV");
+        modelOutput.render(tile, tes, translationMatrix, rotationMatrix, 0, false, "connectorMV");
       }
     } else {
-      modelOutput.render(tile, tes, translationMatrix, rotationMatrix, true, false);
+      modelOutput.render(tile, tes, translationMatrix, rotationMatrix, 0, false);
     }
   }
 }
