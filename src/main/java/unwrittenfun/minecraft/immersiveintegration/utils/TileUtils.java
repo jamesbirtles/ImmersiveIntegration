@@ -105,7 +105,7 @@ public class TileUtils {
         }
       }
     } else {
-      for (int slot = 0; slot <= inventory.getSizeInventory(); slot++) {
+      for (int slot = 0; slot < inventory.getSizeInventory(); slot++) {
         if (inventory.isItemValidForSlot(slot, stack)) {
           stack.stackSize = addStack(inventory, stack, slot, false);
           if (stack.stackSize <= 0) {
