@@ -75,9 +75,9 @@ public class IIBlocks {
     GameRegistry.addRecipe(new ItemStack(steelTrapdoor, 2), "sss", "sss", 's', new ItemStack(IEContent.blockMetalDecoration, 1, BlockMetalDecoration.META_scaffolding));
     GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(redstoneWireConnector, 8), "beb", " r ", "beb", 'b', "blockRedstone", 'e', "ingotElectrum", 'r', "dustRedstone"));
 
-    GameRegistry.addRecipe(new ItemStack(steelDecoration, 1, 0), "sbs", "sbs", "sbs", 's', new ItemStack(IEContent.itemMaterial, 1, 12), 'b', Items.bucket);
-    GameRegistry.addRecipe(new ItemStack(steelDecoration, 1, 1), "sbs", "sbs", "sbs", 's', new ItemStack(IEContent.itemMaterial, 1, 12), 'b', Items.lava_bucket);
-    GameRegistry.addRecipe(new ItemStack(steelDecoration, 1, 2), "sbs", "scs", "sbs", 's', new ItemStack(IEContent.itemMaterial, 1, 12), 'b', Items.bucket, 'c', new ItemStack(IEContent.blockMetalDevice, 1, BlockMetalDevices.META_conveyorBelt));
+    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(steelDecoration, 8, 0), "ibi", "sbs", "ibi", 's', new ItemStack(IEContent.itemMaterial, 1, 12), 'b', Items.bucket, 'i', "ingotIron"));
+    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(steelDecoration, 8, 1), "ibi", "sbs", "ibi", 's', new ItemStack(IEContent.itemMaterial, 1, 12), 'b', Items.lava_bucket, 'i', "ingotIron"));
+    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(steelDecoration, 4, 2), "ibi", "isi", "ibi", 's', new ItemStack(IEContent.itemMaterial, 1, 12), 'b', Items.bucket, 'i', "ingotIron"));
     GameRegistry.addRecipe(new ShapedOreRecipe(itemRobin, " r ", "scs", " r ", 's', new ItemStack(IEContent.itemMaterial, 1, 12), 'r', "dustRedstone", 'c', new ItemStack(IEContent.blockWoodenDevice, 1, 4)));
 
     if (ImmersiveIntegration.cfg.enableAE) registerAE2(true);

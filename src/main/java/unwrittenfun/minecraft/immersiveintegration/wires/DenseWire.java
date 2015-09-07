@@ -27,6 +27,6 @@ public class DenseWire extends FluixWire {
 
   @Override
   public double getSlack() {
-    return 1.03;
+    return 1.008;
   }
 }
