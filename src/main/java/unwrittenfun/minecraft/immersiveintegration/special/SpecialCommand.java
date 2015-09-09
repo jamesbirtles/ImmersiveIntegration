@@ -41,7 +41,8 @@ public class SpecialCommand implements ICommand {
       if (typesList.contains(args[0])) {
         SpecialRenderType renderType = SpecialRenderType.valueOf(args[0].toUpperCase());
         renderType.toggle(player);
-        if (!player.worldObj.isRemote) Special.network.wrapper.sendToAll(new MessageRenderType(player.getEntityData().getIntArray("IIRenderTypes"), player.getCommandSenderName()));
+        if (!player.worldObj.isRemote)
+          Special.network.wrapper.sendToAll(new MessageRenderType(player.getEntityData().getIntArray("IIRenderTypes"), player.getCommandSenderName()));
         sender.addChatMessage(new ChatComponentText("Toggled " + renderType.friendlyName));
       } else {
         sender.addChatMessage(new ChatComponentText(args[0] + " is not a valid special type."));

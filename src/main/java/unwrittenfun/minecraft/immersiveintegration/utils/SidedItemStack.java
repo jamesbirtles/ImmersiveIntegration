@@ -8,10 +8,6 @@ public class SidedItemStack {
   private ItemStack stack;
   private ForgeDirection side;
 
-  public static SidedItemStack loadFromNBT(NBTTagCompound compound) {
-    return new SidedItemStack(ItemStack.loadItemStackFromNBT(compound), compound.getInteger("side"));
-  }
-
   public SidedItemStack(ItemStack stack, ForgeDirection side) {
     this.stack = stack;
     this.side = side;
@@ -19,6 +15,10 @@ public class SidedItemStack {
 
   public SidedItemStack(ItemStack stack, int side) {
     this(stack, ForgeDirection.getOrientation(side));
+  }
+
+  public static SidedItemStack loadFromNBT(NBTTagCompound compound) {
+    return new SidedItemStack(ItemStack.loadItemStackFromNBT(compound), compound.getInteger("side"));
   }
 
   public ItemStack getStack() {

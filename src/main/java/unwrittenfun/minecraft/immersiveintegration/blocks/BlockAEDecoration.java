@@ -12,6 +12,8 @@ import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import java.util.List;
 
 public class BlockAEDecoration extends Block {
+  public IIcon[] icons;
+
   public BlockAEDecoration(String key) {
     super(Material.iron);
     setBlockName(key);
@@ -33,8 +35,6 @@ public class BlockAEDecoration extends Block {
       list.add(new ItemStack(item, 1, i));
     }
   }
-
-  public IIcon[] icons;
 
   @Override
   public void registerBlockIcons(IIconRegister register) {

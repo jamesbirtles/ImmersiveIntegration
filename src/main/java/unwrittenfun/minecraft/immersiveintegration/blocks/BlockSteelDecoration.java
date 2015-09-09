@@ -13,6 +13,7 @@ import java.util.List;
 
 public class BlockSteelDecoration extends Block {
   private final String[] keys;
+  public IIcon[] icons;
 
   public BlockSteelDecoration(String key, String[] keys) {
     super(Material.iron);
@@ -36,8 +37,6 @@ public class BlockSteelDecoration extends Block {
       list.add(new ItemStack(item, 1, i));
     }
   }
-
-  public IIcon[] icons;
 
   @Override
   public void registerBlockIcons(IIconRegister register) {

@@ -35,7 +35,7 @@ public class TileRenderRedstoneWireConnector extends TileRenderImmersiveConnecta
     if (tile instanceof TileRedstoneWireConnector) {
       GL11.glPushMatrix();
 
-      int hex = ItemDye.field_150922_c[15-((TileRedstoneWireConnector)tile).redstoneChannel];
+      int hex = ItemDye.field_150922_c[15 - ((TileRedstoneWireConnector) tile).redstoneChannel];
       int r = (hex & 0xFF0000) >> 16;
       int g = (hex & 0xFF00) >> 8;
       int b = (hex & 0xFF);

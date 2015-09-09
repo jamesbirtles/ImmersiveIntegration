@@ -15,11 +15,11 @@ public class ItemBlockExtendedPost extends ItemBlock {
 
   @Override
   public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata) {
-    if (!player.canPlayerEdit(x, y + 1, z, side, stack) || !world.getBlock(x, y + 1, z).isReplaceable(world, x, y, z)){
+    if (!player.canPlayerEdit(x, y + 1, z, side, stack) || !world.getBlock(x, y + 1, z).isReplaceable(world, x, y, z)) {
       return false;
     }
 
-    if (!(world.getBlock(x, y - 1, z) == IEContent.blockWoodenDevice && world.getBlockMetadata(x, y-1, z) == 0) && world.getBlock(x, y - 1, z) != IIBlocks.extendedPost){
+    if (!(world.getBlock(x, y - 1, z) == IEContent.blockWoodenDevice && world.getBlockMetadata(x, y - 1, z) == 0) && world.getBlock(x, y - 1, z) != IIBlocks.extendedPost) {
       return false;
     }
 

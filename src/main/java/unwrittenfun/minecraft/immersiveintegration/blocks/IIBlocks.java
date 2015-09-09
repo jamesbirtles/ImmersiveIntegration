@@ -5,7 +5,6 @@ import appeng.api.definitions.IDefinitions;
 import appeng.api.util.AEColor;
 import blusunrize.immersiveengineering.common.IEContent;
 import blusunrize.immersiveengineering.common.blocks.metal.BlockMetalDecoration;
-import blusunrize.immersiveengineering.common.blocks.metal.BlockMetalDevices;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
@@ -90,8 +89,8 @@ public class IIBlocks {
       GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(meDenseWireConnector, 2), " d ", "rcr", "cgc", 'd', ae.parts().cableDense().stack(AEColor.Transparent, 1), 'r', "dustRedstone", 'c', meWireConnector, 'g', "dustGlowstone"));
       GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(aeDecoration, 1, 0), "www", "wiw", "www", 'w', new ItemStack(IIItems.aeWireCoil, 1, 0), 'i', "ingotIron"));
       GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(aeDecoration, 1, 1), "www", "wiw", "www", 'w', new ItemStack(IIItems.aeWireCoil, 1, 1), 'i', "ingotIron"));
-      GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(meTransformer), " w ", "ibi", "iii", 'w', meWireConnector,  'b', new ItemStack(aeDecoration, 1, 0), 'i', "ingotIron"));
-      GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(meDenseTransformer), " w ", "ibi", "iii", 'w', meDenseWireConnector,  'b', new ItemStack(aeDecoration, 1, 1), 'i', "ingotIron"));
+      GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(meTransformer), " w ", "ibi", "iii", 'w', meWireConnector, 'b', new ItemStack(aeDecoration, 1, 0), 'i', "ingotIron"));
+      GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(meDenseTransformer), " w ", "ibi", "iii", 'w', meDenseWireConnector, 'b', new ItemStack(aeDecoration, 1, 1), 'i', "ingotIron"));
 
     } else {
       meWireConnector = new BlockMEWireConnector(ModInfo.MOD_ID + ":" + ME_WIRE_CONNECTOR_KEY);

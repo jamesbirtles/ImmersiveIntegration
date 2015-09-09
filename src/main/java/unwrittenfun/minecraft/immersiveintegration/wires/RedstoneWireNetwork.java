@@ -2,12 +2,14 @@ package unwrittenfun.minecraft.immersiveintegration.wires;
 
 import blusunrize.immersiveengineering.api.energy.ImmersiveNetHandler;
 import blusunrize.immersiveengineering.common.util.Utils;
+import cpw.mods.fml.common.Loader;
 import mrtjp.projectred.api.ProjectRedAPI;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
+import unwrittenfun.minecraft.immersiveintegration.compat.CCCompat;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileRedstoneWireConnector;
 
 import java.lang.ref.WeakReference;
@@ -94,6 +96,7 @@ public class RedstoneWireNetwork {
               }
             }
           }
+          if (Loader.isModLoaded("ComputerCraft")) CCCompat.updateRedstoneValues(this, connector);
           channelValues[connector.redstoneChannel] = (byte) Math.max(connector.getWorldObj().getStrongestIndirectPower(connector.xCoord, connector.yCoord, connector.zCoord), channelValues[connector.redstoneChannel]);
         }
       }

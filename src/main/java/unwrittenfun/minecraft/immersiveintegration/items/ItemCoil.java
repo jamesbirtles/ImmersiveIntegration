@@ -20,7 +20,6 @@ import net.minecraft.util.*;
 import net.minecraft.world.World;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.tiles.IWireConnector;
-import unwrittenfun.minecraft.immersiveintegration.tiles.TileWireConnector;
 
 import java.util.List;
 

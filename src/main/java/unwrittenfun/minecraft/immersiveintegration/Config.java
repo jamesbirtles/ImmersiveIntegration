@@ -33,7 +33,7 @@ public class Config {
     meTransformerPowerDrain = config.getInt("meTransformerPowerDrain", CATEGORY_AE, 16, 0, Integer.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.meTransformerPowerDrain"), "immersiveintegration.config.meTransformerPowerDrain");
     meDenseTransformerPowerDrain = config.getInt("meDenseTransformerPowerDrain", CATEGORY_AE, 32, 0, Integer.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.meDenseTransformerPowerDrain"), "immersiveintegration.config.meDenseTransformerPowerDrain");
     meWireConnectorDrain = config.getInt("meWireConnectorDrain", CATEGORY_AE, 2, 0, Integer.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.meWireConnectorDrain"), "immersiveintegration.config.meWireConnectorDrain");
-    meDenseWireConnectorDrain = config.getInt("meDenseWireConnectorDrain",CATEGORY_AE, 4, 0, Integer.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.meDenseWireConnectorDrain"), "immersiveintegration.config.meDenseWireConnectorDrain");
+    meDenseWireConnectorDrain = config.getInt("meDenseWireConnectorDrain", CATEGORY_AE, 4, 0, Integer.MAX_VALUE, StatCollector.translateToLocal("immersiveintegration.config.desc.meDenseWireConnectorDrain"), "immersiveintegration.config.meDenseWireConnectorDrain");
 
 
     redstoneWireRange = config.getInt("redstoneWireRange", CATEGORY_MINECRAFT, 32, 1, 64, StatCollector.translateToLocal("immersiveintegration.config.desc.redstoneWireRange"), "immersiveintegration.config.redstoneWireRange");
