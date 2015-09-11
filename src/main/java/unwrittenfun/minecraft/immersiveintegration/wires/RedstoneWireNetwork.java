@@ -16,6 +16,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 public class RedstoneWireNetwork {
   public byte[] channelValues = new byte[16];
@@ -56,7 +57,7 @@ public class RedstoneWireNetwork {
       TileRedstoneWireConnector connector = connectorRef.get();
       if (connector != null) {
         ChunkCoordinates conCC = Utils.toCC(connector);
-        List<ImmersiveNetHandler.Connection> connections = ImmersiveNetHandler.INSTANCE.getConnections(connector.getWorldObj(), conCC);
+        ConcurrentSkipListSet<ImmersiveNetHandler.Connection> connections = ImmersiveNetHandler.INSTANCE.getConnections(connector.getWorldObj(), conCC);
         if (connections != null) {
           for (ImmersiveNetHandler.Connection connection : connections) {
             ChunkCoordinates node = connection.start;

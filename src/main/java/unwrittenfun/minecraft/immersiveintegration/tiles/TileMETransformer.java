@@ -8,6 +8,7 @@ import appeng.api.util.AEColor;
 import appeng.api.util.DimensionalCoord;
 import appeng.me.GridNode;
 import blusunrize.immersiveengineering.api.TargetingInfo;
+import blusunrize.immersiveengineering.api.energy.IImmersiveConnectable;
 import blusunrize.immersiveengineering.api.energy.ImmersiveNetHandler;
 import blusunrize.immersiveengineering.api.energy.WireType;
 import blusunrize.immersiveengineering.common.blocks.TileEntityImmersiveConnectable;
@@ -25,6 +26,8 @@ import unwrittenfun.minecraft.immersiveintegration.wires.IIWires;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.List;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 public class TileMETransformer extends TileEntityImmersiveConnectable implements IGridHost, IGridBlock, IWireConnector {
   public IGrid theGrid;
@@ -57,7 +60,7 @@ public class TileMETransformer extends TileEntityImmersiveConnectable implements
           }
         }
       } else {
-        List<ImmersiveNetHandler.Connection> connections = ImmersiveNetHandler.INSTANCE.getConnections(worldObj, Utils.toCC(this));
+        ConcurrentSkipListSet<ImmersiveNetHandler.Connection> connections = ImmersiveNetHandler.INSTANCE.getConnections(worldObj, Utils.toCC(this));
         if (connections != null) {
           for (ImmersiveNetHandler.Connection connection : connections) {
             ChunkCoordinates opposite = connection.end;
@@ -229,7 +232,7 @@ public class TileMETransformer extends TileEntityImmersiveConnectable implements
   }
 
   @Override
-  public Vec3 getRaytraceOffset() {
+  public Vec3 getRaytraceOffset(IImmersiveConnectable link) {
     return Vec3.createVectorHelper(0.5, 1.5, .5);
   }
 

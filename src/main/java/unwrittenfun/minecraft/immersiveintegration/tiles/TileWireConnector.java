@@ -1,6 +1,7 @@
 package unwrittenfun.minecraft.immersiveintegration.tiles;
 
 import blusunrize.immersiveengineering.api.TargetingInfo;
+import blusunrize.immersiveengineering.api.energy.IImmersiveConnectable;
 import blusunrize.immersiveengineering.api.energy.ImmersiveNetHandler;
 import blusunrize.immersiveengineering.api.energy.WireType;
 import blusunrize.immersiveengineering.common.blocks.TileEntityImmersiveConnectable;
@@ -27,7 +28,7 @@ public abstract class TileWireConnector extends TileEntityImmersiveConnectable i
   }
 
   @Override
-  public Vec3 getRaytraceOffset() {
+  public Vec3 getRaytraceOffset(IImmersiveConnectable link) {
     ForgeDirection fd = ForgeDirection.getOrientation(getBlockMetadata()).getOpposite();
     return Vec3.createVectorHelper(.5 + .5 * fd.offsetX, .5 + .5 * fd.offsetY, .5 + .5 * fd.offsetZ);
   }

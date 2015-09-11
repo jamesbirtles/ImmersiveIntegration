@@ -5,6 +5,7 @@ import blusunrize.immersiveengineering.api.energy.ImmersiveNetHandler;
 import blusunrize.immersiveengineering.api.energy.WireType;
 import blusunrize.immersiveengineering.common.blocks.IEBlockInterfaces.IBlockOverlayText;
 import mrtjp.projectred.api.IBundledTile;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
@@ -124,7 +125,8 @@ public class TileRedstoneWireConnector extends TileWireConnector implements IBun
   /// IBlockOverlayText
 
   @Override
-  public String[] getOverlayText(MovingObjectPosition mop) {
+  public String[] getOverlayText(EntityPlayer player, MovingObjectPosition mop, boolean hammer) {
+    if (!hammer) return null;
     return new String[] {
         StatCollector.translateToLocal("immersiveintegration.chat.channel") + " " + getChannelName(),
         StatCollector.translateToLocal("immersiveintegration.chat.mode") + " " + (redstoneMode ? "Input" : "Output")

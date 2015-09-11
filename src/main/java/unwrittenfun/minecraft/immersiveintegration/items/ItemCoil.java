@@ -22,6 +22,7 @@ import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.tiles.IWireConnector;
 
 import java.util.List;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 public class ItemCoil extends Item implements IWireCoil {
   public String[] coilKeys;
@@ -112,7 +113,7 @@ public class ItemCoil extends Item implements IWireCoil {
           IImmersiveConnectable nodeLink = (IImmersiveConnectable) world.getTileEntity(pos[1], pos[2], pos[3]);
           boolean connectionExists = false;
           if (nodeHere != null && nodeLink != null) {
-            List<ImmersiveNetHandler.Connection> connections = ImmersiveNetHandler.INSTANCE.getConnections(world, Utils.toCC(nodeHere));
+            ConcurrentSkipListSet<ImmersiveNetHandler.Connection> connections = ImmersiveNetHandler.INSTANCE.getConnections(world, Utils.toCC(nodeHere));
             if (connections != null) {
               for (ImmersiveNetHandler.Connection con : connections) {
                 if (con.end.equals(Utils.toCC(nodeLink))) connectionExists = true;
@@ -121,8 +122,8 @@ public class ItemCoil extends Item implements IWireCoil {
           }
           if (connectionExists) player.addChatMessage(new ChatComponentTranslation(Lib.CHAT_WARN + "connectionExists"));
           else {
-            Vec3 rtOff0 = nodeHere.getRaytraceOffset().addVector(x, y, z);
-            Vec3 rtOff1 = nodeLink.getRaytraceOffset().addVector(pos[1], pos[2], pos[3]);
+            Vec3 rtOff0 = nodeHere.getRaytraceOffset(nodeLink).addVector(x, y, z);
+            Vec3 rtOff1 = nodeLink.getRaytraceOffset(nodeHere).addVector(pos[1], pos[2], pos[3]);
             boolean canSee = Utils.canBlocksSeeOther(world, new ChunkCoordinates(x, y, z), new ChunkCoordinates(pos[1], pos[2], pos[3]), rtOff0, rtOff1);
             if (canSee) {
               TargetingInfo targetLink = TargetingInfo.readFromNBT(stack.getTagCompound());

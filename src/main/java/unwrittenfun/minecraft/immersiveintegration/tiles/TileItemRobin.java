@@ -209,7 +209,8 @@ public class TileItemRobin extends TileEntity implements ISidedInventory, IBlock
   /// IBlockOverlayText
 
   @Override
-  public String[] getOverlayText(MovingObjectPosition mop) {
+  public String[] getOverlayText(EntityPlayer player, MovingObjectPosition mop, boolean hammer) {
+    if (!hammer) return null;
     return new String[] {
         StatCollector.translateToLocal("desc.ImmersiveEngineering.info.blockSide." + ForgeDirection.getOrientation(mop.sideHit)),
         StatCollector.translateToLocalFormatted("immersiveintegration.chat.itemRobin.itemCount", sideCount[mop.sideHit]),

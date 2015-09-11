@@ -116,4 +116,29 @@ public class MultiblockIndustrialCokeOven implements IMultiblock {
         new ItemStack(IIBlocks.steelDecoration, 10, 2)
     };
   }
+
+
+  ////
+  // TODO
+  ////
+
+  @Override
+  public boolean overwriteBlockRender(ItemStack stack) {
+    return false;
+  }
+
+  @Override
+  public float getManualScale() {
+    return 1;
+  }
+
+  @Override
+  public boolean canRenderFormedStructure() {
+    return false;
+  }
+
+  @Override
+  public void renderFormedStructure() {
+
+  }
 }
