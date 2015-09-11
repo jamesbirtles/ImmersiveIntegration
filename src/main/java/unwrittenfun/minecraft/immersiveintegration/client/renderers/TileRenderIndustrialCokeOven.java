@@ -29,19 +29,18 @@ public class TileRenderIndustrialCokeOven extends TileEntitySpecialRenderer {
         GL11.glTranslated(-1, 0, 0);
       }
 
-//            int l = tile.getWorldObj().getLightBrightnessForSkyBlocks(tile.xCoord, tile.yCoord + 3000, tile.zCoord, 0);
-//            int l1 = l % 65536;
-//            int l2 = l / 65536;
-//            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) l1, (float) l2);
-
+      int l = tile.getWorldObj().getLightBrightnessForSkyBlocks(tile.xCoord, tile.yCoord + 3000, tile.zCoord, 0);
+      int l1 = l % 65536;
+      int l2 = l / 65536;
+      OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) l1, (float) l2);
 
       Matrix4 translationMatrix = new Matrix4();
       Matrix4 rotationMatrix = new Matrix4();
-//      translationMatrix.translate(x + 0.5, y + 1, z + 0.5);
-//
-//      if (tile.getBlockMetadata() == 1) {
-//        rotationMatrix.rotate(Math.PI/2.0, 0, 1, 0);
-//      }
+      //      translationMatrix.translate(x + 0.5, y + 1, z + 0.5);
+      //
+      //      if (tile.getBlockMetadata() == 1) {
+      //        rotationMatrix.rotate(Math.PI/2.0, 0, 1, 0);
+      //      }
 
       GL11.glColor4f(1, 1, 1, 1);
       ClientUtils.bindTexture(ModInfo.MOD_ID + ":textures/blocks/cokeOven.png");

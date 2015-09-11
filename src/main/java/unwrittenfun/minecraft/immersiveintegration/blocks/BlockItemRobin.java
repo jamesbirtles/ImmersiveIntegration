@@ -1,6 +1,5 @@
 package unwrittenfun.minecraft.immersiveintegration.blocks;
 
-import blusunrize.immersiveengineering.common.IEContent;
 import blusunrize.immersiveengineering.common.util.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;

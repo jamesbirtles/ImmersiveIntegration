@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.Logger;
 import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
+import unwrittenfun.minecraft.immersiveintegration.compat.CCCompat;
 import unwrittenfun.minecraft.immersiveintegration.gui.GuiHandler;
 import unwrittenfun.minecraft.immersiveintegration.items.IIItems;
 import unwrittenfun.minecraft.immersiveintegration.multiblocks.IIMultiblocks;
@@ -74,6 +75,8 @@ public class ImmersiveIntegration {
         FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(IIBlocks.aeDecoration, 1, 1));
       }
     }
+
+    if (Loader.isModLoaded("ComputerCraft")) CCCompat.init();
   }
 
   @Mod.EventHandler

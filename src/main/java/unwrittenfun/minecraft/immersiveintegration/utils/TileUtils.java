@@ -59,7 +59,6 @@ public class TileUtils {
   }
 
   /**
-   *
    * @param simulate Should the items actually be inserted
    * @return Number of items in stack that couldn't fit
    */

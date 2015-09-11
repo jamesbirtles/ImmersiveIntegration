@@ -3,15 +3,15 @@ package unwrittenfun.minecraft.immersiveintegration.tiles;
 import net.minecraft.item.ItemStack;
 
 public interface IMultiblockTile {
-  void setOffset(int[] offset);
-
   int[] getOffset();
 
-  void setReplaced(ItemStack stack);
+  void setOffset(int[] offset);
 
   ItemStack getReplaced();
 
-  void setFormed(boolean formed);
+  void setReplaced(ItemStack stack);
 
   boolean isFormed();
+
+  void setFormed(boolean formed);
 }

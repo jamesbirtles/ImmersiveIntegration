@@ -1,19 +1,21 @@
 package unwrittenfun.minecraft.immersiveintegration.blocks;
 
 import blusunrize.immersiveengineering.common.util.Utils;
+import cpw.mods.fml.common.Optional;
+import dan200.computercraft.api.redstone.IBundledRedstoneProvider;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileRedstoneWireConnector;
 
-public class BlockRedstoneWireConnector extends BlockWireConnector {
+@Optional.Interface(modid = "ComputerCraft", iface = "dan200.computercraft.api.redstone.IBundledRedstoneProvider")
+public class BlockRedstoneWireConnector extends BlockWireConnector implements IBundledRedstoneProvider {
   public static IIcon inputIcon;
 
   protected BlockRedstoneWireConnector(String key) {
@@ -88,6 +90,26 @@ public class BlockRedstoneWireConnector extends BlockWireConnector {
   @Override
   public boolean canConnectRedstone(IBlockAccess world, int x, int y, int z, int side) {
     TileEntity tileEntity = world.getTileEntity(x, y, z);
-    return tileEntity instanceof TileRedstoneWireConnector && !((TileRedstoneWireConnector) tileEntity).isInput();
+    return tileEntity instanceof TileRedstoneWireConnector && ((TileRedstoneWireConnector) tileEntity).isOutput();
+  }
+
+  @Optional.Method(modid = "ComputerCraft")
+  @Override
+  public int getBundledRedstoneOutput(World world, int x, int y, int z, int side) {
+    TileEntity tileEntity = world.getTileEntity(x, y, z);
+    if (side == world.getBlockMetadata(x, y, z) && tileEntity instanceof TileRedstoneWireConnector) {
+      TileRedstoneWireConnector connector = (TileRedstoneWireConnector) tileEntity;
+      if (connector.isOutput()) {
+        byte[] values = connector.wireNetwork.channelValues;
+        int total = 0;
+        for (int i = 0; i < values.length; i++) {
+          if (values[i] > 0) total = total | 1 << i;
+        }
+        ImmersiveIntegration.log.info(total);
+        return total;
+      }
+    }
+
+    return -1;
   }
 }

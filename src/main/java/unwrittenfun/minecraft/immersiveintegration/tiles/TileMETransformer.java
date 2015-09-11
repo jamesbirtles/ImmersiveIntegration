@@ -25,7 +25,6 @@ import unwrittenfun.minecraft.immersiveintegration.wires.IIWires;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
-import java.util.List;
 
 public class TileMETransformer extends TileEntityImmersiveConnectable implements IGridHost, IGridBlock, IWireConnector {
   public IGrid theGrid;
