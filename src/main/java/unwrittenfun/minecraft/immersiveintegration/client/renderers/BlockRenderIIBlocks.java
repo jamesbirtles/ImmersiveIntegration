@@ -6,8 +6,10 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import org.lwjgl.opengl.GL11;
+import unwrittenfun.minecraft.immersiveintegration.tiles.IWireConnector;
 
 public class BlockRenderIIBlocks implements ISimpleBlockRenderingHandler {
   public static int RENDER_ID = RenderingRegistry.getNextAvailableRenderId();
@@ -24,7 +26,11 @@ public class BlockRenderIIBlocks implements ISimpleBlockRenderingHandler {
 
   @Override
   public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
-    ClientUtils.handleStaticTileRenderer(world.getTileEntity(x, y, z));
+    TileEntity tile = world.getTileEntity(x, y, z);
+    ClientUtils.handleStaticTileRenderer(tile);
+    if (tile instanceof IWireConnector) {
+      ClientUtils.renderAttachedConnections(tile);
+    }
     return true;
   }
 

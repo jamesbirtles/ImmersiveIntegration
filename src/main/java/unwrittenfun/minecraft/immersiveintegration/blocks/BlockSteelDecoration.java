@@ -13,7 +13,9 @@ import java.util.List;
 
 public class BlockSteelDecoration extends Block {
   private final String[] keys;
+  private final boolean[] hasTop;
   public IIcon[] icons;
+  public IIcon[] topIcons;
 
   public BlockSteelDecoration(String key, String[] keys) {
     super(Material.iron);
@@ -24,6 +26,7 @@ public class BlockSteelDecoration extends Block {
     setStepSound(Block.soundTypeMetal);
 
     this.keys = keys;
+    this.hasTop = new boolean[] { true, true, true, false };
   }
 
   @Override
@@ -40,15 +43,16 @@ public class BlockSteelDecoration extends Block {
 
   @Override
   public void registerBlockIcons(IIconRegister register) {
-    icons = new IIcon[keys.length * 2];
+    icons = new IIcon[keys.length];
+    topIcons = new IIcon[keys.length];
     for (int i = 0; i < keys.length; i++) {
-      icons[i * 2] = register.registerIcon(getTextureName() + keys[i]);
-      icons[(i * 2) + 1] = register.registerIcon(getTextureName() + keys[i] + "Top");
+      icons[i] = register.registerIcon(getTextureName() + keys[i]);
+      if (hasTop[i]) topIcons[i] = register.registerIcon(getTextureName() + keys[i] + "Top");
     }
   }
 
   @Override
   public IIcon getIcon(int side, int meta) {
-    return (side == 0 || side == 1) ? icons[meta * 2 + 1] : icons[meta * 2];
+    return (side == 0 || side == 1) && hasTop[meta] ? topIcons[meta] : icons[meta];
   }
 }

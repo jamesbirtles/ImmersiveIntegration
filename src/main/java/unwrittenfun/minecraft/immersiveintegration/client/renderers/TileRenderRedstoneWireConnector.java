@@ -23,7 +23,7 @@ public class TileRenderRedstoneWireConnector extends TileRenderImmersiveConnecta
   private final ModelIIObj modelOutput = new ModelIIObj("immersiveintegration:models/redstoneWireConnector.obj", IIBlocks.redstoneWireConnector);
   private final ModelIEObj modelInput = new ModelIEObj("immersiveintegration:models/redstoneWireConnector.obj") {
     @Override
-    public IIcon getBlockIcon() {
+    public IIcon getBlockIcon(String groupName) {
       return BlockRedstoneWireConnector.inputIcon;
     }
   };

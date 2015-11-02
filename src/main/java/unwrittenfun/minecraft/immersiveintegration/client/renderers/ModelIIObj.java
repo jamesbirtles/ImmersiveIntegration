@@ -19,7 +19,7 @@ public class ModelIIObj extends ModelIEObj {
   }
 
   @Override
-  public IIcon getBlockIcon() {
+  public IIcon getBlockIcon(String groupName) {
     return block.getIcon(0, meta); // TODO: Get meta and side from constructor, not needed yet so hasn't been done
   }
 }

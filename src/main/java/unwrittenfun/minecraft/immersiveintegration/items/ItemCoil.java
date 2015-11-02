@@ -22,6 +22,7 @@ import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.tiles.IWireConnector;
 
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListSet;
 
 public class ItemCoil extends Item implements IWireCoil {
@@ -113,7 +114,7 @@ public class ItemCoil extends Item implements IWireCoil {
           IImmersiveConnectable nodeLink = (IImmersiveConnectable) world.getTileEntity(pos[1], pos[2], pos[3]);
           boolean connectionExists = false;
           if (nodeHere != null && nodeLink != null) {
-            ConcurrentSkipListSet<ImmersiveNetHandler.Connection> connections = ImmersiveNetHandler.INSTANCE.getConnections(world, Utils.toCC(nodeHere));
+            Set<ImmersiveNetHandler.Connection> connections = ImmersiveNetHandler.INSTANCE.getConnections(world, Utils.toCC(nodeHere));
             if (connections != null) {
               for (ImmersiveNetHandler.Connection con : connections) {
                 if (con.end.equals(Utils.toCC(nodeLink))) connectionExists = true;

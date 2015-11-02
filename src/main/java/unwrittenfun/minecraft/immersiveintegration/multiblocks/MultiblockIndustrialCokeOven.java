@@ -1,6 +1,9 @@
 package unwrittenfun.minecraft.immersiveintegration.multiblocks;
 
 import blusunrize.immersiveengineering.api.MultiblockHandler.IMultiblock;
+import blusunrize.immersiveengineering.client.ClientUtils;
+import blusunrize.immersiveengineering.common.blocks.metal.TileEntityArcFurnace;
+import blusunrize.immersiveengineering.common.blocks.stone.TileEntityCokeOven;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -9,6 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
+import unwrittenfun.minecraft.immersiveintegration.ModInfo;
 import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
 import unwrittenfun.minecraft.immersiveintegration.tiles.IMultiblockTile;
 
@@ -59,7 +63,7 @@ public class MultiblockIndustrialCokeOven implements IMultiblock {
             ddz = dx;
             ddx = dz * direction.offsetX;
           }
-          ItemStack targetItem = blockStructure[dy + 1][dz + 4][dx + 3];
+          ItemStack targetItem = blockStructure[dy  + 1][dz + 4][dx + 3];
           if (world.getBlock(x + ddx, y + dy, z + ddz) != ((ItemBlock) targetItem.getItem()).field_150939_a || world.getBlockMetadata(x + ddx, y + dy, z + ddz) != targetItem.getItemDamage()) {
 //            ImmersiveIntegration.log.info(world.getBlock(x + ddx, y + dy, z + ddz).getLocalizedName() + ":" + world.getBlockMetadata(x + ddx, y + dy, z + ddz) + " - " + ((ItemBlock) targetItem.getItem()).field_150939_a.getLocalizedName() + ":" + targetItem.getItemDamage());
 //            ImmersiveIntegration.log.info("Multiblock failed");
@@ -123,13 +127,8 @@ public class MultiblockIndustrialCokeOven implements IMultiblock {
   ////
 
   @Override
-  public boolean overwriteBlockRender(ItemStack stack) {
-    return false;
-  }
-
-  @Override
   public float getManualScale() {
-    return 1;
+    return 10.5f;
   }
 
   @Override
@@ -139,6 +138,15 @@ public class MultiblockIndustrialCokeOven implements IMultiblock {
 
   @Override
   public void renderFormedStructure() {
+  }
 
+  @Override
+  public String getUniqueName() {
+    return ModInfo.MOD_ID + ":industrialCokeOven";
+  }
+
+  @Override
+  public boolean overwriteBlockRender(ItemStack stack, int iterator) {
+    return false;
   }
 }

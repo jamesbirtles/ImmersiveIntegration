@@ -23,6 +23,7 @@ import unwrittenfun.minecraft.immersiveintegration.wires.IIWires;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListSet;
 
 public class TileMEWireConnector extends TileWireConnector implements IGridHost, IGridBlock {
@@ -37,7 +38,7 @@ public class TileMEWireConnector extends TileWireConnector implements IGridHost,
       loaded = true;
       createAELink();
 
-      ConcurrentSkipListSet<ImmersiveNetHandler.Connection> connections = ImmersiveNetHandler.INSTANCE.getConnections(worldObj, Utils.toCC(this));
+      Set<ImmersiveNetHandler.Connection> connections = ImmersiveNetHandler.INSTANCE.getConnections(worldObj, Utils.toCC(this));
       if (connections == null) return;
       for (ImmersiveNetHandler.Connection connection : connections) {
         ChunkCoordinates opposite = connection.end;
