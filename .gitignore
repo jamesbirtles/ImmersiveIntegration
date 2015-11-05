@@ -1,6 +1,9 @@
 run/
 .gradle/
 *.iml
+*.iws
+*.ipr
+out/
 libs/
 top_secret_ideas.txt
 design/
