@@ -27,7 +27,9 @@ public class ClientProxy extends CommonProxy {
     ClientRegistry.bindTileEntitySpecialRenderer(TileExtendedPost.class, new TileRenderExtendedPost());
     ClientRegistry.bindTileEntitySpecialRenderer(TileRedstoneWireConnector.class, new TileRenderRedstoneWireConnector());
     ClientRegistry.bindTileEntitySpecialRenderer(TileIndustrialCokeOven.class, new TileRenderIndustrialCokeOven());
-    ClientRegistry.bindTileEntitySpecialRenderer(TileInductionCharger.class, new TileRenderInductionCharger());
+    ClientRegistry.bindTileEntitySpecialRenderer(TileInductionChargerLV.class, new TileRenderInductionCharger(0));
+    ClientRegistry.bindTileEntitySpecialRenderer(TileInductionChargerMV.class, new TileRenderInductionCharger(1));
+    ClientRegistry.bindTileEntitySpecialRenderer(TileInductionChargerHV.class, new TileRenderInductionCharger(2));
 
     if (ImmersiveIntegration.cfg.enableAE) {
       ClientRegistry.bindTileEntitySpecialRenderer(TileMEWireConnector.class, new TileRenderWireConnector(new ModelIIObj("immersiveengineering:models/connectorMV.obj", IIBlocks.meWireConnector)));
@@ -65,7 +67,7 @@ public class ClientProxy extends CommonProxy {
        new ManualPages.CraftingMulti(manual, "capacitorBox0", new ItemStack(IIItems.capacitorBox, 1, 0),  new ItemStack(IIItems.capacitorBox, 1, 1),  new ItemStack(IIItems.capacitorBox, 1, 2))
     );
     manual.addEntry("inductionCharger", "immersiveintegration",
-       new ManualPages.Crafting(manual, "inductionCharger0", new ItemStack(IIBlocks.inductionCharger))
+       new ManualPages.CraftingMulti(manual, "inductionCharger0", new ItemStack(IIBlocks.inductionCharger, 1, 0),  new ItemStack(IIBlocks.inductionCharger, 1, 1),  new ItemStack(IIBlocks.inductionCharger, 1, 2))
     );
 
     if (ImmersiveIntegration.cfg.enableAE) {

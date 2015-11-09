@@ -9,16 +9,20 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.model.obj.Vertex;
 import org.lwjgl.opengl.GL11;
 import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
-import unwrittenfun.minecraft.immersiveintegration.tiles.TileInductionCharger;
+import unwrittenfun.minecraft.immersiveintegration.tiles.TileInductionChargerLV;
 
 public class TileRenderInductionCharger extends TileRenderIE {
-  ModelIIObj model = new ModelIIObj("immersiveintegration:models/inductionCharger.obj", IIBlocks.inductionCharger);
+  protected ModelIIObj model;
+
+  public TileRenderInductionCharger(int meta) {
+    this.model = new ModelIIObj("immersiveintegration:models/inductionCharger.obj", IIBlocks.inductionCharger, meta);
+  }
 
   @Override
   public void renderDynamic(TileEntity tile, double x, double y, double z, float f) {
     if (tile.hasWorldObj()) {
-      if (tile instanceof TileInductionCharger) {
-        TileInductionCharger charger = (TileInductionCharger) tile;
+      if (tile instanceof TileInductionChargerLV) {
+        TileInductionChargerLV charger = (TileInductionChargerLV) tile;
         if (charger.chargingStackEntity != null) {
           GL11.glPushMatrix();
           GL11.glTranslatef((float) x + 0.5f, (float) (y + 0.6f), (float) z + 0.109f);

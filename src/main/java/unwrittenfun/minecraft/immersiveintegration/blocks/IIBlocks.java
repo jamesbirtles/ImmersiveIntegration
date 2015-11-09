@@ -65,13 +65,15 @@ public class IIBlocks {
     GameRegistry.registerBlock(industrialCokeOven, INDUSTRIAL_COKE_OVEN);
     GameRegistry.registerBlock(itemRobin, ITEM_ROBIN_KEY);
     GameRegistry.registerBlock(steelDecoration, ItemBlockSteelDecoration.class, STEEL_BLOCKS_KEY);
-    GameRegistry.registerBlock(inductionCharger, INDUCTION_CHARGER_KEY);
+    GameRegistry.registerBlock(inductionCharger, ItemBlockInductionCharger.class, INDUCTION_CHARGER_KEY);
 
     GameRegistry.registerTileEntity(TileExtendedPost.class, ModInfo.MOD_ID + ":" + EXTENDED_POST_KEY + "Tile");
     GameRegistry.registerTileEntity(TileRedstoneWireConnector.class, ModInfo.MOD_ID + ":" + REDSTONE_WIRE_CONNECTOR_KEY + "Tile");
     GameRegistry.registerTileEntity(TileIndustrialCokeOven.class, ModInfo.MOD_ID + ":" + INDUSTRIAL_COKE_OVEN + "Tile");
     GameRegistry.registerTileEntity(TileItemRobin.class, ModInfo.MOD_ID + ":" + ITEM_ROBIN_KEY + "Tile");
-    GameRegistry.registerTileEntity(TileInductionCharger.class, ModInfo.MOD_ID + ":" + INDUCTION_CHARGER_KEY + "Tile");
+    GameRegistry.registerTileEntity(TileInductionChargerLV.class, ModInfo.MOD_ID + ":" + INDUCTION_CHARGER_KEY + "LVTile");
+    GameRegistry.registerTileEntity(TileInductionChargerMV.class, ModInfo.MOD_ID + ":" + INDUCTION_CHARGER_KEY + "MVTile");
+    GameRegistry.registerTileEntity(TileInductionChargerHV.class, ModInfo.MOD_ID + ":" + INDUCTION_CHARGER_KEY + "HVTile");
 
     if (ImmersiveIntegration.cfg.enableAE) registerAE2(false);
   }
@@ -88,7 +90,10 @@ public class IIBlocks {
     GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(steelDecoration, 8, 1), "ibi", "sbs", "ibi", 's', new ItemStack(IEContent.itemMaterial, 1, 12), 'b', Items.lava_bucket, 'i', "ingotIron"));
     GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(steelDecoration, 4, 2), "ibi", "isi", "ibi", 's', new ItemStack(IEContent.itemMaterial, 1, 12), 'b', Items.bucket, 'i', "ingotIron"));
     GameRegistry.addRecipe(new ShapedOreRecipe(itemRobin, " r ", "scs", " r ", 's', new ItemStack(IEContent.itemMaterial, 1, 12), 'r', "dustRedstone", 'c', new ItemStack(IEContent.blockWoodenDevice, 1, 4)));
-    GameRegistry.addRecipe(new ShapedOreRecipe(inductionCharger, "scs", "wew", 's', "slabTreatedWood", 'c', new ItemStack(IEContent.blockStorage, 1, 8), 'w', "plankTreatedWood", 'e', new ItemStack(IEContent.blockMetalDevice, 1, BlockMetalDevices.META_capacitorLV)));
+
+    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(inductionCharger, 1, 0), "scs", "wew", 's', "slabTreatedWood", 'c', new ItemStack(IEContent.blockStorage, 1, 8), 'w', "plankTreatedWood", 'e', new ItemStack(IEContent.blockMetalDevice, 1, BlockMetalDevices.META_capacitorLV)));
+    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(inductionCharger, 1, 1), "scs", "wew", 's', "slabTreatedWood", 'c', new ItemStack(IEContent.blockStorage, 1, 9), 'w', "plankTreatedWood", 'e', new ItemStack(IEContent.blockMetalDevice, 1, BlockMetalDevices.META_capacitorMV)));
+    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(inductionCharger, 1, 2), "scs", "wew", 's', "slabTreatedWood", 'c', new ItemStack(IEContent.blockStorage, 1, 10), 'w', "plankTreatedWood", 'e', new ItemStack(IEContent.blockMetalDevice, 1, BlockMetalDevices.META_capacitorHV)));
 
     if (ImmersiveIntegration.cfg.enableAE) registerAE2(true);
   }

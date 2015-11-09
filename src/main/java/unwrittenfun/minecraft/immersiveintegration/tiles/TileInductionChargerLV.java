@@ -17,17 +17,17 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraftforge.common.util.ForgeDirection;
 import unwrittenfun.minecraft.immersiveintegration.utils.TileUtils;
 
-public class TileInductionCharger extends TileEntity implements IEnergyReceiver, IBlockOverlayText {
+public class TileInductionChargerLV extends TileEntity implements IEnergyReceiver, IBlockOverlayText {
   public ItemStack chargingStack;
   public EntityItem chargingStackEntity;
-  public EnergyStorage energyStorage = new EnergyStorage(Config.getInt("capacitorLV_storage") / 2, Config.getInt("capacitorLV_input"));
+  public EnergyStorage energyStorage = new EnergyStorage(getCapacity(), getMaxInOut());
 
   @Override
   public void updateEntity() {
     if (hasWorldObj() && !worldObj.isRemote) {
       if (chargingStack != null) {
         IEnergyContainerItem energyContainer = (IEnergyContainerItem) chargingStack.getItem();
-        int energyToInsert = energyStorage.extractEnergy(256, true);
+        int energyToInsert = energyStorage.extractEnergy(getMaxInOut(), true);
         int energyExtracted = energyContainer.receiveEnergy(chargingStack, energyToInsert, false);
         energyStorage.extractEnergy(energyExtracted, false);
       }
@@ -39,6 +39,14 @@ public class TileInductionCharger extends TileEntity implements IEnergyReceiver,
     super.invalidate();
 
     if (hasWorldObj() && !worldObj.isRemote && chargingStack != null) TileUtils.dropItemStack(chargingStack, worldObj, xCoord, yCoord + 1, zCoord);
+  }
+
+  public int getCapacity() {
+    return Config.getInt("capacitorLV_storage") / 2;
+  }
+
+  public int getMaxInOut() {
+    return Config.getInt("capacitorLV_input");
   }
 
   public void setChargingStack(ItemStack stack) {
