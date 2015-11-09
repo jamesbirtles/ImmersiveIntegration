@@ -132,7 +132,7 @@ public class BlockInductionCharger extends BlockContainer {
 
   @Override
   public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
-    if (!world.isRemote && entity instanceof EntityItem) {
+    if (!world.isRemote && !entity.isDead && entity instanceof EntityItem) {
       EntityItem itemEntity = (EntityItem) entity;
       TileEntity tileEntity = world.getTileEntity(x, y, z);
       if (tileEntity instanceof TileInductionChargerLV) {
