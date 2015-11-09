@@ -21,6 +21,7 @@ public class TileInductionChargerLV extends TileEntity implements IEnergyReceive
   public ItemStack chargingStack;
   public EntityItem chargingStackEntity;
   public EnergyStorage energyStorage = new EnergyStorage(getCapacity(), getMaxInOut());
+  protected int syncTicks = 0;
 
   @Override
   public void updateEntity() {
@@ -30,6 +31,13 @@ public class TileInductionChargerLV extends TileEntity implements IEnergyReceive
         int energyToInsert = energyStorage.extractEnergy(getMaxInOut(), true);
         int energyExtracted = energyContainer.receiveEnergy(chargingStack, energyToInsert, false);
         energyStorage.extractEnergy(energyExtracted, false);
+
+        if (syncTicks >= 20) {
+          syncTicks = 0;
+          this.markDirty();
+          worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+        }
+        syncTicks++;
       }
     }
   }
@@ -38,7 +46,8 @@ public class TileInductionChargerLV extends TileEntity implements IEnergyReceive
   public void invalidate() {
     super.invalidate();
 
-    if (hasWorldObj() && !worldObj.isRemote && chargingStack != null) TileUtils.dropItemStack(chargingStack, worldObj, xCoord, yCoord + 1, zCoord);
+    if (hasWorldObj() && !worldObj.isRemote && chargingStack != null)
+      TileUtils.dropItemStack(chargingStack, worldObj, xCoord, yCoord + 1, zCoord);
   }
 
   public int getCapacity() {
@@ -142,7 +151,7 @@ public class TileInductionChargerLV extends TileEntity implements IEnergyReceive
   public String[] getOverlayText(EntityPlayer player, MovingObjectPosition mop, boolean hammer) {
     if (chargingStack != null) {
       IEnergyContainerItem energyContainer = (IEnergyContainerItem) chargingStack.getItem();
-      return new String[] {
+      return new String[]{
          chargingStack.getDisplayName(),
          energyContainer.getEnergyStored(chargingStack) + "/" + energyContainer.getMaxEnergyStored(chargingStack) + "RF"
       };
