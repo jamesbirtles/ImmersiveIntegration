@@ -83,6 +83,10 @@ public class ImmersiveIntegration {
   public void postInit(FMLPostInitializationEvent event) {
     IIBlocks.registerRecipes();
     IIItems.registerRecipes();
+
+    if (cfg.enableTinkers) {
+      FMLInterModComms.sendMessage("TConstruct", "addFluxBattery", new ItemStack(IIItems.capacitorBox));
+    }
   }
 
   @Mod.EventHandler

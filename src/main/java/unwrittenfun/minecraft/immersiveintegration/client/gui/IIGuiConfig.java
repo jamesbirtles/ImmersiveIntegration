@@ -24,6 +24,7 @@ public class IIGuiConfig extends GuiConfig {
     list.add(configElement(Config.CATEGORY_AE, "immersiveintegration.config.category.ae", "immersiveintegration.config.category.ae"));
     list.add(configElement(Config.CATEGORY_IE, "immersiveintegration.config.category.ie", "immersiveintegration.config.category.ie"));
     list.add(configElement(Config.CATEGORY_MINECRAFT, "immersiveintegration.config.category.minecraft", "immersiveintegration.config.category.minecraft"));
+    list.add(configElement(Config.CATEGORY_OTHER, "immersiveintegration.config.category.other", "immersiveintegration.config.category.other"));
     return list;
   }
 

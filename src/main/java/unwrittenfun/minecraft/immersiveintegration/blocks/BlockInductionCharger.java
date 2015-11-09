@@ -58,13 +58,17 @@ public class BlockInductionCharger extends BlockContainer {
       if (tileEntity instanceof TileInductionCharger) {
         TileInductionCharger charger = (TileInductionCharger) tileEntity;
         if (charger.chargingStack == null) {
-          if (player.getHeldItem() != null && player.getHeldItem().getItem() instanceof IEnergyContainerItem && !(player.getHeldItem().getItem() instanceof ItemBlock)) {
+          if (player.getHeldItem() != null && player.getHeldItem().getItem() instanceof IEnergyContainerItem &&
+             !(player.getHeldItem().getItem() instanceof ItemBlock) && ((IEnergyContainerItem) player.getHeldItem().getItem()).getMaxEnergyStored(player.getHeldItem()) > 0) {
             charger.setChargingStack(player.getHeldItem());
             player.inventory.decrStackSize(player.inventory.currentItem, 1);
           }
         } else {
-          EntityItem dropItem = new EntityItem(world, player.posX, player.posY, player.posZ, charger.chargingStack.copy());
+          EntityItem dropItem = new EntityItem(world, player.posX, player.posY + 0.5f, player.posZ, charger.chargingStack.copy());
           dropItem.delayBeforeCanPickup = 0;
+          dropItem.motionX = 0;
+          dropItem.motionY = 0;
+          dropItem.motionZ = 0;
           world.spawnEntityInWorld(dropItem);
           charger.setChargingStack(null);
         }

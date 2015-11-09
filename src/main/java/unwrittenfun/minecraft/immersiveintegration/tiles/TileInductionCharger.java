@@ -135,6 +135,7 @@ public class TileInductionCharger extends TileEntity implements IEnergyReceiver,
     if (chargingStack != null) {
       IEnergyContainerItem energyContainer = (IEnergyContainerItem) chargingStack.getItem();
       return new String[] {
+         chargingStack.getDisplayName(),
          energyContainer.getEnergyStored(chargingStack) + "/" + energyContainer.getMaxEnergyStored(chargingStack) + "RF"
       };
     }

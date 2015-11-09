@@ -61,6 +61,9 @@ public class ClientProxy extends CommonProxy {
        new ManualPages.Crafting(manual, "itemRobin0", new ItemStack(IIBlocks.itemRobin)),
        new ManualPages.Text(manual, "itemRobin1")
     );
+    manual.addEntry("capacitorBox", "immersiveintegration",
+       new ManualPages.CraftingMulti(manual, "capacitorBox0", new ItemStack(IIItems.capacitorBox, 1, 0),  new ItemStack(IIItems.capacitorBox, 1, 1),  new ItemStack(IIItems.capacitorBox, 1, 2))
+    );
     manual.addEntry("inductionCharger", "immersiveintegration",
        new ManualPages.Crafting(manual, "inductionCharger0", new ItemStack(IIBlocks.inductionCharger))
     );

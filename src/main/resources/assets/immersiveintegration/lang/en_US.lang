@@ -28,9 +28,20 @@ tile.immersiveintegration:steelDecorationOvenWallPort.name=Coke Oven Port
 
 item.immersiveintegration:iiWireCoilRedstone.name=Redstone Wire Coil
 
+item.immersiveintegration:capacitorBoxLV.name=LV Capacitor in a Box
+item.immersiveintegration:capacitorBoxMV.name=MV Capacitor in a Box
+item.immersiveintegration:capacitorBoxHV.name=HV Capacitor in a Box
+item.immersiveintegration:capacitorBoxCreative.name=Creative Capacitor in a Box
+
 
 # Tooltips
 immersiveintegration.tooltip.safe=Safe for decoration
+
+immersiveintegration.tooltip.capacitor.infinite=Infinite RF
+immersiveintegration.tooltip.capacitor.active0=Right click to stop sharing
+immersiveintegration.tooltip.capacitor.active1=power with held items
+immersiveintegration.tooltip.capacitor.rightClickActive0=Right click to share
+immersiveintegration.tooltip.capacitor.rightClickActive1=power with held items
 
 
 # Colors
@@ -87,6 +98,10 @@ ie.manual.entry.itemRobin.subtext=Chirp, chirp.
 ie.manual.entry.itemRobin0=The item robin will take an input and share it out to adjacent inventories (including conveyors). You can right click a side with the number of items you would like to go into an inventory on that side per cycle.
 ie.manual.entry.itemRobin1=Holding a hammer in your hand will allow you to see the current settings on each side. Once you have it configured, you can right click the block with a hammer to toggle it locked.
 
+ie.manual.entry.capacitorBox.name=Capacitor in a Box
+ie.manual.entry.capacitorBox.subtext=Capacitor + Box = Flat Square..?
+ie.manual.entry.capacitorBox0=Shoving a capacitor into a wooden crate allows you to carry your capacitor around and use it to charge other items. If you have Tinkers' Construct, then you can place a capacitor in a box on your tools. You can charge your capacitor in a box using the <link;inductionCharger;§o§ninduction charger§r;0>
+
 ie.manual.entry.inductionCharger.name=Induction Charger
 ie.manual.entry.inductionCharger.subtext=Compatible with leading brands
 ie.manual.entry.inductionCharger0=Charge your items through the science of induction; just like your mobile phone, you can charge many other items 'wirelessly'. Simply throw your item onto the induction charger and watch it charge.
@@ -113,6 +128,8 @@ immersiveintegration.config.category.ie=Immersive Integration
 immersiveintegration.config.category.ie.tooltip=Immersive Engineering Additions
 immersiveintegration.config.category.minecraft=Minecraft
 immersiveintegration.config.category.minecraft.tooltip=Minecraft Additions
+immersiveintegration.config.category.minecraft=Other
+immersiveintegration.config.category.minecraft.tooltip=Miscellaneous
 
 immersiveintegration.config.enableAE=Enable AE2 Integration
 immersiveintegration.config.desc.enableAE=Enable/disable the AE2 specific content if AE2 is installed
@@ -146,3 +163,6 @@ immersiveintegration.config.desc.meWireConnectorDrain=How much power to drain pe
 
 immersiveintegration.config.meDenseWireConnectorDrain=ME Dense Wire Connector Power Drain
 immersiveintegration.config.desc.meDenseWireConnectorDrain=How much power to drain per dense connector in AE/t
+
+immersiveintegration.config.enableTinkers=Enable Tinkers' Construct Integration
+immersiveintegration.config.desc.enableTinkers=Allows you to attach IE capacitors to tools
