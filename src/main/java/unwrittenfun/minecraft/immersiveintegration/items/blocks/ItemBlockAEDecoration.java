@@ -1,4 +1,4 @@
-package unwrittenfun.minecraft.immersiveintegration.items;
+package unwrittenfun.minecraft.immersiveintegration.items.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,15 +9,15 @@ import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
 
 import java.util.List;
 
-public class ItemBlockSteelDecoration extends ItemBlock {
-  public ItemBlockSteelDecoration(Block block) {
+public class ItemBlockAEDecoration extends ItemBlock {
+  public ItemBlockAEDecoration(Block block) {
     super(block);
     setHasSubtypes(true);
   }
 
   @Override
   public String getUnlocalizedName(ItemStack stack) {
-    return getUnlocalizedName() + IIBlocks.STEEL_BLOCKS_KEYS[stack.getItemDamage()];
+    return getUnlocalizedName() + IIBlocks.AE_DECORATION_KEYS[stack.getItemDamage()];
   }
 
   @Override

@@ -15,6 +15,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.ModInfo;
 import unwrittenfun.minecraft.immersiveintegration.items.*;
+import unwrittenfun.minecraft.immersiveintegration.items.blocks.*;
 import unwrittenfun.minecraft.immersiveintegration.tiles.*;
 
 public class IIBlocks {

@@ -1,4 +1,4 @@
-package unwrittenfun.minecraft.immersiveintegration.items;
+package unwrittenfun.minecraft.immersiveintegration.items.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;

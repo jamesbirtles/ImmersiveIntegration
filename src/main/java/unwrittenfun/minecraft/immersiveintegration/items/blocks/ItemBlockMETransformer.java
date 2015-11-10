@@ -1,15 +1,14 @@
-package unwrittenfun.minecraft.immersiveintegration.items;
+package unwrittenfun.minecraft.immersiveintegration.items.blocks;
 
-import blusunrize.immersiveengineering.common.IEContent;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
 
-public class ItemBlockExtendedPost extends ItemBlock {
-  public ItemBlockExtendedPost(Block block) {
+public class ItemBlockMETransformer extends ItemBlock {
+  public ItemBlockMETransformer(Block block) {
     super(block);
   }
 
@@ -19,12 +18,10 @@ public class ItemBlockExtendedPost extends ItemBlock {
       return false;
     }
 
-    if (!(world.getBlock(x, y - 1, z) == IEContent.blockWoodenDevice && world.getBlockMetadata(x, y - 1, z) == 0) && world.getBlock(x, y - 1, z) != IIBlocks.extendedPost) {
-      return false;
-    }
+    int playerViewQuarter = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+    int f = playerViewQuarter == 0 ? 2 : playerViewQuarter == 1 ? 5 : playerViewQuarter == 2 ? 3 : 4;
 
-    world.setBlock(x, y + 1, z, this.field_150939_a, 1, 3);
-
+    world.setBlock(x, y + 1, z, field_150939_a, f | 8, 3);
     return super.placeBlockAt(stack, player, world, x, y, z, side, hitX, hitY, hitZ, metadata);
   }
 }

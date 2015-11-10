@@ -150,11 +150,6 @@ public class ItemCapacitorBox extends Item implements IEnergyContainerItem {
     }
   }
 
-  @Override
-  public EnumAction getItemUseAction(ItemStack stack) {
-    return EnumAction.block;
-  }
-
   /// IEnergyContainerItem
   @Override
   public int receiveEnergy(ItemStack container, int maxReceive, boolean simulate) {
