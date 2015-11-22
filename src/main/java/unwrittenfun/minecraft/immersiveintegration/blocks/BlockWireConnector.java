@@ -12,7 +12,7 @@ import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.client.renderers.BlockRenderIIBlocks;
 
 public abstract class BlockWireConnector extends BlockContainer {
-  protected BlockWireConnector(String key) {
+  public BlockWireConnector(String key) {
     super(Material.iron);
     setBlockName(key);
     setBlockTextureName(key);

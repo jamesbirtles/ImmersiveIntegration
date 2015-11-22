@@ -6,17 +6,24 @@ import appeng.api.util.AEColor;
 import blusunrize.immersiveengineering.common.IEContent;
 import blusunrize.immersiveengineering.common.blocks.metal.BlockMetalDecoration;
 import blusunrize.immersiveengineering.common.blocks.metal.BlockMetalDevices;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.ModInfo;
-import unwrittenfun.minecraft.immersiveintegration.items.*;
-import unwrittenfun.minecraft.immersiveintegration.items.blocks.*;
+import unwrittenfun.minecraft.immersiveintegration.items.IIItems;
+import unwrittenfun.minecraft.immersiveintegration.items.blocks.ItemBlockAEDecoration;
+import unwrittenfun.minecraft.immersiveintegration.items.blocks.ItemBlockInductionCharger;
+import unwrittenfun.minecraft.immersiveintegration.items.blocks.ItemBlockMETransformer;
+import unwrittenfun.minecraft.immersiveintegration.items.blocks.ItemBlockSteelDecoration;
 import unwrittenfun.minecraft.immersiveintegration.tiles.*;
+
+import java.lang.reflect.InvocationTargetException;
 
 public class IIBlocks {
   public static final String ME_WIRE_CONNECTOR_KEY = "meWireConnector";
@@ -30,52 +37,45 @@ public class IIBlocks {
   public static final String ME_TRANSFORMER_KEY = "meTransformer";
   public static final String ME_DENSE_TRANSFORMER_KEY = "meDenseTransformer";
   public static final String STEEL_BLOCKS_KEY = "steelDecoration";
+  public static final String AE_DECORATIONS_KEY = "aeDecoration";
+  public static final String INDUCTION_CHARGER_KEY = "inductionCharger";
+
   public static final String[] STEEL_BLOCKS_KEYS = new String[]{
      "OvenWall", "OvenWallHeated", "OvenWallPort"
   };
-  public static final String AE_DECORATIONS_KEY = "aeDecoration";
   public static final String[] AE_DECORATION_KEYS = new String[]{
      "FluixCoil", "DenseCoil"
   };
-  public static final String INDUCTION_CHARGER_KEY = "inductionCharger";
 
   public static Block meWireConnector;
   public static Block meDenseWireConnector;
   public static Block meTransformer, meDenseTransformer;
-  public static Block aeDecoration;
+  public static Block redstoneWireConnector;
 
   public static Block extendedPost;
   public static Block extendablePost;
   public static Block steelTrapdoor;
-  public static Block redstoneWireConnector;
-  public static BlockIndustrialCokeOven industrialCokeOven;
+  public static Block aeDecoration;
+  public static Block industrialCokeOven;
   public static Block itemRobin;
   public static Block steelDecoration;
   public static Block inductionCharger;
 
   public static void registerBlocks() {
-    extendedPost = new BlockExtendedPost(ModInfo.MOD_ID + ":" + EXTENDED_POST_KEY);
-    extendablePost = new BlockExtendablePost(ModInfo.MOD_ID + ":" + EXTENDABLE_POST_KEY);
-    steelTrapdoor = new BlockSteelTrapdoor(ModInfo.MOD_ID + ":" + STEEL_TRAPDOOR);
-    redstoneWireConnector = new BlockRedstoneWireConnector(ModInfo.MOD_ID + ":" + REDSTONE_WIRE_CONNECTOR_KEY);
-    industrialCokeOven = new BlockIndustrialCokeOven(ModInfo.MOD_ID + ":" + INDUSTRIAL_COKE_OVEN);
-    itemRobin = new BlockItemRobin(ModInfo.MOD_ID + ":" + ITEM_ROBIN_KEY);
-    steelDecoration = new BlockSteelDecoration(ModInfo.MOD_ID + ":" + STEEL_BLOCKS_KEY, STEEL_BLOCKS_KEYS);
-    inductionCharger = new BlockInductionCharger(ModInfo.MOD_ID + ":" + INDUCTION_CHARGER_KEY);
+    // Basic Blocks
+    extendablePost = registerBlock(BlockExtendablePost.class, EXTENDABLE_POST_KEY);
+    steelTrapdoor = registerBlock(BlockSteelTrapdoor.class, STEEL_TRAPDOOR);
+    steelDecoration = registerBlock(BlockSteelDecoration.class, ItemBlockSteelDecoration.class, STEEL_BLOCKS_KEY);
 
-    GameRegistry.registerBlock(extendedPost, ItemBlockExtendedPost.class, EXTENDED_POST_KEY);
-    GameRegistry.registerBlock(extendablePost, EXTENDABLE_POST_KEY);
-    GameRegistry.registerBlock(steelTrapdoor, STEEL_TRAPDOOR);
-    GameRegistry.registerBlock(redstoneWireConnector, REDSTONE_WIRE_CONNECTOR_KEY);
-    GameRegistry.registerBlock(industrialCokeOven, INDUSTRIAL_COKE_OVEN);
-    GameRegistry.registerBlock(itemRobin, ITEM_ROBIN_KEY);
-    GameRegistry.registerBlock(steelDecoration, ItemBlockSteelDecoration.class, STEEL_BLOCKS_KEY);
-    GameRegistry.registerBlock(inductionCharger, ItemBlockInductionCharger.class, INDUCTION_CHARGER_KEY);
+    // Tile Blocks
+    extendedPost = registerBlock(BlockExtendedPost.class, EXTENDED_POST_KEY, TileExtendedPost.class);
+    industrialCokeOven = registerBlock(BlockIndustrialCokeOven.class, INDUSTRIAL_COKE_OVEN, TileIndustrialCokeOven.class);
+    itemRobin = registerBlock(BlockItemRobin.class, ITEM_ROBIN_KEY, TileItemRobin.class);
+    inductionCharger = registerBlock(BlockInductionCharger.class, ItemBlockInductionCharger.class, INDUCTION_CHARGER_KEY);
 
-    GameRegistry.registerTileEntity(TileExtendedPost.class, ModInfo.MOD_ID + ":" + EXTENDED_POST_KEY + "Tile");
-    GameRegistry.registerTileEntity(TileRedstoneWireConnector.class, ModInfo.MOD_ID + ":" + REDSTONE_WIRE_CONNECTOR_KEY + "Tile");
-    GameRegistry.registerTileEntity(TileIndustrialCokeOven.class, ModInfo.MOD_ID + ":" + INDUSTRIAL_COKE_OVEN + "Tile");
-    GameRegistry.registerTileEntity(TileItemRobin.class, ModInfo.MOD_ID + ":" + ITEM_ROBIN_KEY + "Tile");
+    // Wire Connectors
+    redstoneWireConnector = registerBlock(BlockRedstoneWireConnector.class, REDSTONE_WIRE_CONNECTOR_KEY, TileRedstoneWireConnector.class);
+
     GameRegistry.registerTileEntity(TileInductionChargerLV.class, ModInfo.MOD_ID + ":" + INDUCTION_CHARGER_KEY + "LVTile");
     GameRegistry.registerTileEntity(TileInductionChargerMV.class, ModInfo.MOD_ID + ":" + INDUCTION_CHARGER_KEY + "MVTile");
     GameRegistry.registerTileEntity(TileInductionChargerHV.class, ModInfo.MOD_ID + ":" + INDUCTION_CHARGER_KEY + "HVTile");
@@ -83,10 +83,26 @@ public class IIBlocks {
     if (ImmersiveIntegration.cfg.enableAE) registerAE2(false);
   }
 
-  public static void registerRecipes() {
-    // TODO: Remove when / if added to IE base.
-    OreDictionary.registerOre("slabTreatedWood", new ItemStack(IEContent.blockWoodenDecoration, 1, 2));
+  private static void registerAE2(boolean recipes) {
+    if (recipes) {
+      IDefinitions ae = AEApi.instance().definitions();
+      GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(meWireConnector, 4), " c ", "fsf", "sfs", 'c', ae.parts().cableGlass().stack(AEColor.Transparent, 1), 'f', "dustFluix", 's', ae.blocks().skyStone().maybeBlock().get()));
+      GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(meDenseWireConnector, 2), " d ", "rcr", "cgc", 'd', ae.parts().cableDense().stack(AEColor.Transparent, 1), 'r', "dustRedstone", 'c', meWireConnector, 'g', "dustGlowstone"));
+      GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(aeDecoration, 1, 0), "www", "wiw", "www", 'w', new ItemStack(IIItems.aeWireCoil, 1, 0), 'i', "ingotIron"));
+      GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(aeDecoration, 1, 1), "www", "wiw", "www", 'w', new ItemStack(IIItems.aeWireCoil, 1, 1), 'i', "ingotIron"));
+      GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(meTransformer), " w ", "ibi", "iii", 'w', meWireConnector, 'b', new ItemStack(aeDecoration, 1, 0), 'i', "ingotIron"));
+      GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(meDenseTransformer), " w ", "ibi", "iii", 'w', meDenseWireConnector, 'b', new ItemStack(aeDecoration, 1, 1), 'i', "ingotIron"));
 
+    } else {
+      meWireConnector = registerBlock(BlockMEWireConnector.class, ME_WIRE_CONNECTOR_KEY, TileMEWireConnector.class);
+      meDenseWireConnector = registerBlock(BlockMEDenseWireConnector.class, ME_DENSE_CONNECTOR_KEY, TileMEDenseWireConnector.class);
+      meTransformer = registerBlock(BlockMETransformer.class, ItemBlockMETransformer.class, ME_TRANSFORMER_KEY, TileMETransformer.class);
+      meDenseTransformer = registerBlock(BlockMEDenseTransformer.class, ItemBlockMETransformer.class, ME_DENSE_TRANSFORMER_KEY, TileMEDenseTransformer.class);
+      aeDecoration = registerBlock(BlockAEDecoration.class, ItemBlockAEDecoration.class, AE_DECORATIONS_KEY);
+    }
+  }
+
+  public static void registerRecipes() {
     GameRegistry.addRecipe(new ShapedOreRecipe(extendedPost, "p", "p", 'p', new ItemStack(IEContent.blockWoodenDecoration, 1, 1)));
     GameRegistry.addRecipe(new ItemStack(steelTrapdoor, 2), "sss", "sss", 's', new ItemStack(IEContent.blockMetalDecoration, 1, BlockMetalDecoration.META_scaffolding));
     GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(redstoneWireConnector, 8), "beb", " r ", "beb", 'b', "blockRedstone", 'e', "ingotElectrum", 'r', "dustRedstone"));
@@ -103,33 +119,36 @@ public class IIBlocks {
     if (ImmersiveIntegration.cfg.enableAE) registerAE2(true);
   }
 
-  private static void registerAE2(boolean recipes) {
-    if (recipes) {
-      IDefinitions ae = AEApi.instance().definitions();
-      GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(meWireConnector, 4), " c ", "fsf", "sfs", 'c', ae.parts().cableGlass().stack(AEColor.Transparent, 1), 'f', "dustFluix", 's', ae.blocks().skyStone().maybeBlock().get()));
-      GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(meDenseWireConnector, 2), " d ", "rcr", "cgc", 'd', ae.parts().cableDense().stack(AEColor.Transparent, 1), 'r', "dustRedstone", 'c', meWireConnector, 'g', "dustGlowstone"));
-      GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(aeDecoration, 1, 0), "www", "wiw", "www", 'w', new ItemStack(IIItems.aeWireCoil, 1, 0), 'i', "ingotIron"));
-      GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(aeDecoration, 1, 1), "www", "wiw", "www", 'w', new ItemStack(IIItems.aeWireCoil, 1, 1), 'i', "ingotIron"));
-      GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(meTransformer), " w ", "ibi", "iii", 'w', meWireConnector, 'b', new ItemStack(aeDecoration, 1, 0), 'i', "ingotIron"));
-      GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(meDenseTransformer), " w ", "ibi", "iii", 'w', meDenseWireConnector, 'b', new ItemStack(aeDecoration, 1, 1), 'i', "ingotIron"));
-
-    } else {
-      meWireConnector = new BlockMEWireConnector(ModInfo.MOD_ID + ":" + ME_WIRE_CONNECTOR_KEY);
-      meDenseWireConnector = new BlockMEDenseWireConnector(ModInfo.MOD_ID + ":" + ME_DENSE_CONNECTOR_KEY);
-      meTransformer = new BlockMETransformer(ModInfo.MOD_ID + ":" + ME_TRANSFORMER_KEY);
-      meDenseTransformer = new BlockMEDenseTransformer(ModInfo.MOD_ID + ":" + ME_DENSE_TRANSFORMER_KEY);
-      aeDecoration = new BlockAEDecoration(ModInfo.MOD_ID + ":" + AE_DECORATIONS_KEY);
-
-      GameRegistry.registerBlock(meWireConnector, ME_WIRE_CONNECTOR_KEY);
-      GameRegistry.registerBlock(meDenseWireConnector, ME_DENSE_CONNECTOR_KEY);
-      GameRegistry.registerBlock(meTransformer, ItemBlockMETransformer.class, ME_TRANSFORMER_KEY);
-      GameRegistry.registerBlock(meDenseTransformer, ItemBlockMETransformer.class, ME_DENSE_TRANSFORMER_KEY);
-      GameRegistry.registerBlock(aeDecoration, ItemBlockAEDecoration.class, AE_DECORATIONS_KEY);
-
-      GameRegistry.registerTileEntity(TileMEWireConnector.class, ModInfo.MOD_ID + ":" + ME_WIRE_CONNECTOR_KEY + "Tile");
-      GameRegistry.registerTileEntity(TileMEDenseWireConnector.class, ModInfo.MOD_ID + ":" + ME_DENSE_CONNECTOR_KEY + "Tile");
-      GameRegistry.registerTileEntity(TileMETransformer.class, ModInfo.MOD_ID + ":" + ME_TRANSFORMER_KEY + "Tile");
-      GameRegistry.registerTileEntity(TileMEDenseTransformer.class, ModInfo.MOD_ID + ":" + ME_DENSE_TRANSFORMER_KEY + "Tile");
+  public static Block registerBlock(Class<? extends Block> blockClass, Class<? extends ItemBlock> itemClass, String key, Class<? extends TileEntity> tileClass) {
+    try {
+      Block block = blockClass.getConstructor(String.class).newInstance(ModInfo.MOD_ID + ":" + key);
+      if (itemClass == null) {
+        GameRegistry.registerBlock(block, key);
+      } else {
+        GameRegistry.registerBlock(block, itemClass, key);
+      }
+      if (tileClass != null) {
+        GameRegistry.registerTileEntity(tileClass, ModInfo.MOD_ID + ":" + key + "Tile");
+      }
+      return block;
+    } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+      ImmersiveIntegration.log.error("Something went horribly wrong instantiating a block for " + blockClass.getName());
+      e.printStackTrace();
+      ImmersiveIntegration.log.error("Report this to UnwrittenFun. Do NOT ignore. Exiting Java.");
+      FMLCommonHandler.instance().exitJava(0, false);
     }
+    return null;
+  }
+
+  public static Block registerBlock(Class<? extends Block> blockClass, String key, Class<? extends TileEntity> tileClass) {
+    return registerBlock(blockClass, null, key, tileClass);
+  }
+
+  public static Block registerBlock(Class<? extends Block> blockClass, String key) {
+    return registerBlock(blockClass, null, key, null);
+  }
+
+  public static Block registerBlock(Class<? extends Block> blockClass, Class<? extends ItemBlock> itemClass, String key) {
+    return registerBlock(blockClass, itemClass, key, null);
   }
 }

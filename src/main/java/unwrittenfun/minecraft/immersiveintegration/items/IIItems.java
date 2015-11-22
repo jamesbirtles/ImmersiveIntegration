@@ -5,7 +5,7 @@ import appeng.api.definitions.IDefinitions;
 import appeng.api.util.AEColor;
 import blusunrize.immersiveengineering.common.IEContent;
 import blusunrize.immersiveengineering.common.blocks.metal.BlockMetalDevices;
-import blusunrize.immersiveengineering.common.blocks.wooden.BlockWoodenDevices;
+import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -44,6 +44,10 @@ public class IIItems {
     GameRegistry.addRecipe(new CapacitorBoxRecipe(new ItemStack(IEContent.blockMetalDevice, 1, BlockMetalDevices.META_capacitorHV), new ItemStack(capacitorBox, 1, 2)));
 
     if (ImmersiveIntegration.cfg.enableAE) registerAE(true);
+
+    if (ImmersiveIntegration.cfg.enableTinkers) {
+      FMLInterModComms.sendMessage("TConstruct", "addFluxBattery", new ItemStack(capacitorBox));
+    }
   }
 
   private static void registerAE(boolean recipes) {

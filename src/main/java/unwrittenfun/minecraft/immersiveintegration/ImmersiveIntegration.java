@@ -13,6 +13,7 @@ import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.Logger;
 import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
 import unwrittenfun.minecraft.immersiveintegration.compat.CCCompat;
+import unwrittenfun.minecraft.immersiveintegration.compat.CompatModule;
 import unwrittenfun.minecraft.immersiveintegration.gui.GuiHandler;
 import unwrittenfun.minecraft.immersiveintegration.items.IIItems;
 import unwrittenfun.minecraft.immersiveintegration.multiblocks.IIMultiblocks;
@@ -57,26 +58,13 @@ public class ImmersiveIntegration {
     IIMultiblocks.registerMultiblocks();
 
     NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
+
+    CompatModule.eventPreInit();
   }
 
   @Mod.EventHandler
   public void init(FMLInitializationEvent event) {
-    if (Loader.isModLoaded("Waila")) {
-      FMLInterModComms.sendMessage("Waila", "register", "unwrittenfun.minecraft.immersiveintegration.waila.WailaHandler.init");
-    }
-
-    if (Loader.isModLoaded("ForgeMicroblock")) {
-      FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(IIBlocks.steelDecoration, 1, 0));
-      FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(IIBlocks.steelDecoration, 1, 1));
-      FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(IIBlocks.steelDecoration, 1, 2));
-
-      if (cfg.enableAE) {
-        FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(IIBlocks.aeDecoration, 1, 0));
-        FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(IIBlocks.aeDecoration, 1, 1));
-      }
-    }
-
-    if (Loader.isModLoaded("ComputerCraft")) CCCompat.init();
+    CompatModule.eventInit();
   }
 
   @Mod.EventHandler
@@ -84,9 +72,7 @@ public class ImmersiveIntegration {
     IIBlocks.registerRecipes();
     IIItems.registerRecipes();
 
-    if (cfg.enableTinkers) {
-      FMLInterModComms.sendMessage("TConstruct", "addFluxBattery", new ItemStack(IIItems.capacitorBox));
-    }
+    CompatModule.eventPostInit();
   }
 
   @Mod.EventHandler

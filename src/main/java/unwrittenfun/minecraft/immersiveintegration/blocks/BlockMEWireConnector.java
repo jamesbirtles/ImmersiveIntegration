@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileMEWireConnector;
 
 public class BlockMEWireConnector extends BlockWireConnector {
-  protected BlockMEWireConnector(String key) {
+  public BlockMEWireConnector(String key) {
     super(key);
   }
 

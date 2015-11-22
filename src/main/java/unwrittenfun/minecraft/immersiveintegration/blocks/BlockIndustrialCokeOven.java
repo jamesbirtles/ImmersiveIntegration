@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class BlockIndustrialCokeOven extends BlockContainer {
   public IIcon mapIcon;
 
-  protected BlockIndustrialCokeOven(String key) {
+  public BlockIndustrialCokeOven(String key) {
     super(Material.iron);
     setBlockName(key);
     setBlockTextureName(key);

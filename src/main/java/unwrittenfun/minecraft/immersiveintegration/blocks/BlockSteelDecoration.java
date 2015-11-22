@@ -17,7 +17,7 @@ public class BlockSteelDecoration extends Block {
   public IIcon[] icons;
   public IIcon[] topIcons;
 
-  public BlockSteelDecoration(String key, String[] keys) {
+  public BlockSteelDecoration(String key) {
     super(Material.iron);
     setBlockName(key);
     setBlockTextureName(key);
@@ -25,7 +25,7 @@ public class BlockSteelDecoration extends Block {
     setHardness(2.5f);
     setStepSound(Block.soundTypeMetal);
 
-    this.keys = keys;
+    this.keys = IIBlocks.STEEL_BLOCKS_KEYS;
     this.hasTop = new boolean[] { true, true, true, false };
   }
 

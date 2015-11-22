@@ -6,7 +6,7 @@ import net.minecraft.block.material.Material;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 
 public class BlockSteelTrapdoor extends BlockTrapDoor {
-  protected BlockSteelTrapdoor(String key) {
+  public BlockSteelTrapdoor(String key) {
     super(Material.iron);
     setBlockName(key);
     setBlockTextureName(key);

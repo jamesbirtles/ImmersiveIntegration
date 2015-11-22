@@ -8,8 +8,14 @@ import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileRedstoneWireConnector;
 import unwrittenfun.minecraft.immersiveintegration.wires.RedstoneWireNetwork;
 
-public class CCCompat {
-  public static void init() {
+public class CCCompat extends CompatModule {
+  @Override
+  public String getModId() {
+    return "ComputerCraft";
+  }
+
+  @Override
+  public void init() {
     ComputerCraftAPI.registerBundledRedstoneProvider((IBundledRedstoneProvider) IIBlocks.redstoneWireConnector);
   }
 

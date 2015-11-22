@@ -32,7 +32,7 @@ public class BlockInductionCharger extends BlockContainer {
   protected IIcon[] icons;
   protected String key;
 
-  protected BlockInductionCharger(String key) {
+  public BlockInductionCharger(String key) {
     super(Material.wood);
     this.key = key;
     setBlockTextureName(key);

@@ -18,7 +18,7 @@ import unwrittenfun.minecraft.immersiveintegration.tiles.TileRedstoneWireConnect
 public class BlockRedstoneWireConnector extends BlockWireConnector implements IBundledRedstoneProvider {
   public static IIcon inputIcon;
 
-  protected BlockRedstoneWireConnector(String key) {
+  public BlockRedstoneWireConnector(String key) {
     super(key);
   }
 
