@@ -12,7 +12,12 @@ import unwrittenfun.minecraft.immersiveintegration.CommonProxy;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.ModInfo;
 import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
-import unwrittenfun.minecraft.immersiveintegration.client.renderers.*;
+import unwrittenfun.minecraft.immersiveintegration.client.renderers.ModelIIObj;
+import unwrittenfun.minecraft.immersiveintegration.client.renderers.block.BlockRenderExtendablePost;
+import unwrittenfun.minecraft.immersiveintegration.client.renderers.block.BlockRenderExtendedPost;
+import unwrittenfun.minecraft.immersiveintegration.client.renderers.block.BlockRenderIIBlocks;
+import unwrittenfun.minecraft.immersiveintegration.client.renderers.block.BlockRenderIndustrialCokeOven;
+import unwrittenfun.minecraft.immersiveintegration.client.renderers.tile.*;
 import unwrittenfun.minecraft.immersiveintegration.items.IIItems;
 import unwrittenfun.minecraft.immersiveintegration.multiblocks.IIMultiblocks;
 import unwrittenfun.minecraft.immersiveintegration.special.SpecialEventHandler;
@@ -65,10 +70,10 @@ public class ClientProxy extends CommonProxy {
        new ManualPages.Text(manual, "itemRobin1")
     );
     manual.addEntry("capacitorBox", "immersiveintegration",
-       new ManualPages.CraftingMulti(manual, "capacitorBox0", new ItemStack(IIItems.capacitorBox, 1, 0),  new ItemStack(IIItems.capacitorBox, 1, 1),  new ItemStack(IIItems.capacitorBox, 1, 2))
+       new ManualPages.CraftingMulti(manual, "capacitorBox0", new ItemStack(IIItems.capacitorBox, 1, 0), new ItemStack(IIItems.capacitorBox, 1, 1), new ItemStack(IIItems.capacitorBox, 1, 2))
     );
     manual.addEntry("inductionCharger", "immersiveintegration",
-       new ManualPages.CraftingMulti(manual, "inductionCharger0", new ItemStack(IIBlocks.inductionCharger, 1, 0),  new ItemStack(IIBlocks.inductionCharger, 1, 1),  new ItemStack(IIBlocks.inductionCharger, 1, 2))
+       new ManualPages.CraftingMulti(manual, "inductionCharger0", new ItemStack(IIBlocks.inductionCharger, 1, 0), new ItemStack(IIBlocks.inductionCharger, 1, 1), new ItemStack(IIBlocks.inductionCharger, 1, 2))
     );
 
     if (ImmersiveIntegration.cfg.enableAE) {

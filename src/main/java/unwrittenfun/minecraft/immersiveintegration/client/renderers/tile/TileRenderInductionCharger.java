@@ -1,4 +1,4 @@
-package unwrittenfun.minecraft.immersiveintegration.client.renderers;
+package unwrittenfun.minecraft.immersiveintegration.client.renderers.tile;
 
 import blusunrize.immersiveengineering.client.render.TileRenderIE;
 import blusunrize.immersiveengineering.common.util.chickenbones.Matrix4;
@@ -9,6 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.model.obj.Vertex;
 import org.lwjgl.opengl.GL11;
 import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
+import unwrittenfun.minecraft.immersiveintegration.client.renderers.ModelIIObj;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileInductionChargerLV;
 
 public class TileRenderInductionCharger extends TileRenderIE {

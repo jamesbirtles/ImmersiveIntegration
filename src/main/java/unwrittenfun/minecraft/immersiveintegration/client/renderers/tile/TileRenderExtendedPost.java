@@ -1,4 +1,4 @@
-package unwrittenfun.minecraft.immersiveintegration.client.renderers;
+package unwrittenfun.minecraft.immersiveintegration.client.renderers.tile;
 
 import blusunrize.immersiveengineering.client.render.TileRenderIE;
 import blusunrize.immersiveengineering.client.render.TileRenderPost;
@@ -6,6 +6,7 @@ import blusunrize.immersiveengineering.common.IEContent;
 import blusunrize.immersiveengineering.common.util.chickenbones.Matrix4;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.tileentity.TileEntity;
+import unwrittenfun.minecraft.immersiveintegration.client.renderers.ModelIIObj;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileExtendedPost;
 
 import java.util.ArrayList;

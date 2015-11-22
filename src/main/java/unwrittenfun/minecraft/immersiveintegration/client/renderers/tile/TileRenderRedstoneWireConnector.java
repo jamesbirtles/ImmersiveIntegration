@@ -1,4 +1,4 @@
-package unwrittenfun.minecraft.immersiveintegration.client.renderers;
+package unwrittenfun.minecraft.immersiveintegration.client.renderers.tile;
 
 import blusunrize.immersiveengineering.client.models.ModelIEObj;
 import blusunrize.immersiveengineering.client.render.TileRenderImmersiveConnectable;
@@ -15,6 +15,7 @@ import org.lwjgl.opengl.GL11;
 import unwrittenfun.minecraft.immersiveintegration.ModInfo;
 import unwrittenfun.minecraft.immersiveintegration.blocks.BlockRedstoneWireConnector;
 import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
+import unwrittenfun.minecraft.immersiveintegration.client.renderers.ModelIIObj;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileRedstoneWireConnector;
 
 public class TileRenderRedstoneWireConnector extends TileRenderImmersiveConnectable {

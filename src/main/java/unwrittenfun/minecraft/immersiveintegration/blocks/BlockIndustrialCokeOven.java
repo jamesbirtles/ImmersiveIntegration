@@ -15,7 +15,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
-import unwrittenfun.minecraft.immersiveintegration.client.renderers.BlockRenderIndustrialCokeOven;
+import unwrittenfun.minecraft.immersiveintegration.client.renderers.block.BlockRenderIndustrialCokeOven;
 import unwrittenfun.minecraft.immersiveintegration.tiles.IMultiblockTile;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileIndustrialCokeOven;
 

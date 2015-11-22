@@ -18,7 +18,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
-import unwrittenfun.minecraft.immersiveintegration.client.renderers.BlockRenderIIBlocks;
+import unwrittenfun.minecraft.immersiveintegration.client.renderers.block.BlockRenderIIBlocks;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileInductionChargerHV;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileInductionChargerLV;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileInductionChargerMV;

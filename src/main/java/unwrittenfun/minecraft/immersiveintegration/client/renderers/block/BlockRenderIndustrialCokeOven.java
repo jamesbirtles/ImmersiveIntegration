@@ -1,4 +1,4 @@
-package unwrittenfun.minecraft.immersiveintegration.client.renderers;
+package unwrittenfun.minecraft.immersiveintegration.client.renderers.block;
 
 import blusunrize.immersiveengineering.client.ClientUtils;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;

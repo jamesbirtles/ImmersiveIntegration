@@ -1,4 +1,4 @@
-package unwrittenfun.minecraft.immersiveintegration.client.renderers;
+package unwrittenfun.minecraft.immersiveintegration.client.renderers.tile;
 
 import blusunrize.immersiveengineering.client.ClientEventHandler;
 import blusunrize.immersiveengineering.client.render.TileRenderIE;
@@ -8,6 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 import unwrittenfun.minecraft.immersiveintegration.ModInfo;
 import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
+import unwrittenfun.minecraft.immersiveintegration.client.renderers.ModelIIObj;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileMEDenseTransformer;
 
 public class TileRenderMETransformer extends TileRenderIE {

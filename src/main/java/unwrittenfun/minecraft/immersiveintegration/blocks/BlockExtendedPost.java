@@ -15,7 +15,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
-import unwrittenfun.minecraft.immersiveintegration.client.renderers.BlockRenderExtendedPost;
+import unwrittenfun.minecraft.immersiveintegration.client.renderers.block.BlockRenderExtendedPost;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileExtendedPost;
 
 import java.util.Random;

@@ -1,9 +1,10 @@
-package unwrittenfun.minecraft.immersiveintegration.client.renderers;
+package unwrittenfun.minecraft.immersiveintegration.client.renderers.tile;
 
 import blusunrize.immersiveengineering.client.render.TileRenderImmersiveConnectable;
 import blusunrize.immersiveengineering.common.util.chickenbones.Matrix4;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.tileentity.TileEntity;
+import unwrittenfun.minecraft.immersiveintegration.client.renderers.ModelIIObj;
 
 public class TileRenderWireConnector extends TileRenderImmersiveConnectable {
   private final ModelIIObj model;

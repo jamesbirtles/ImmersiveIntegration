@@ -1,4 +1,4 @@
-package unwrittenfun.minecraft.immersiveintegration.client.renderers;
+package unwrittenfun.minecraft.immersiveintegration.client.renderers.block;
 
 import blusunrize.immersiveengineering.client.ClientUtils;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
@@ -6,27 +6,31 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import org.lwjgl.opengl.GL11;
-import unwrittenfun.minecraft.immersiveintegration.tiles.TileExtendedPost;
+import unwrittenfun.minecraft.immersiveintegration.tiles.IWireConnector;
 
-public class BlockRenderExtendedPost implements ISimpleBlockRenderingHandler {
+public class BlockRenderIIBlocks implements ISimpleBlockRenderingHandler {
   public static int RENDER_ID = RenderingRegistry.getNextAvailableRenderId();
 
   @Override
   public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
     GL11.glPushMatrix();
-    GL11.glScalef(0.7f, 0.7f, 0.7f);
-    GL11.glTranslatef(0f, -0.85f, 0f);
+    GL11.glScalef(1.25F, 1.25F, 1.25F);
     Tessellator.instance.startDrawingQuads();
-    ClientUtils.handleStaticTileRenderer(new TileExtendedPost());
+    ClientUtils.handleStaticTileRenderer(block.createTileEntity(null, metadata));
     Tessellator.instance.draw();
     GL11.glPopMatrix();
   }
 
   @Override
   public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
-    if (world.getBlockMetadata(x, y, z) == 0) ClientUtils.handleStaticTileRenderer(world.getTileEntity(x, y, z));
+    TileEntity tile = world.getTileEntity(x, y, z);
+    ClientUtils.handleStaticTileRenderer(tile);
+    if (tile instanceof IWireConnector) {
+      ClientUtils.renderAttachedConnections(tile);
+    }
     return true;
   }
 
