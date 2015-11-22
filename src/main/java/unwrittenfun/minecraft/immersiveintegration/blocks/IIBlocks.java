@@ -22,6 +22,7 @@ public class IIBlocks {
   public static final String ME_WIRE_CONNECTOR_KEY = "meWireConnector";
   public static final String ME_DENSE_CONNECTOR_KEY = "meDenseWireConnector";
   public static final String EXTENDED_POST_KEY = "extendedPost";
+  public static final String EXTENDABLE_POST_KEY = "extendablePost";
   public static final String STEEL_TRAPDOOR = "steelTrapdoor";
   public static final String REDSTONE_WIRE_CONNECTOR_KEY = "redstoneWireConnector";
   public static final String INDUSTRIAL_COKE_OVEN = "industrialCokeOven";
@@ -44,6 +45,7 @@ public class IIBlocks {
   public static Block aeDecoration;
 
   public static Block extendedPost;
+  public static Block extendablePost;
   public static Block steelTrapdoor;
   public static Block redstoneWireConnector;
   public static BlockIndustrialCokeOven industrialCokeOven;
@@ -53,6 +55,7 @@ public class IIBlocks {
 
   public static void registerBlocks() {
     extendedPost = new BlockExtendedPost(ModInfo.MOD_ID + ":" + EXTENDED_POST_KEY);
+    extendablePost = new BlockExtendablePost(ModInfo.MOD_ID + ":" + EXTENDABLE_POST_KEY);
     steelTrapdoor = new BlockSteelTrapdoor(ModInfo.MOD_ID + ":" + STEEL_TRAPDOOR);
     redstoneWireConnector = new BlockRedstoneWireConnector(ModInfo.MOD_ID + ":" + REDSTONE_WIRE_CONNECTOR_KEY);
     industrialCokeOven = new BlockIndustrialCokeOven(ModInfo.MOD_ID + ":" + INDUSTRIAL_COKE_OVEN);
@@ -61,6 +64,7 @@ public class IIBlocks {
     inductionCharger = new BlockInductionCharger(ModInfo.MOD_ID + ":" + INDUCTION_CHARGER_KEY);
 
     GameRegistry.registerBlock(extendedPost, ItemBlockExtendedPost.class, EXTENDED_POST_KEY);
+    GameRegistry.registerBlock(extendablePost, EXTENDABLE_POST_KEY);
     GameRegistry.registerBlock(steelTrapdoor, STEEL_TRAPDOOR);
     GameRegistry.registerBlock(redstoneWireConnector, REDSTONE_WIRE_CONNECTOR_KEY);
     GameRegistry.registerBlock(industrialCokeOven, INDUSTRIAL_COKE_OVEN);

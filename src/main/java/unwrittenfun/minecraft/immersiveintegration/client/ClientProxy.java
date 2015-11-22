@@ -23,6 +23,7 @@ public class ClientProxy extends CommonProxy {
   public void registerRenderers() {
     RenderingRegistry.registerBlockHandler(new BlockRenderIIBlocks());
     RenderingRegistry.registerBlockHandler(new BlockRenderExtendedPost());
+    RenderingRegistry.registerBlockHandler(new BlockRenderExtendablePost());
     RenderingRegistry.registerBlockHandler(new BlockRenderIndustrialCokeOven());
     ClientRegistry.bindTileEntitySpecialRenderer(TileExtendedPost.class, new TileRenderExtendedPost());
     ClientRegistry.bindTileEntitySpecialRenderer(TileRedstoneWireConnector.class, new TileRenderRedstoneWireConnector());
