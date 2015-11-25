@@ -19,7 +19,6 @@ public class TileRenderMETransformer extends TileRenderIE {
 
   @Override
   public void renderDynamic(TileEntity tile, double x, double y, double z, float f) {
-    if (tile.hasWorldObj()) ClientEventHandler.renderAllIEConnections(f);
   }
 
   @Override
@@ -33,15 +32,15 @@ public class TileRenderMETransformer extends TileRenderIE {
       } else {
         switch (meta & 7) {
           case 2:
-            translationMatrix.rotate(Math.PI, 0, 1, 0);
+            rotationMatrix.rotate(Math.PI, 0, 1, 0);
             break;
           case 3:
             break;
           case 4:
-            translationMatrix.rotate(-Math.PI / 2, 0, 1, 0);
+            rotationMatrix.rotate(-Math.PI / 2, 0, 1, 0);
             break;
           case 5:
-            translationMatrix.rotate(Math.PI / 2, 0, 1, 0);
+            rotationMatrix.rotate(Math.PI / 2, 0, 1, 0);
             break;
         }
       }
