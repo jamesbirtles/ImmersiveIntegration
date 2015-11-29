@@ -61,7 +61,7 @@ dependencies {
     compile("appeng:appliedenergistics2:rv2-stable-10:dev") {
         transitive = false
     }
-    compile "blusunrize:ImmersiveEngineering:0.6.0-deobf"
+    compile project(":ImmersiveEngineering")
 }
 
 processResources {
