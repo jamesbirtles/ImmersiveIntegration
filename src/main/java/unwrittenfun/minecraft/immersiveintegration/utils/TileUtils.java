@@ -7,10 +7,19 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileUtils {
+  public static <T extends TileEntity> T getTileEntity(IBlockAccess world, int x, int y, int z, Class<T> tileClass) {
+    TileEntity tileEntity = world.getTileEntity(x, y, z);
+    if (tileClass.isInstance(tileEntity)) {
+      return tileClass.cast(tileEntity);
+    }
+    return null;
+  }
+
   public static void writeInventoryToNBT(NBTTagCompound compound, IInventory inventory) {
     NBTTagList items = new NBTTagList();
     for (byte slot = 0; slot < inventory.getSizeInventory(); slot++) {

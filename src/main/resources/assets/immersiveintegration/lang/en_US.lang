@@ -154,7 +154,7 @@ immersiveintegration.config.cokeOvenCreosoteMultiplier=Coke Oven Creosote Multip
 immersiveintegration.config.desc.cokeOvenCreosoteMultiplier=How much more creosote to give per operation. A value of 1.5 would yield 1.5 x creosote output
 
 immersiveintegration.config.cokeOvenTimeMultiplier=Coke Oven Time Multiplier
-immersiveintegration.config.desc.cokeOvenTimeMultiplier=How much faster each operation goes. A value of 0.5 would be half the time needed.
+immersiveintegration.config.desc.cokeOvenTimeMultiplier=Value to multiply the base cooking speed by. A value of 0.5 would be half the time needed.
 
 immersiveintegration.config.meTransformerPowerDrain=ME Transformer Power Drain
 immersiveintegration.config.desc.meTransformerPowerDrain=How much power to drain per transformer in AE/t

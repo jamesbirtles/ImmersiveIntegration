@@ -39,6 +39,7 @@ public class IIBlocks {
   public static final String STEEL_BLOCKS_KEY = "steelDecoration";
   public static final String AE_DECORATIONS_KEY = "aeDecoration";
   public static final String INDUCTION_CHARGER_KEY = "inductionCharger";
+  public static final String WALL_CONNECTOR_KEY = "wallConnector";
 
   public static final String[] STEEL_BLOCKS_KEYS = new String[]{
      "OvenWall", "OvenWallHeated", "OvenWallPort"
@@ -51,6 +52,7 @@ public class IIBlocks {
   public static Block meDenseWireConnector;
   public static Block meTransformer, meDenseTransformer;
   public static Block redstoneWireConnector;
+  public static Block wallConnector;
 
   public static Block extendedPost;
   public static Block extendablePost;
@@ -75,6 +77,7 @@ public class IIBlocks {
 
     // Wire Connectors
     redstoneWireConnector = registerBlock(BlockRedstoneWireConnector.class, REDSTONE_WIRE_CONNECTOR_KEY, TileRedstoneWireConnector.class);
+    wallConnector = registerBlock(BlockWallConnector.class, WALL_CONNECTOR_KEY, TileWallConnector.class);
 
     GameRegistry.registerTileEntity(TileInductionChargerLV.class, ModInfo.MOD_ID + ":" + INDUCTION_CHARGER_KEY + "LVTile");
     GameRegistry.registerTileEntity(TileInductionChargerMV.class, ModInfo.MOD_ID + ":" + INDUCTION_CHARGER_KEY + "MVTile");

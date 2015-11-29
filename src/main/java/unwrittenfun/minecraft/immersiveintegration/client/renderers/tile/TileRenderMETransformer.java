@@ -1,6 +1,5 @@
 package unwrittenfun.minecraft.immersiveintegration.client.renderers.tile;
 
-import blusunrize.immersiveengineering.client.ClientEventHandler;
 import blusunrize.immersiveengineering.client.render.TileRenderIE;
 import blusunrize.immersiveengineering.common.util.chickenbones.Matrix4;
 import net.minecraft.client.renderer.Tessellator;
