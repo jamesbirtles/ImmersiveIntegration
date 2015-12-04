@@ -1,6 +1,5 @@
 package unwrittenfun.minecraft.immersiveintegration.blocks;
 
-import blusunrize.immersiveengineering.api.IPostBlock;
 import blusunrize.immersiveengineering.common.IEContent;
 import blusunrize.immersiveengineering.common.util.Utils;
 import net.minecraft.block.Block;
@@ -13,13 +12,14 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
+import unwrittenfun.minecraft.immersiveintegration.client.IIRenderIDs;
 import unwrittenfun.minecraft.immersiveintegration.client.renderers.block.BlockRenderExtendablePost;
 
 import java.util.ArrayList;
 
 import static unwrittenfun.minecraft.immersiveintegration.IIUtils.*;
 
-public class BlockExtendablePost extends Block implements IPostBlock {
+public class BlockExtendablePost extends Block { // TODO: IPostBlock
   public BlockExtendablePost(String key) {
     super(Material.wood);
     setBlockTextureName(key);
@@ -30,7 +30,8 @@ public class BlockExtendablePost extends Block implements IPostBlock {
   }
 
   public static boolean canArmConnectToBlock(IBlockAccess world, int x, int y, int z, boolean down) {
-    if (world.isAirBlock(x, y, z) || world.getBlock(x, y, z) instanceof IPostBlock) return false;
+    if (world.isAirBlock(x, y, z) || world.getBlock(x, y, z) instanceof BlockExtendablePost)
+      return false; // TODO: IPostBlock
     world.getBlock(x, y, z).setBlockBoundsBasedOnState(world, x, y, z);
     return down ? world.getBlock(x, y, z).getBlockBoundsMaxY() >= 1 : world.getBlock(x, y, z).getBlockBoundsMinY() <= 0;
   }
@@ -52,7 +53,7 @@ public class BlockExtendablePost extends Block implements IPostBlock {
 
   @Override
   public int getRenderType() {
-    return BlockRenderExtendablePost.RENDER_ID;
+    return IIRenderIDs.EXTENDABLE_POST;
   }
 
   @Override
@@ -174,8 +175,8 @@ public class BlockExtendablePost extends Block implements IPostBlock {
     return world.getBlockMetadata(x, y, z) > 0;
   }
 
-  @Override
-  public boolean canConnectTransformer(IBlockAccess world, int x, int y, int z) {
-    return world.getBlockMetadata(x, y, z) > 0;
-  }
+//  @Override
+//  public boolean canConnectTransformer(IBlockAccess world, int x, int y, int z) {
+//    return world.getBlockMetadata(x, y, z) > 0;
+//  }
 }

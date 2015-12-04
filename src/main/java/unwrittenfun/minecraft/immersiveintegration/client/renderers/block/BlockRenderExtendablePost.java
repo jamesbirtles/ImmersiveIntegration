@@ -2,7 +2,6 @@ package unwrittenfun.minecraft.immersiveintegration.client.renderers.block;
 
 import blusunrize.immersiveengineering.common.util.chickenbones.Matrix4;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -13,6 +12,7 @@ import org.lwjgl.opengl.GL11;
 import unwrittenfun.minecraft.immersiveintegration.ModInfo;
 import unwrittenfun.minecraft.immersiveintegration.blocks.BlockExtendablePost;
 import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
+import unwrittenfun.minecraft.immersiveintegration.client.IIRenderIDs;
 import unwrittenfun.minecraft.immersiveintegration.client.renderers.ModelIIObj;
 
 import java.util.ArrayList;
@@ -20,7 +20,6 @@ import java.util.ArrayList;
 public class BlockRenderExtendablePost implements ISimpleBlockRenderingHandler {
   public static final ModelIIObj model = new ModelIIObj(ModInfo.MOD_ID + ":models/extendablePost.obj", IIBlocks.extendablePost);
   public static final TileEntity fakeTile = new TileEntity();
-  public static int RENDER_ID = RenderingRegistry.getNextAvailableRenderId();
 
   @Override
   public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
@@ -104,6 +103,6 @@ public class BlockRenderExtendablePost implements ISimpleBlockRenderingHandler {
 
   @Override
   public int getRenderId() {
-    return RENDER_ID;
+    return IIRenderIDs.EXTENDABLE_POST;
   }
 }

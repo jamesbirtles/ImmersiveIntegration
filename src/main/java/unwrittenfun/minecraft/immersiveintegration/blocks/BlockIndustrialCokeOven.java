@@ -15,6 +15,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
+import unwrittenfun.minecraft.immersiveintegration.client.IIRenderIDs;
 import unwrittenfun.minecraft.immersiveintegration.client.renderers.block.BlockRenderIndustrialCokeOven;
 import unwrittenfun.minecraft.immersiveintegration.tiles.IMultiblockTile;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileIndustrialCokeOven;
@@ -67,7 +68,7 @@ public class BlockIndustrialCokeOven extends BlockContainer {
 
   @Override
   public int getRenderType() {
-    return BlockRenderIndustrialCokeOven.RENDER_ID;
+    return IIRenderIDs.COKE_OVEN;
   }
 
   @Override

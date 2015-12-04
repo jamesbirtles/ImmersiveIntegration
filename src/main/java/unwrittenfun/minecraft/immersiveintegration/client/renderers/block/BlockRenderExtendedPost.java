@@ -8,11 +8,10 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
 import org.lwjgl.opengl.GL11;
+import unwrittenfun.minecraft.immersiveintegration.client.IIRenderIDs;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileExtendedPost;
 
 public class BlockRenderExtendedPost implements ISimpleBlockRenderingHandler {
-  public static int RENDER_ID = RenderingRegistry.getNextAvailableRenderId();
-
   @Override
   public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
     GL11.glPushMatrix();
@@ -37,6 +36,6 @@ public class BlockRenderExtendedPost implements ISimpleBlockRenderingHandler {
 
   @Override
   public int getRenderId() {
-    return RENDER_ID;
+    return IIRenderIDs.EXTENDED_POST;
   }
 }

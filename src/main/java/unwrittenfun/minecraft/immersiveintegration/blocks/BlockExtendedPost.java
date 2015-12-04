@@ -15,6 +15,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
+import unwrittenfun.minecraft.immersiveintegration.client.IIRenderIDs;
 import unwrittenfun.minecraft.immersiveintegration.client.renderers.block.BlockRenderExtendedPost;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileExtendedPost;
 
@@ -52,7 +53,7 @@ public class BlockExtendedPost extends BlockContainer {
 
   @Override
   public int getRenderType() {
-    return BlockRenderExtendedPost.RENDER_ID;
+    return IIRenderIDs.EXTENDED_POST;
   }
 
   @Override

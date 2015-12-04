@@ -2,14 +2,12 @@ package unwrittenfun.minecraft.immersiveintegration.client.renderers.block;
 
 import blusunrize.immersiveengineering.client.ClientUtils;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.world.IBlockAccess;
+import unwrittenfun.minecraft.immersiveintegration.client.IIRenderIDs;
 
 public class BlockRenderIndustrialCokeOven implements ISimpleBlockRenderingHandler {
-  public static int RENDER_ID = RenderingRegistry.getNextAvailableRenderId();
-
   @Override
   public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
     renderer.setRenderBoundsFromBlock(block);
@@ -43,6 +41,6 @@ public class BlockRenderIndustrialCokeOven implements ISimpleBlockRenderingHandl
 
   @Override
   public int getRenderId() {
-    return RENDER_ID;
+    return IIRenderIDs.COKE_OVEN;
   }
 }
