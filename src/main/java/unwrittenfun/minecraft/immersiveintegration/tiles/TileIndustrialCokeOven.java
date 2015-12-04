@@ -158,9 +158,6 @@ public class TileIndustrialCokeOven extends TileEntity implements IMultiblockTil
 
   @Override
   public void setFormed(boolean formed) {
-    if (this.formed && !formed) {
-      TileUtils.dropInventory(worldObj, xCoord, yCoord, zCoord);
-    }
     this.formed = formed;
   }
 

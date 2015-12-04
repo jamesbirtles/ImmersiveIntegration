@@ -5,8 +5,12 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import unwrittenfun.minecraft.immersiveintegration.blocks.IIBlocks;
+
+import java.util.List;
 
 public class ItemBlockExtendedPost extends ItemBlock {
   public ItemBlockExtendedPost(Block block) {
@@ -26,5 +30,13 @@ public class ItemBlockExtendedPost extends ItemBlock {
     world.setBlock(x, y + 1, z, this.field_150939_a, 1, 3);
 
     return super.placeBlockAt(stack, player, world, x, y, z, side, hitX, hitY, hitZ, metadata);
+  }
+
+  @Override
+  public void addInformation(ItemStack stack, EntityPlayer player, List lines, boolean p_77624_4_) {
+    super.addInformation(stack, player, lines, p_77624_4_);
+
+    lines.add(EnumChatFormatting.RED + "This will be removed soon.");
+    lines.add(EnumChatFormatting.GREEN + "Place in crafting table to reclaim fence posts.");
   }
 }

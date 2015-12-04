@@ -18,6 +18,7 @@ import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.client.renderers.block.BlockRenderIndustrialCokeOven;
 import unwrittenfun.minecraft.immersiveintegration.tiles.IMultiblockTile;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileIndustrialCokeOven;
+import unwrittenfun.minecraft.immersiveintegration.utils.TileUtils;
 
 import java.util.ArrayList;
 
@@ -80,6 +81,8 @@ public class BlockIndustrialCokeOven extends BlockContainer {
           if (multiblockTile.getReplaced() != null) {
             world.spawnEntityInWorld(new EntityItem(world, x + .5, y + .5, z + .5, multiblockTile.getReplaced().copy()));
           }
+
+          TileUtils.dropInventory(world, x, y, z);
 
           multiblockTile.setFormed(false);
           int[] offset = multiblockTile.getOffset();

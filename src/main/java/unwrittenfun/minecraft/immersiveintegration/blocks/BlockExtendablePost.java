@@ -116,7 +116,7 @@ public class BlockExtendablePost extends Block implements IPostBlock {
   public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int meta, int fortune) {
     if (meta == 0) return super.getDrops(world, x, y, z, meta, fortune);
     ArrayList<ItemStack> drops = new ArrayList<>();
-    drops.add(new ItemStack(IEContent.blockWoodenDecoration, 1, 1));
+    if (meta < 3) drops.add(new ItemStack(IEContent.blockWoodenDecoration, 1, 1));
     return drops;
   }
 

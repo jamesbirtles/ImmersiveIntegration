@@ -6,7 +6,6 @@ import appeng.api.networking.*;
 import appeng.api.util.AECableType;
 import appeng.api.util.AEColor;
 import appeng.api.util.DimensionalCoord;
-import appeng.me.GridNode;
 import blusunrize.immersiveengineering.api.TargetingInfo;
 import blusunrize.immersiveengineering.api.energy.ImmersiveNetHandler;
 import blusunrize.immersiveengineering.api.energy.WireType;
@@ -22,9 +21,7 @@ import unwrittenfun.minecraft.immersiveintegration.wires.IIWires;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
-import java.util.List;
 import java.util.Set;
-import java.util.concurrent.ConcurrentSkipListSet;
 
 public class TileMEWireConnector extends TileWireConnector implements IGridHost, IGridBlock {
   public IGrid theGrid;
@@ -47,15 +44,13 @@ public class TileMEWireConnector extends TileWireConnector implements IGridHost,
         }
 
         TileEntity teOpposite = worldObj.getTileEntity(opposite.posX, opposite.posY, opposite.posZ);
-        if (teOpposite instanceof IGridHost) {
-          GridNode nodeA = (GridNode) ((IGridHost) teOpposite).getGridNode(ForgeDirection.UNKNOWN);
-          GridNode nodeB = (GridNode) getGridNode(ForgeDirection.UNKNOWN);
-          if (!nodeA.hasConnection(nodeB) && !nodeB.hasConnection(nodeA)) {
-            try {
-              gridConnections.add(AEApi.instance().createGridConnection(nodeA, nodeB));
-            } catch (FailedConnection failedConnection) {
-              failedConnection.printStackTrace();
-            }
+        if (teOpposite instanceof IGridBlock) {
+          IGridNode nodeA = AEApi.instance().createGridNode((IGridBlock) teOpposite);
+          IGridNode nodeB = AEApi.instance().createGridNode(this);
+          try {
+            gridConnections.add(AEApi.instance().createGridConnection(nodeA, nodeB));
+          } catch (FailedConnection failedConnection) {
+            ImmersiveIntegration.log.warn(failedConnection.getMessage());
           }
         }
       }
@@ -202,14 +197,14 @@ public class TileMEWireConnector extends TileWireConnector implements IGridHost,
 
   @Override
   public void connectTo(int x, int y, int z) {
-    TileEntity tileEntity = worldObj.getTileEntity(x, y, z);
-    if (tileEntity instanceof IGridHost) {
-      IGridHost gridHost = (IGridHost) tileEntity;
+    TileEntity teOpposite = worldObj.getTileEntity(x, y, z);
+    if (teOpposite instanceof IGridHost) {
+      IGridNode nodeA = ((IGridHost) teOpposite).getGridNode(ForgeDirection.UNKNOWN);
+      IGridNode nodeB = getGridNode(ForgeDirection.UNKNOWN);
       try {
-        gridConnections.add(AEApi.instance().createGridConnection(gridHost.getGridNode(ForgeDirection.UNKNOWN), getGridNode(ForgeDirection.UNKNOWN)));
+        gridConnections.add(AEApi.instance().createGridConnection(nodeA, nodeB));
       } catch (FailedConnection failedConnection) {
-        failedConnection.printStackTrace();
-        ImmersiveIntegration.log.error("Something went wrong connecting the fluix wire!");
+        ImmersiveIntegration.log.info(failedConnection.getMessage());
       }
     }
   }

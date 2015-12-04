@@ -13,6 +13,7 @@ public class NEIImmersiveIntegrationConfig implements IConfigureNEI {
   @Override
   public void loadConfig() {
     API.hideItem(new ItemStack(IIBlocks.industrialCokeOven));
+    API.hideItem(new ItemStack(IIBlocks.extendedPost));
   }
 
   @Override

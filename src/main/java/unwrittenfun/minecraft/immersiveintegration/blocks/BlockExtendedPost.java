@@ -25,7 +25,7 @@ public class BlockExtendedPost extends BlockContainer {
     super(Material.wood);
     setBlockTextureName(key);
     setBlockName(key);
-    setCreativeTab(ImmersiveIntegration.iiCreativeTab);
+//    setCreativeTab(ImmersiveIntegration.iiCreativeTab);
     setBlockBounds(0.3125f, 0f, 0.3125f, 0.6875f, 1f, 0.6875f);
     setHardness(2f);
   }

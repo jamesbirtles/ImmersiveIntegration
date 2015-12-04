@@ -14,13 +14,11 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.ModInfo;
 import unwrittenfun.minecraft.immersiveintegration.items.IIItems;
-import unwrittenfun.minecraft.immersiveintegration.items.blocks.ItemBlockAEDecoration;
-import unwrittenfun.minecraft.immersiveintegration.items.blocks.ItemBlockInductionCharger;
-import unwrittenfun.minecraft.immersiveintegration.items.blocks.ItemBlockMETransformer;
-import unwrittenfun.minecraft.immersiveintegration.items.blocks.ItemBlockSteelDecoration;
+import unwrittenfun.minecraft.immersiveintegration.items.blocks.*;
 import unwrittenfun.minecraft.immersiveintegration.tiles.*;
 
 import java.lang.reflect.InvocationTargetException;
@@ -70,14 +68,14 @@ public class IIBlocks {
     steelDecoration = registerBlock(BlockSteelDecoration.class, ItemBlockSteelDecoration.class, STEEL_BLOCKS_KEY);
 
     // Tile Blocks
-    extendedPost = registerBlock(BlockExtendedPost.class, EXTENDED_POST_KEY, TileExtendedPost.class);
+    extendedPost = registerBlock(BlockExtendedPost.class, ItemBlockExtendedPost.class, EXTENDED_POST_KEY, TileExtendedPost.class);
     industrialCokeOven = registerBlock(BlockIndustrialCokeOven.class, INDUSTRIAL_COKE_OVEN, TileIndustrialCokeOven.class);
     itemRobin = registerBlock(BlockItemRobin.class, ITEM_ROBIN_KEY, TileItemRobin.class);
     inductionCharger = registerBlock(BlockInductionCharger.class, ItemBlockInductionCharger.class, INDUCTION_CHARGER_KEY);
 
     // Wire Connectors
     redstoneWireConnector = registerBlock(BlockRedstoneWireConnector.class, REDSTONE_WIRE_CONNECTOR_KEY, TileRedstoneWireConnector.class);
-    wallConnector = registerBlock(BlockWallConnector.class, WALL_CONNECTOR_KEY, TileWallConnector.class);
+//    wallConnector = registerBlock(BlockWallConnector.class, WALL_CONNECTOR_KEY, TileWallConnector.class);
 
     GameRegistry.registerTileEntity(TileInductionChargerLV.class, ModInfo.MOD_ID + ":" + INDUCTION_CHARGER_KEY + "LVTile");
     GameRegistry.registerTileEntity(TileInductionChargerMV.class, ModInfo.MOD_ID + ":" + INDUCTION_CHARGER_KEY + "MVTile");
@@ -106,7 +104,8 @@ public class IIBlocks {
   }
 
   public static void registerRecipes() {
-    GameRegistry.addRecipe(new ShapedOreRecipe(extendedPost, "p", "p", 'p', new ItemStack(IEContent.blockWoodenDecoration, 1, 1)));
+    GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(IEContent.blockWoodenDecoration, 2, 1), extendedPost));
+    GameRegistry.addRecipe(new ShapelessOreRecipe(extendablePost, new ItemStack(IEContent.blockWoodenDecoration, 1, 1), "stoneBrick"));
     GameRegistry.addRecipe(new ItemStack(steelTrapdoor, 2), "sss", "sss", 's', new ItemStack(IEContent.blockMetalDecoration, 1, BlockMetalDecoration.META_scaffolding));
     GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(redstoneWireConnector, 8), "beb", " r ", "beb", 'b', "blockRedstone", 'e', "ingotElectrum", 'r', "dustRedstone"));
 

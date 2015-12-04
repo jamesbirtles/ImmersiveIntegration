@@ -1,6 +1,6 @@
 package unwrittenfun.minecraft.immersiveintegration.blocks;
 
-import appeng.core.WorldSettings;
+import appeng.api.AEApi;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -14,6 +14,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.client.renderers.block.BlockRenderIIBlocks;
 import unwrittenfun.minecraft.immersiveintegration.tiles.TileMETransformer;
+import unwrittenfun.minecraft.immersiveintegration.utils.TileUtils;
 
 public class BlockMETransformer extends BlockContainer {
   public BlockMETransformer(String key) {
@@ -60,18 +61,16 @@ public class BlockMETransformer extends BlockContainer {
 
   @Override
   public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
-    TileEntity tileEntity = world.getTileEntity(x, y, z);
-    if (!world.isRemote && entity instanceof EntityPlayer && tileEntity instanceof TileMETransformer) {
-      TileMETransformer transformer = (TileMETransformer) tileEntity;
-      if (transformer.theGridNode == null) transformer.createAELink();
-      transformer.theGridNode.setPlayerID(WorldSettings.getInstance().getPlayerID(((EntityPlayer) entity).getGameProfile()));
-    }
+    if (!world.isRemote && entity instanceof EntityPlayer) {
+      TileMETransformer transformer = TileUtils.getTileEntity(world, x, y, z, TileMETransformer.class);
+      if (transformer != null) {
+        transformer.getGridNode(ForgeDirection.UNKNOWN).setPlayerID(AEApi.instance().registries().players().getID((EntityPlayer) entity));
+      }
 
-    TileEntity tileEntity1 = world.getTileEntity(x, y + 1, z);
-    if (!world.isRemote && entity instanceof EntityPlayer && tileEntity1 instanceof TileMETransformer) {
-      TileMETransformer transformer = (TileMETransformer) tileEntity1;
-      if (transformer.theGridNode == null) transformer.createAELink();
-      transformer.theGridNode.setPlayerID(WorldSettings.getInstance().getPlayerID(((EntityPlayer) entity).getGameProfile()));
+      transformer = TileUtils.getTileEntity(world, x, y + 1, z, TileMETransformer.class);
+      if (transformer != null) {
+        transformer.getGridNode(ForgeDirection.UNKNOWN).setPlayerID(AEApi.instance().registries().players().getID((EntityPlayer) entity));
+      }
     }
   }
 }
