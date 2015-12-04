@@ -132,19 +132,24 @@ public class BlockInductionCharger extends BlockContainer {
 
   @Override
   public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
-    if (!world.isRemote && !entity.isDead && entity instanceof EntityItem) {
-      EntityItem itemEntity = (EntityItem) entity;
+    if (!world.isRemote && !entity.isDead) {
       TileEntity tileEntity = world.getTileEntity(x, y, z);
       if (tileEntity instanceof TileInductionChargerLV) {
         TileInductionChargerLV charger = (TileInductionChargerLV) tileEntity;
-        if (charger.chargingStack == null) {
-          if (itemEntity.getEntityItem().getItem() instanceof IEnergyContainerItem && !(itemEntity.getEntityItem().getItem() instanceof ItemBlock)) {
-            charger.setChargingStack(itemEntity.getEntityItem());
-            itemEntity.getEntityItem().stackSize--;
-            if (itemEntity.getEntityItem().stackSize < 1) {
-              itemEntity.setDead();
+        if (entity instanceof EntityItem) {
+          EntityItem itemEntity = (EntityItem) entity;
+          if (charger.chargingStack == null) {
+            if (itemEntity.getEntityItem().getItem() instanceof IEnergyContainerItem && !(itemEntity.getEntityItem().getItem() instanceof ItemBlock)) {
+              charger.setChargingStack(itemEntity.getEntityItem());
+              itemEntity.getEntityItem().stackSize--;
+              if (itemEntity.getEntityItem().stackSize < 1) {
+                itemEntity.setDead();
+              }
             }
           }
+        } else if (entity instanceof EntityPlayer) {
+          EntityPlayer player = (EntityPlayer) entity;
+          charger.chargePlayer(player);
         }
       }
     }

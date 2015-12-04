@@ -15,6 +15,8 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraftforge.common.util.ForgeDirection;
+import org.lwjgl.Sys;
+import unwrittenfun.minecraft.immersiveintegration.ImmersiveIntegration;
 import unwrittenfun.minecraft.immersiveintegration.utils.TileUtils;
 
 public class TileInductionChargerLV extends TileEntity implements IEnergyReceiver, IBlockOverlayText {
@@ -22,15 +24,13 @@ public class TileInductionChargerLV extends TileEntity implements IEnergyReceive
   public EntityItem chargingStackEntity;
   public EnergyStorage energyStorage = new EnergyStorage(getCapacity(), getMaxInOut());
   protected int syncTicks = 0;
+  public long prevTime = 0;
 
   @Override
   public void updateEntity() {
     if (hasWorldObj() && !worldObj.isRemote) {
       if (chargingStack != null) {
-        IEnergyContainerItem energyContainer = (IEnergyContainerItem) chargingStack.getItem();
-        int energyToInsert = energyStorage.extractEnergy(getMaxInOut(), true);
-        int energyExtracted = energyContainer.receiveEnergy(chargingStack, energyToInsert, false);
-        energyStorage.extractEnergy(energyExtracted, false);
+        chargeItem(chargingStack);
 
         if (syncTicks >= 20) {
           syncTicks = 0;
@@ -40,6 +40,36 @@ public class TileInductionChargerLV extends TileEntity implements IEnergyReceive
         syncTicks++;
       }
     }
+  }
+
+  public void chargePlayer(EntityPlayer player) {
+    long time = System.nanoTime() / 1000000;
+    if (time - prevTime < 50) {
+      return;
+    }
+    prevTime = time;
+
+    for (int i = 0; i < player.inventory.armorInventory.length; i++) {
+      ItemStack stack = player.inventory.armorItemInSlot(i);
+      if (stack != null && stack.getItem() instanceof IEnergyContainerItem) {
+        ImmersiveIntegration.log.info("Charge Armour: " + stack.getDisplayName());
+        if (chargeItem(stack) > 0) return;
+      }
+    }
+    for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
+      ItemStack stack = player.inventory.getStackInSlot(i);
+      if (stack != null && stack.getItem() instanceof IEnergyContainerItem) {
+        ImmersiveIntegration.log.info("Charge Item: " + stack.getDisplayName());
+        if (chargeItem(stack) > 0) return;
+      }
+    }
+  }
+
+  protected int chargeItem(ItemStack stack) {
+    IEnergyContainerItem energyContainer = (IEnergyContainerItem) stack.getItem();
+    int energyToInsert = energyStorage.extractEnergy(getMaxInOut(), true);
+    int energyExtracted = energyContainer.receiveEnergy(stack, energyToInsert, false);
+    return energyStorage.extractEnergy(energyExtracted, false);
   }
 
   @Override
