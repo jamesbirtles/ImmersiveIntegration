@@ -70,9 +70,9 @@ immersiveintegration.color.white=White
 # Manual
 ie.manual.category.immersiveintegration.name=Immersive Integration
 
-ie.manual.entry.postExtension.name=Wooden Post Extension
-ie.manual.entry.postExtension.subtext=Yup.
-ie.manual.entry.postExtension0=Place atop a <link;treatedwood;§o§nWooden Post§r;3> to add more connections. The hammer works as expected on the extension.
+ie.manual.entry.extendablePost.name=Extendable Post
+ie.manual.entry.extendablePost.subtext=Yup.
+ie.manual.entry.extendablePost0=This allows for a post to be as large as you would like. Place the base down and simply place treated fence posts on top. You can also use the hammer to create arms.
 
 ie.manual.entry.steelTrapdoor.name=Steel Trapdoor
 ie.manual.entry.steelTrapdoor.subtext=Shhh. It's a secret
@@ -108,7 +108,7 @@ ie.manual.entry.capacitorBox0=Shoving a capacitor into a wooden crate allows you
 
 ie.manual.entry.inductionCharger.name=Induction Charger
 ie.manual.entry.inductionCharger.subtext=Compatible with leading brands
-ie.manual.entry.inductionCharger0=Charge your items through the science of induction; just like your mobile phone, you can charge many other items 'wirelessly'. Simply throw your item onto the induction charger and watch it charge.
+ie.manual.entry.inductionCharger0=Charge your items through the science of induction; just like your mobile phone, you can charge many other items 'wirelessly'. Simply throw your item onto the induction charger and watch it charge. If you stand on top of the charger it might just charge the items you are carrying.
 
 
 # Chat

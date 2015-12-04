@@ -9,6 +9,7 @@ import blusunrize.immersiveengineering.common.blocks.metal.BlockMetalDevices;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -105,7 +106,7 @@ public class IIBlocks {
 
   public static void registerRecipes() {
     GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(IEContent.blockWoodenDecoration, 2, 1), extendedPost));
-    GameRegistry.addRecipe(new ShapelessOreRecipe(extendablePost, new ItemStack(IEContent.blockWoodenDecoration, 1, 1), "stoneBrick"));
+    GameRegistry.addRecipe(new ShapelessOreRecipe(extendablePost, new ItemStack(IEContent.blockWoodenDecoration, 1, 1), Blocks.stonebrick));
     GameRegistry.addRecipe(new ItemStack(steelTrapdoor, 2), "sss", "sss", 's', new ItemStack(IEContent.blockMetalDecoration, 1, BlockMetalDecoration.META_scaffolding));
     GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(redstoneWireConnector, 8), "beb", " r ", "beb", 'b', "blockRedstone", 'e', "ingotElectrum", 'r', "dustRedstone"));
 
