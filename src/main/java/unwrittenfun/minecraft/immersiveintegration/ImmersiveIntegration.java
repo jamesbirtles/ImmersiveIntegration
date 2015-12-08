@@ -35,7 +35,7 @@ public class ImmersiveIntegration {
   public static CreativeTabs iiCreativeTab = new CreativeTabs(ModInfo.MOD_ID) {
     @Override
     public Item getTabIconItem() {
-      return Item.getItemFromBlock(IIBlocks.aeDecoration);
+      return Item.getItemFromBlock(IIBlocks.itemRobin);
     }
   };
 
