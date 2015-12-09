@@ -188,4 +188,9 @@ public class TileInductionChargerLV extends TileEntity implements IEnergyReceive
     }
     return new String[0];
   }
+
+  @Override
+  public boolean useNixieFont(EntityPlayer player, MovingObjectPosition mop) {
+    return false;
+  }
 }

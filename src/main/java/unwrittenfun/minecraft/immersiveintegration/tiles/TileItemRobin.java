@@ -225,4 +225,9 @@ public class TileItemRobin extends TileEntity implements ISidedInventory, IBlock
   public boolean isLocked() {
     return locked;
   }
+
+  @Override
+  public boolean useNixieFont(EntityPlayer player, MovingObjectPosition mop) {
+    return false;
+  }
 }

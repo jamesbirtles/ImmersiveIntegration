@@ -15,6 +15,7 @@ curl -g -o ImmersiveEngineering/libs/AquaTweaks-1.7.10-1.0-deobf.jar http://addo
 curl -g -o ImmersiveEngineering/libs/CoFHCore-[1.7.10]3.0.3-303-dev.jar http://addons-origin.cursecdn.com/files/2246/920/CoFHCore-[1.7.10]3.0.3-303-dev.jar
 curl -g -o ImmersiveEngineering/libs/EquivalentExchange3-1.7.10-0.3.507.jar http://ee3.pahimar.com/all/latest/EquivalentExchange3-1.7.10-0.3.507.jar
 curl -g -o ImmersiveEngineering/libs/Thaumcraft-1.7.10-4.2.3.5.jar http://addons-origin.cursecdn.com/files/2227/552/Thaumcraft-1.7.10-4.2.3.5.jar
+curl -g -o ImmersiveEngineering/libs/Botania-r1.8-242 http://botaniamod.net/files/Botania%20r1.8-242.jar
 
 
 

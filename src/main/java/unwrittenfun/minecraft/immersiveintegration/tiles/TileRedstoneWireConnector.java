@@ -132,4 +132,9 @@ public class TileRedstoneWireConnector extends TileWireConnector implements IBun
         StatCollector.translateToLocal("immersiveintegration.chat.mode") + " " + (redstoneMode ? "Input" : "Output")
     };
   }
+
+  @Override
+  public boolean useNixieFont(EntityPlayer player, MovingObjectPosition mop) {
+    return false;
+  }
 }
