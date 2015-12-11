@@ -1,3 +1,7 @@
+
+
+
+
 # AE2
 item.immersiveintegration:wireCoilFluix.name=福鲁伊克斯线圈
 item.immersiveintegration:wireCoilDense.name=致密线圈
@@ -12,9 +16,15 @@ tile.immersiveintegration:aeDecorationDenseCoil.name=致密线圈
 
 # IE/II
 tile.immersiveintegration:extendedPost.name=拓展木桩
+tile.immersiveintegration:extendablePost.name=可拓展木桩
 tile.immersiveintegration:steelTrapdoor.name=钢质活板门
 tile.immersiveintegration:redstoneWireConnector.name=红石接线器
 tile.immersiveintegration:industrialCokeOven.name=工业焦炉
+tile.immersiveintegration:itemRobin.name=物品调度仓
+
+tile.immersiveintegration:inductionChargerLV.name=低压感应充能器
+tile.immersiveintegration:inductionChargerMV.name=中压感应充能器
+tile.immersiveintegration:inductionChargerHV.name=高压感应充能器
 
 tile.immersiveintegration:steelDecorationOvenWall.name=焦炉墙
 tile.immersiveintegration:steelDecorationOvenWallHeated.name=焦炉加热墙
@@ -22,9 +32,20 @@ tile.immersiveintegration:steelDecorationOvenWallPort.name=焦炉接口
 
 item.immersiveintegration:iiWireCoilRedstone.name=红石线圈
 
+item.immersiveintegration:capacitorBoxLV.name=低压电容盒
+item.immersiveintegration:capacitorBoxMV.name=中压电容盒
+item.immersiveintegration:capacitorBoxHV.name=高压电容盒
+item.immersiveintegration:capacitorBoxCreative.name=创造电容盒
+
 
 # Tooltips
 immersiveintegration.tooltip.safe=安全的装饰
+
+immersiveintegration.tooltip.capacitor.infinite=无限 RF
+immersiveintegration.tooltip.capacitor.active0=右击停止能量供应
+immersiveintegration.tooltip.capacitor.active1=含能量的物品
+immersiveintegration.tooltip.capacitor.rightClickActive0=右击开始供应
+immersiveintegration.tooltip.capacitor.rightClickActive1=含能量的物品
 
 
 # Colors
@@ -47,9 +68,11 @@ immersiveintegration.color.white=白色
 
 
 # Manual
+
+
 ie.manual.entry.postExtension.name=拓展木桩
 ie.manual.entry.postExtension.subtext=对.
-ie.manual.entry.postExtension0=放置在<link;treatedwood;§o§n木桩§r;3>顶部以增加接线点.工程师锤也会像你预期那样生效.
+ie.manual.entry.postExtension0=这允许你可以让木桩变成如你所设想的规格.先把其安置,然后仅需轻松地把防腐木栏杆加装上去.你也可以用锤子来添加新的支臂.
 
 ie.manual.entry.steelTrapdoor.name=钢质活板门
 ie.manual.entry.steelTrapdoor.subtext=嘘.这是一个秘密
@@ -79,7 +102,17 @@ ie.manual.entry.itemRobin.subtext=唧唧,喳喳.
 ie.manual.entry.itemRobin0=物品调度仓会将输入的物品分配到相邻的容器中(包括传送带).拿着物品(设定好数量)右击一个面,设定这个面每周期分配的物品数量.
 ie.manual.entry.itemRobin1=手持工程师锤查看每个面设定的物品数量.当你设定好之后,你可以用锤子右击锁定它.
 
+ie.manual.entry.capacitorBox.name=电容盒
+ie.manual.entry.capacitorBox.subtext=电容+箱子 = 开方..?
+ie.manual.entry.capacitorBox0=由电容器与储存箱组合而成的电容盒方便携带的同时可为你身上的物品供能.如果你加装了匠魂,你可以把电容盒安置在你的工具上.你可以使用<link;inductionCharger;§o§ninduction charger§r;0>来给电容盒充能
+
+ie.manual.entry.inductionCharger.name=感应充能器
+ie.manual.entry.inductionCharger.subtext=兼容主打品牌
+ie.manual.entry.inductionCharger0=通过科学的感应充电原理为你的物品充能,就像为手机充电一样.你可以以'无线'的形式对很多物品进行充能.仅需把你的物品放置在感应充能器上,并看着它充能.如果你站在充能器顶部,它只能对你手持的物品进行充能
+
+
 # chat
+
 immersiveintegration.chat.channel=频道:
 immersiveintegration.chat.mode=模式:
 immersiveintegration.chat.channelSet=设置频道为:
@@ -89,10 +122,19 @@ immersiveintegration.chat.output=输出
 
 immersiveintegration.chat.itemRobin.countSet=物品数量设置为
 immersiveintegration.chat.itemRobin.locked=锁定
+
 immersiveintegration.chat.itemRobin.itemCount=物品数量:%s
 
-
 # Config
+immersiveintegration.config.category.ae=应用能源2
+immersiveintegration.config.category.ae.tooltip=应用能源2拓展
+immersiveintegration.config.category.ie=Immersive Integration
+immersiveintegration.config.category.ie.tooltip=Immersive Engineering Additions
+immersiveintegration.config.category.minecraft=Minecraft
+immersiveintegration.config.category.minecraft.tooltip=Minecraft Additions
+immersiveintegration.config.category.minecraft=其他
+immersiveintegration.config.category.minecraft.tooltip=Miscellaneous
+
 immersiveintegration.config.enableAE=开启AE2兼容
 immersiveintegration.config.desc.enableAE=启用/禁用AE2特定内容(若装有AE2)
 
@@ -125,3 +167,5 @@ immersiveintegration.config.desc.meWireConnectorDrain=每个ME接线器消耗多
 
 immersiveintegration.config.meDenseWireConnectorDrain=ME致密接线器能量消耗
 immersiveintegration.config.desc.meDenseWireConnectorDrain=每个ME致密接线器消耗多少AE/t
+
+
