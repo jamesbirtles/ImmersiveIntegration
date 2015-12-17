@@ -6,6 +6,7 @@ import appeng.api.networking.*;
 import appeng.api.util.AECableType;
 import appeng.api.util.AEColor;
 import appeng.api.util.DimensionalCoord;
+import appeng.me.GridException;
 import blusunrize.immersiveengineering.api.TargetingInfo;
 import blusunrize.immersiveengineering.api.energy.ImmersiveNetHandler;
 import blusunrize.immersiveengineering.api.energy.WireType;
@@ -36,33 +37,16 @@ public class TileMEWireConnector extends TileWireConnector implements IGridHost,
       createAELink();
 
       Set<ImmersiveNetHandler.Connection> connections = ImmersiveNetHandler.INSTANCE.getConnections(worldObj, Utils.toCC(this));
-      if (connections == null) return;
-      for (ImmersiveNetHandler.Connection connection : connections) {
-        ChunkCoordinates opposite = connection.end;
-        if (connection.end.equals(Utils.toCC(this))) {
-          opposite = connection.start;
-        }
-
-        TileEntity teOpposite = worldObj.getTileEntity(opposite.posX, opposite.posY, opposite.posZ);
-        if (teOpposite instanceof IGridBlock) {
-          IGridNode nodeA = AEApi.instance().createGridNode((IGridBlock) teOpposite);
-          IGridNode nodeB = AEApi.instance().createGridNode(this);
-          try {
-            gridConnections.add(AEApi.instance().createGridConnection(nodeA, nodeB));
-          } catch (FailedConnection failedConnection) {
-            ImmersiveIntegration.log.warn(failedConnection.getMessage());
+      if (connections != null) {
+        for (ImmersiveNetHandler.Connection connection : connections) {
+          ChunkCoordinates opposite = connection.end;
+          if (opposite.equals(Utils.toCC(this))) {
+            break;
           }
+
+          connectTo(opposite.posX, opposite.posY, opposite.posZ);
         }
       }
-    }
-  }
-
-  @Override
-  public void writeCustomNBT(NBTTagCompound nbt, boolean descPacket) {
-    super.writeCustomNBT(nbt, descPacket);
-
-    if (theGridNode == null) {
-      createAELink();
     }
   }
 
@@ -86,8 +70,8 @@ public class TileMEWireConnector extends TileWireConnector implements IGridHost,
   public void removeCable(ImmersiveNetHandler.Connection connection) {
     if (!worldObj.isRemote) {
       ChunkCoordinates opposite = connection.end;
-      if (connection.end.equals(Utils.toCC(this))) {
-        opposite = connection.start;
+      if (opposite.equals(Utils.toCC(this))) {
+        return;
       }
 
       for (IGridConnection gridConnection : gridConnections) {
@@ -205,6 +189,7 @@ public class TileMEWireConnector extends TileWireConnector implements IGridHost,
         gridConnections.add(AEApi.instance().createGridConnection(nodeA, nodeB));
       } catch (FailedConnection failedConnection) {
         ImmersiveIntegration.log.info(failedConnection.getMessage());
+      } catch (GridException ignored) {
       }
     }
   }
@@ -212,5 +197,14 @@ public class TileMEWireConnector extends TileWireConnector implements IGridHost,
   @Override
   public int getRenderRadiusIncrease() {
     return IIWires.fluixWire.getMaxLength();
+  }
+
+  @Override
+  public void writeCustomNBT(NBTTagCompound nbt, boolean descPacket) {
+    super.writeCustomNBT(nbt, descPacket);
+
+    if (theGridNode == null) {
+      createAELink();
+    }
   }
 }

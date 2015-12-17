@@ -45,7 +45,7 @@ public class TileMETransformer extends TileEntityImmersiveConnectable implements
         if (connections != null && connections.iterator().hasNext()) {
           ImmersiveNetHandler.Connection connection = connections.iterator().next();
           ChunkCoordinates opposite = connection.end;
-          if (connection.end.equals(Utils.toCC(this))) {
+          if (opposite.equals(Utils.toCC(this))) {
             return;
           }
 
