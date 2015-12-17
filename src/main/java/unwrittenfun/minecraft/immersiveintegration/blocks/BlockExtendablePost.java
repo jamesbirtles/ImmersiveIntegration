@@ -72,7 +72,7 @@ public class BlockExtendablePost extends Block implements IPostBlock {
       } else if (Utils.isHammer(player.getHeldItem())) {
         int meta = world.getBlockMetadata(x, y, z);
         if (meta == 1 || meta == 2) {
-          if (isAirFromSide(world, x, y, z, side)) {
+          if (side > 1 && isAirFromSide(world, x, y, z, side)) {
             setBlockAtSide(world, x, y, z, side, this, 1 + side);
           }
         } else if (meta != 0) {
