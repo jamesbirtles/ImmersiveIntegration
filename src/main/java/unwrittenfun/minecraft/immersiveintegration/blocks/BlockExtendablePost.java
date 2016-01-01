@@ -67,6 +67,8 @@ public class BlockExtendablePost extends Block implements IPostBlock {
               player.getHeldItem().stackSize--;
             }
             return true;
+          } else if (world.getBlock(x, y + i, z) != this) {
+            return true;
           }
         }
       } else if (Utils.isHammer(player.getHeldItem())) {
@@ -80,7 +82,7 @@ public class BlockExtendablePost extends Block implements IPostBlock {
         }
       }
     }
-    return true;
+    return Utils.isHammer(player.getHeldItem()) || (player.getHeldItem() != null && player.getHeldItem().isItemEqual(new ItemStack(IEContent.blockWoodenDecoration, 1, 1)));
   }
 
   @Override
