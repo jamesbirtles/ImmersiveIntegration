@@ -70,9 +70,9 @@ immersiveintegration.color.white=白色
 # Manual
 
 
-ie.manual.entry.postExtension.name=拓展木桩
-ie.manual.entry.postExtension.subtext=对.
-ie.manual.entry.postExtension0=这允许你可以让木桩变成如你所设想的规格.先把其安置,然后仅需轻松地把防腐木栏杆加装上去.你也可以用锤子来添加新的支臂.
+ie.manual.entry.extendablePost.name=可拓展木桩
+ie.manual.entry.extendablePost.subtext=对.
+ie.manual.entry.extendablePost0=这使得木桩可以被定制成你所设想的规格.先把其安置,然后仅需把防腐木栏杆加装上去即可.你也可以用锤子来添加新的支臂.
 
 ie.manual.entry.steelTrapdoor.name=钢质活板门
 ie.manual.entry.steelTrapdoor.subtext=嘘.这是一个秘密
@@ -104,11 +104,11 @@ ie.manual.entry.itemRobin1=手持工程师锤查看每个面设定的物品数�
 
 ie.manual.entry.capacitorBox.name=电容盒
 ie.manual.entry.capacitorBox.subtext=电容+箱子 = 开方..?
-ie.manual.entry.capacitorBox0=由电容器与储存箱组合而成的电容盒方便携带的同时可为你身上的物品供能.如果你加装了匠魂,你可以把电容盒安置在你的工具上.你可以使用<link;inductionCharger;§o§ninduction charger§r;0>来给电容盒充能
+ie.manual.entry.capacitorBox0=由电容器与储存箱组合而成的电容盒方便携带的同时可为你身上的物品供能.如果你加装了匠魂,你可以把电容盒安置在你的工具上.你可以使用<link;inductionCharger;§o§n感应充能 §o§n器§r;0>来给电容盒充能.
 
 ie.manual.entry.inductionCharger.name=感应充能器
 ie.manual.entry.inductionCharger.subtext=兼容主打品牌
-ie.manual.entry.inductionCharger0=通过科学的感应充电原理为你的物品充能,就像为手机充电一样.你可以以'无线'的形式对很多物品进行充能.仅需把你的物品放置在感应充能器上,并看着它充能.如果你站在充能器顶部,它只能对你手持的物品进行充能
+ie.manual.entry.inductionCharger0=通过科学的感应充电原理为你的物品充能,就像为手机充电一样.你可以以'无线'的形式对很多物品进行充能.仅需把你的物品放置在感应充能器上,并看着它充能.如果你站在充能器顶部,它只能对你手持的物品进行充能.
 
 
 # chat
@@ -122,8 +122,8 @@ immersiveintegration.chat.output=输出
 
 immersiveintegration.chat.itemRobin.countSet=物品数量设置为
 immersiveintegration.chat.itemRobin.locked=锁定
-
 immersiveintegration.chat.itemRobin.itemCount=物品数量:%s
+
 
 # Config
 immersiveintegration.config.category.ae=应用能源2
@@ -168,4 +168,5 @@ immersiveintegration.config.desc.meWireConnectorDrain=每个ME接线器消耗多
 immersiveintegration.config.meDenseWireConnectorDrain=ME致密接线器能量消耗
 immersiveintegration.config.desc.meDenseWireConnectorDrain=每个ME致密接线器消耗多少AE/t
 
-
+immersiveintegration.config.enableTinkers=开启匠魂工艺兼容
+immersiveintegration.config.desc.enableTinkers=允许将IE电容盒附加到工具上
