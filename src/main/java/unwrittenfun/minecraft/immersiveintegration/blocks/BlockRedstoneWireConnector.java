@@ -105,7 +105,6 @@ public class BlockRedstoneWireConnector extends BlockWireConnector implements IB
         for (int i = 0; i < values.length; i++) {
           if (values[i] > 0) total = total | 1 << i;
         }
-        ImmersiveIntegration.log.info(total);
         return total;
       }
     }

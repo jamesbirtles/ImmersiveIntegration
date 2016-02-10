@@ -52,14 +52,12 @@ public class TileInductionChargerLV extends TileEntity implements IEnergyReceive
     for (int i = 0; i < player.inventory.armorInventory.length; i++) {
       ItemStack stack = player.inventory.armorItemInSlot(i);
       if (stack != null && stack.getItem() instanceof IEnergyContainerItem) {
-        ImmersiveIntegration.log.info("Charge Armour: " + stack.getDisplayName());
         if (chargeItem(stack) > 0) return;
       }
     }
     for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
       ItemStack stack = player.inventory.getStackInSlot(i);
       if (stack != null && stack.getItem() instanceof IEnergyContainerItem) {
-        ImmersiveIntegration.log.info("Charge Item: " + stack.getDisplayName());
         if (chargeItem(stack) > 0) return;
       }
     }

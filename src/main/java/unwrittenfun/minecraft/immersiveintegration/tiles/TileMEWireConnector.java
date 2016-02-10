@@ -188,7 +188,7 @@ public class TileMEWireConnector extends TileWireConnector implements IGridHost,
       try {
         gridConnections.add(AEApi.instance().createGridConnection(nodeA, nodeB));
       } catch (FailedConnection failedConnection) {
-        ImmersiveIntegration.log.info(failedConnection.getMessage());
+        if (ImmersiveIntegration.cfg.verboseLogging) ImmersiveIntegration.log.info(failedConnection.getMessage());
       } catch (GridException ignored) {
       }
     }

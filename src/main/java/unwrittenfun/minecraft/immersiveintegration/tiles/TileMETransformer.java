@@ -200,7 +200,7 @@ public class TileMETransformer extends TileEntityImmersiveConnectable implements
         }
         theConnection = AEApi.instance().createGridConnection(nodeA, nodeB);
       } catch (FailedConnection failedConnection) {
-        ImmersiveIntegration.log.info(failedConnection.getMessage());
+        if (ImmersiveIntegration.cfg.verboseLogging) ImmersiveIntegration.log.info(failedConnection.getMessage());
       } catch (GridException ignored) {}
     }
   }

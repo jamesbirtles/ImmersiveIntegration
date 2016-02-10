@@ -12,7 +12,7 @@ public class Config {
   public static String CATEGORY_MINECRAFT = "minecraft";
   public static String CATEGORY_OTHER = "other";
 
-  public boolean enableAE, enableTinkers;
+  public boolean enableAE, enableTinkers, verboseLogging;
   public int fluixWireRange, denseWireRange, redstoneWireRange, meTransformerPowerDrain, meDenseTransformerPowerDrain,
       meWireConnectorDrain, meDenseWireConnectorDrain;
   public int cokeOvenDoubleChance;
@@ -45,6 +45,8 @@ public class Config {
 
     enableTinkers = config.getBoolean("enableTinkers", CATEGORY_OTHER, true, StatCollector.translateToLocal("immersiveintegration.config.desc.enableTinkers"), "immersiveintegration.config.enableTinkers");
     enableTinkers = enableTinkers && Loader.isModLoaded("TConstruct");
+
+    verboseLogging = config.getBoolean("verboseLogging", CATEGORY_OTHER, false, StatCollector.translateToLocal("immersiveintegration.config.desc.verboseLogging"), "immersiveintegration.config.verboseLogging");
 
     if (config.hasChanged()) {
       config.save();

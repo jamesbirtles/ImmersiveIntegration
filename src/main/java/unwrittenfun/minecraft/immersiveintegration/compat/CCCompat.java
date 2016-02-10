@@ -24,7 +24,6 @@ public class CCCompat extends CompatModule {
       int values = ComputerCraftAPI.getBundledRedstoneOutput(connector.getWorldObj(), connector.xCoord + direction.offsetX, connector.yCoord + direction.offsetY, connector.zCoord + direction.offsetZ, direction.getOpposite().ordinal());
       if (values != -1) {
         for (int i = 0; i < 16; i++) {
-          ImmersiveIntegration.log.info(((values >> i) & 1) * 15);
           redstoneWireNetwork.channelValues[i] = (byte) Math.max(redstoneWireNetwork.channelValues[i], ((values >> i) & 1) * 15);
         }
       }

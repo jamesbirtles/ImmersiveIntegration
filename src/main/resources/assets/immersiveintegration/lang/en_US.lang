@@ -132,8 +132,8 @@ immersiveintegration.config.category.ie=Immersive Integration
 immersiveintegration.config.category.ie.tooltip=Immersive Engineering Additions
 immersiveintegration.config.category.minecraft=Minecraft
 immersiveintegration.config.category.minecraft.tooltip=Minecraft Additions
-immersiveintegration.config.category.minecraft=Other
-immersiveintegration.config.category.minecraft.tooltip=Miscellaneous
+immersiveintegration.config.category.other=Other
+immersiveintegration.config.category.other.tooltip=Miscellaneous
 
 immersiveintegration.config.enableAE=Enable AE2 Integration
 immersiveintegration.config.desc.enableAE=Enable/disable the AE2 specific content if AE2 is installed
@@ -170,3 +170,6 @@ immersiveintegration.config.desc.meDenseWireConnectorDrain=How much power to dra
 
 immersiveintegration.config.enableTinkers=Enable Tinkers' Construct Integration
 immersiveintegration.config.desc.enableTinkers=Allows you to attach IE capacitors to tools
+
+immersiveintegration.config.verboseLogging=Verbose Logging
+immersiveintegration.config.desc.verboseLogging=Logs more info to the console. Useful for debugging.
