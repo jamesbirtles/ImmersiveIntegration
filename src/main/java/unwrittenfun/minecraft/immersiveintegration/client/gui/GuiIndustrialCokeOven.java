@@ -32,8 +32,8 @@ public class GuiIndustrialCokeOven extends GuiContainer {
 
   @Override
   protected void drawGuiContainerForegroundLayer(int mX, int mY) {
-    if (container.cokeOven.clientFluidAmount != 0) {
-      int height = (int) (47 * ((float) container.cokeOven.clientFluidAmount / (float) container.cokeOven.tank.getCapacity()));
+    if (container.cokeOven.tank.getFluidAmount() > 0) {
+      int height = (int) (47 * ((float) container.cokeOven.tank.getFluidAmount() / (float) container.cokeOven.tank.getCapacity()));
       ClientUtils.drawRepeatedFluidIcon(IEContent.fluidCreosote, 124, 66 - height, 16, height);
     }
     mc.renderEngine.bindTexture(texture);
@@ -53,12 +53,12 @@ public class GuiIndustrialCokeOven extends GuiContainer {
 
   public void drawTooltips(int guiMX, int guiMY, int renderMX, int renderMY) {
     List<String> fluidLines = new ArrayList<>();
-    if (container.cokeOven.clientFluidAmount == 0) {
+    if (container.cokeOven.tank.getFluidAmount() == 0) {
       fluidLines.add("Empty");
     } else {
       fluidLines.add(IEContent.fluidCreosote.getLocalizedName(container.cokeOven.tank.getFluid()));
     }
-    fluidLines.add(container.cokeOven.clientFluidAmount + " / " + container.cokeOven.tank.getCapacity() + " mB");
+    fluidLines.add(container.cokeOven.tank.getFluidAmount() + " / " + container.cokeOven.tank.getCapacity() + " mB");
 
     if (guiMX >= 124 && guiMX < 124 + 16 && guiMY >= 19 && guiMY < 19 + 47) {
       drawHoveringText(fluidLines, renderMX, renderMY, fontRendererObj);

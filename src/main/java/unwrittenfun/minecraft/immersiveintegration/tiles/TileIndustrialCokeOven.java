@@ -33,7 +33,6 @@ public class TileIndustrialCokeOven extends TileEntity implements IMultiblockTil
 
   public int[] processTime = new int[4];
   public int[] processTimeMax = new int[4];
-  public int clientFluidAmount = 0;
   public int[] clientProgress = new int[4];
   public Random random = new Random();
 
@@ -56,6 +55,8 @@ public class TileIndustrialCokeOven extends TileEntity implements IMultiblockTil
                   TileUtils.addStack(this, outputStack, i * 2, false);
                   decrStackSize(slot, 1);
                   this.tank.fill(new FluidStack(IEContent.fluidCreosote, (int) (recipe.creosoteOutput * ImmersiveIntegration.cfg.cokeOvenCreosoteMultiplier)), true);
+                  this.markDirty();
+                  this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
                 }
               }
               processTime[i] = 0;

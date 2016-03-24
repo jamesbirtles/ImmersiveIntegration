@@ -32,7 +32,7 @@ apply plugin: "forge"
 sourceCompatibility = JavaVersion.VERSION_1_7
 targetCompatibility = JavaVersion.VERSION_1_7
 
-version = "0.6.6"
+version = "0.6.8"
 group= "unwrittenfun.minecraft.immersiveintegration"
 archivesBaseName = "immersiveintegration"
 

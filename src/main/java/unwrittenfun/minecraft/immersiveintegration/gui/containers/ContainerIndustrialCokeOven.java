@@ -12,7 +12,6 @@ import unwrittenfun.minecraft.immersiveintegration.tiles.TileIndustrialCokeOven;
 public class ContainerIndustrialCokeOven extends Container {
   public TileIndustrialCokeOven cokeOven;
   public InventoryPlayer inventoryPlayer;
-  public int prevFluidAmount = 0;
   public int[] prevProgressValues = new int[4];
 
   public ContainerIndustrialCokeOven(TileIndustrialCokeOven cokeOven, InventoryPlayer inventoryPlayer) {
@@ -75,8 +74,6 @@ public class ContainerIndustrialCokeOven extends Container {
   public void addCraftingToCrafters(ICrafting crafter) {
     super.addCraftingToCrafters(crafter);
 
-    crafter.sendProgressBarUpdate(this, 4, cokeOven.tank.getFluidAmount());
-
     for (int i = 0; i < 4; i++) {
       crafter.sendProgressBarUpdate(this, i, cokeOven.getProgressFor(i));
     }
@@ -85,12 +82,6 @@ public class ContainerIndustrialCokeOven extends Container {
   @Override
   public void detectAndSendChanges() {
     super.detectAndSendChanges();
-    if (prevFluidAmount != cokeOven.tank.getFluidAmount()) {
-      prevFluidAmount = cokeOven.tank.getFluidAmount();
-      for (Object crafter : crafters) {
-        ((ICrafting) crafter).sendProgressBarUpdate(this, 4, prevFluidAmount);
-      }
-    }
 
     for (int i = 0; i < 4; i++) {
       if (prevProgressValues[i] != cokeOven.getProgressFor(i)) {
@@ -110,9 +101,6 @@ public class ContainerIndustrialCokeOven extends Container {
       case 2:
       case 3:
         cokeOven.clientProgress[id] = value;
-        break;
-      case 4:
-        cokeOven.clientFluidAmount = value;
         break;
     }
   }
